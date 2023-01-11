@@ -17,8 +17,17 @@ export async function getMoviesByKeyword(query) {
       `${BASE}/search/keyword?api_key=${KEY}&query=${query}`
     );
     const movies = await response.json();
-    console.log(movies);
     return movies;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function getMovieById(id) {
+  try {
+    const response = await fetch(`${BASE}/movie/${id}?api_key=${KEY}`);
+    const movie = await response.json();
+    return movie;
   } catch (error) {
     console.log(error.message);
   }

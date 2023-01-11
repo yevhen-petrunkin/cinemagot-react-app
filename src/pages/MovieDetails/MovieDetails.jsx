@@ -1,11 +1,13 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
+import { getMovieById } from 'services/services';
 import cat from '../../5.jpg';
-
 function MovieDetails() {
   const { movieId } = useParams();
   const location = useLocation();
+  // console.log(location);
   const backLinkHref = location.state?.from ?? '/';
+  console.log(getMovieById(movieId));
   return (
     <>
       <section>
