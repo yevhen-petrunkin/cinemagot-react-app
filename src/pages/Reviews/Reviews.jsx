@@ -1,4 +1,4 @@
-function Review() {
+function Reviews() {
   return (
     <ul>
       <li>
@@ -13,4 +13,4 @@ function Review() {
   );
 }
 
-export default Review;
+export default Reviews;

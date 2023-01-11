@@ -1,13 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
-import cat from '../5.jpg';
+import cat from '../../5.jpg';
 
 function MovieDetails() {
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
   return (
     <>
       <section>
-        <button>Go back</button>
+        <Link to={backLinkHref}>Go Back</Link>
         <div>
           <img src={cat} alt="lorem" width="200px" />
         </div>
@@ -29,8 +31,8 @@ function MovieDetails() {
         <nav>
           <ul>
             <li>
-              <Link to="/movies/:movieId/cast">Cast</Link>
-              <Link to="/movies/:movieId/review">Reviews</Link>
+              <Link to="cast">Cast</Link>
+              <Link to="review">Reviews</Link>
             </li>
           </ul>
         </nav>

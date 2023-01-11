@@ -1,4 +1,4 @@
-import cat from '../5.jpg';
+import cat from '../../5.jpg';
 
 function Cast() {
   return (
