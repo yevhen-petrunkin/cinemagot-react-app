@@ -1,4 +1,5 @@
 const BASE = 'https://api.themoviedb.org/3';
+const POSTER_BASE = 'https://image.tmdb.org/t/p/w500';
 const KEY = 'ae692f579055feb645577941bd67daeb';
 
 export async function getTrendingMovies() {
@@ -31,4 +32,8 @@ export async function getMovieById(id) {
   } catch (error) {
     console.log(error.message);
   }
+}
+
+export function getPosterAddress(param) {
+  return `${POSTER_BASE}${param}`;
 }

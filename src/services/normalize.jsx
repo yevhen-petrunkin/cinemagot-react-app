@@ -10,3 +10,8 @@ export function normalizeMovies(movies) {
     return [...aggr, { id: movie.id, movieName: movieName }];
   }, []);
 }
+
+export function stringifyData(array) {
+  // console.log(array);
+  return array.map(item => item.name).join(', ');
+}
