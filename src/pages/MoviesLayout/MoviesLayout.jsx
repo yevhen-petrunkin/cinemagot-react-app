@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import LoaderComp from 'components/Loader/Loader';
+import LoaderComp from 'components/Loader';
 
 function MoviesLayout() {
   return (

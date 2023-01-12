@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { getPictureAddress } from 'services/services';
+import { getPictureAddress } from 'services';
 import PropTypes from 'prop-types';
-import { PhotoPlaceholder } from 'components/Placeholder/Placeholder';
+import { PhotoPlaceholder } from 'components/Placeholder';
 
 function CastDetails({ data }) {
   const [isPhotoLoaded, setIsPhotoLoaded] = useState(false);

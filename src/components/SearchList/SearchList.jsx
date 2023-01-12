@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Movie from 'components/Movie/Movie';
+import Movie from 'components/Movie';
 
 function SearchList({ movies, location }) {
   return (

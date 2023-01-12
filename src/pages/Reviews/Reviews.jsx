@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getReviewsById } from 'services/services';
-import { normalizeReviews } from 'services/normalize';
-import ReviewDetails from 'components/ReviewDetails/ReviewDetails';
-import NotFoundMessage from 'components/NotFoundMessage/NotFoundMessage';
+import { getReviewsById } from 'services';
+import { normalizeReviews } from 'services';
+import ReviewDetails from 'components/ReviewDetails';
+import NotFoundMessage from 'components/NotFoundMessage';
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getTrendingMovies } from 'services/services';
-import { normalizeMovies } from 'services/normalize';
-import SearchList from 'components/SearchList/SearchList';
+import { getTrendingMovies } from 'services';
+import { normalizeMovies } from 'services';
+import SearchList from 'components/SearchList';
 
 function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);

@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getMoviesByKeyword } from 'services/services';
-import { normalizeMovies } from 'services/normalize';
-import SearchForm from 'components/SearchForm/SearchForm';
-import SearchList from 'components/SearchList/SearchList';
+import { getMoviesByKeyword } from 'services';
+import { normalizeMovies } from 'services';
+import SearchForm from 'components/SearchForm';
+import SearchList from 'components/SearchList';
 
 function Movies() {
   const [movies, setMovies] = useState([]);

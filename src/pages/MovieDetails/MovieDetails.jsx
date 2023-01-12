@@ -1,9 +1,9 @@
 import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { getMovieById, getPictureAddress } from 'services/services';
-import { stringifyData } from 'services/normalize';
-import { PosterPlaceholder } from 'components/Placeholder/Placeholder';
-import LoaderComp from 'components/Loader/Loader';
+import { getMovieById, getPictureAddress } from 'services';
+import { stringifyData } from 'services';
+import { PosterPlaceholder } from 'components/Placeholder';
+import LoaderComp from 'components/Loader';
 
 function MovieDetails() {
   const [posterAddress, setPosterAddress] = useState('');
