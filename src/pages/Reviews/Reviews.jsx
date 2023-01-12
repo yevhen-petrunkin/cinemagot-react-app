@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getReviewsById } from 'services/services';
 import { normalizeReviews } from 'services/normalize';
 import ReviewDetails from 'components/ReviewDetails/ReviewDetails';
@@ -29,3 +30,10 @@ function Reviews() {
 }
 
 export default Reviews;
+
+ReviewDetails.propTypes = {
+  data: PropTypes.shape({
+    author: PropTypes.string,
+    content: PropTypes.string,
+  }).isRequired,
+};

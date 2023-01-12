@@ -1,4 +1,5 @@
 import { getPictureAddress } from 'services/services';
+import PropTypes from 'prop-types';
 
 function CastDetails({ data }) {
   const { profilePhoto, actorName, charName } = data;
@@ -13,3 +14,11 @@ function CastDetails({ data }) {
 }
 
 export default CastDetails;
+
+CastDetails.propTypes = {
+  data: PropTypes.shape({
+    profilePhoto: PropTypes.string,
+    actorName: PropTypes.string,
+    charName: PropTypes.string,
+  }).isRequired,
+};

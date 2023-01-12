@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Movie from 'components/Movie/Movie';
 
 function SearchList({ movies, location }) {
@@ -14,3 +15,17 @@ function SearchList({ movies, location }) {
 }
 
 export default SearchList;
+
+SearchList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};

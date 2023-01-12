@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getTrendingMovies } from 'services/services';
 import { normalizeMovies } from 'services/normalize';
 import SearchList from 'components/SearchList/SearchList';
@@ -24,3 +25,17 @@ function Home() {
 }
 
 export default Home;
+
+SearchList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};

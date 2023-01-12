@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import NotFoundMessage from './NotFoundMessage/NotFoundMessage';
 const MoviesLayout = lazy(() => import('pages/MoviesLayout/MoviesLayout'));
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -17,11 +18,11 @@ export const App = () => {
           <Route path="/movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="review" element={<Reviews />} />
-            <Route path="*" element={<div>NotFound</div>} />
+            <Route path="*" element={<NotFoundMessage />} />
           </Route>
-          <Route path="*" element={<div>NotFound</div>} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
-        <Route path="*" element={<div>NotFound</div>} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );

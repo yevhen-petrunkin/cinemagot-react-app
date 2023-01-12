@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function ReviewDetails({ data }) {
   const { author, content } = data;
 
@@ -10,3 +12,10 @@ function ReviewDetails({ data }) {
 }
 
 export default ReviewDetails;
+
+ReviewDetails.propTypes = {
+  data: PropTypes.shape({
+    author: PropTypes.string,
+    content: PropTypes.string,
+  }).isRequired,
+};

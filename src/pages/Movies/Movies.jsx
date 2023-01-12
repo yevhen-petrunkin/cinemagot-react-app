@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getMoviesByKeyword } from 'services/services';
 import { normalizeMovies } from 'services/normalize';
 import SearchForm from 'components/SearchForm/SearchForm';
@@ -45,3 +46,21 @@ function Movies() {
 }
 
 export default Movies;
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+SearchList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
