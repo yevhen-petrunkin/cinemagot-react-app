@@ -1,14 +1,29 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getReviewsById } from 'services/services';
+import { normalizeReviews } from 'services/normalize';
+import ReviewDetails from 'components/ReviewDetails/ReviewDetails';
+
 function Reviews() {
+  const [reviews, setReviews] = useState([]);
+
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+    getReviewsById(movieId).then(data =>
+      setReviews(normalizeReviews(data.results))
+    );
+  }, [movieId]);
+
   return (
     <ul>
-      <li>
-        <h5>Author: Lorem ipsum dolor sit.</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          nobis, architecto sunt officia error ipsum commodi accusantium vero
-          alias ab minima sit at assumenda aliquid ipsam a! In, dolores vitae.
-        </p>
-      </li>
+      {reviews.map(review => {
+        const { author } = review;
+        return <ReviewDetails key={author} data={review} />;
+      })}
     </ul>
   );
 }

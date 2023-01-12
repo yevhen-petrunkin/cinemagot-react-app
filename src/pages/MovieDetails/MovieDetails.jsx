@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { getMovieById, getPosterAddress } from 'services/services';
+import { getMovieById, getPictureAddress } from 'services/services';
 import { stringifyData } from 'services/normalize';
 
 function MovieDetails() {
@@ -11,13 +11,14 @@ function MovieDetails() {
   const [genreString, setGenreString] = useState('');
 
   const { movieId } = useParams();
+
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     getMovieById(movieId).then(movie => {
       const { poster_path, title, popularity, overview, genres } = movie;
-      setPosterAddress(getPosterAddress(poster_path));
+      setPosterAddress(getPictureAddress(poster_path));
       setTitle(title);
       setScore(popularity);
       setOverview(overview);
@@ -30,7 +31,7 @@ function MovieDetails() {
       <section>
         <Link to={backLinkHref}>Go Back</Link>
         <div>
-          <img src={posterAddress} alt="lorem" width="200px" />
+          <img src={posterAddress} alt={title} width="200px" />
         </div>
         <div>
           <h1>{title}</h1>

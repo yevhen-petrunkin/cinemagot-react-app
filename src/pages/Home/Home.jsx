@@ -10,15 +10,15 @@ function Home() {
   location.state = { page: 'home' };
 
   useEffect(() => {
-    getTrendingMovies().then(data => setTrendingMovies(data.results));
+    getTrendingMovies().then(data => {
+      setTrendingMovies(normalizeMovies(data.results));
+    });
   }, []);
-
-  const normalizedTrendingMovies = normalizeMovies(trendingMovies);
 
   return (
     <section>
       <h1>Trending Today</h1>
-      <SearchList movies={normalizedTrendingMovies} location={location} />
+      <SearchList movies={trendingMovies} location={location} />
     </section>
   );
 }

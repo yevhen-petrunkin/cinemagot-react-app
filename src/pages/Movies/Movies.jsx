@@ -18,7 +18,9 @@ function Movies() {
     if (!paramQuery) {
       return;
     }
-    getMoviesByKeyword(paramQuery).then(data => setMovies(data.results));
+    getMoviesByKeyword(paramQuery).then(data => {
+      setMovies(normalizeMovies(data.results));
+    });
   }, [paramQuery]);
 
   const onFormSubmit = query => {
@@ -26,17 +28,18 @@ function Movies() {
       return;
     }
     setSearchParams(searchParams => ({ ...searchParams, query: query }));
-    getMoviesByKeyword(query).then(data => setMovies(data.results));
+    getMoviesByKeyword(query).then(data => {
+      setMovies(normalizeMovies(data.results));
+    });
   };
 
-  const normalizedMovies = normalizeMovies(movies);
   const location = useLocation();
   location.state = { page: 'movies' };
 
   return (
     <>
       <SearchForm onSubmit={onFormSubmit} />
-      <SearchList movies={normalizedMovies} location={location} />
+      <SearchList movies={movies} location={location} />
     </>
   );
 }

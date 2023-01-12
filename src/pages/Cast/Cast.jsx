@@ -1,13 +1,27 @@
-import cat from '../../5.jpg';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getCreditsById } from 'services/services';
+import { normalizeCredits } from 'services/normalize';
+import CastDetails from 'components/CastDetails/CastDetails';
 
 function Cast() {
+  const [cast, setCast] = useState([]);
+
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+    getCreditsById(movieId).then(data => setCast(normalizeCredits(data.cast)));
+  }, [movieId]);
+
   return (
     <ul>
-      <li>
-        <img src={cat} alt="lorem" width="100px" />
-        <p>Actor</p>
-        <p>Character: Lorem ipsum dolor sit.</p>
-      </li>
+      {cast.map(artist => {
+        const { actorName } = artist;
+        return <CastDetails key={actorName} data={artist} />;
+      })}
     </ul>
   );
 }
