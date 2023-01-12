@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieById, getPictureAddress } from 'services/services';
 import { stringifyData } from 'services/normalize';
@@ -52,6 +52,7 @@ function MovieDetails() {
             </li>
           </ul>
         </nav>
+        <Suspense fallback={<div>Loading...</div>}></Suspense>
         <Outlet />
       </section>
     </>
