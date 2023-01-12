@@ -15,7 +15,8 @@ export default ReviewDetails;
 
 ReviewDetails.propTypes = {
   data: PropTypes.shape({
-    author: PropTypes.string,
-    content: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
   }).isRequired,
 };

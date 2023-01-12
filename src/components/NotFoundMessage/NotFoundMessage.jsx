@@ -1,7 +1,7 @@
 function NotFoundMessage() {
   return (
     <div>
-      <span>Sorry. There is no information of this kind found.</span>
+      <span>Searching for information. Can't find yet.</span>
     </div>
   );
 }

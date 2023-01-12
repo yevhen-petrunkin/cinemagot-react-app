@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getReviewsById } from 'services/services';
 import { normalizeReviews } from 'services/normalize';
 import ReviewDetails from 'components/ReviewDetails/ReviewDetails';
+import NotFoundMessage from 'components/NotFoundMessage/NotFoundMessage';
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -21,10 +22,14 @@ function Reviews() {
 
   return (
     <ul>
-      {reviews.map(review => {
-        const { author } = review;
-        return <ReviewDetails key={author} data={review} />;
-      })}
+      {reviews.length ? (
+        reviews.map(review => {
+          const { id } = review;
+          return <ReviewDetails key={id} data={review} />;
+        })
+      ) : (
+        <NotFoundMessage />
+      )}
     </ul>
   );
 }
@@ -33,7 +38,8 @@ export default Reviews;
 
 ReviewDetails.propTypes = {
   data: PropTypes.shape({
-    author: PropTypes.string,
-    content: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
   }).isRequired,
 };

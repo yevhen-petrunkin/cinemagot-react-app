@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import LoaderComp from 'components/Loader/Loader';
 
 function MoviesLayout() {
   return (
@@ -15,7 +16,7 @@ function MoviesLayout() {
         </nav>
       </header>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoaderComp />}>
           <Outlet />
         </Suspense>
       </main>

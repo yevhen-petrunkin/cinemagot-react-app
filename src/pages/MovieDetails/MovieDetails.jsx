@@ -2,9 +2,12 @@ import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieById, getPictureAddress } from 'services/services';
 import { stringifyData } from 'services/normalize';
+import { PosterPlaceholder } from 'components/Placeholder/Placeholder';
+import LoaderComp from 'components/Loader/Loader';
 
 function MovieDetails() {
   const [posterAddress, setPosterAddress] = useState('');
+  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
   const [title, setTitle] = useState('');
   const [score, setScore] = useState(0);
   const [overview, setOverview] = useState('');
@@ -31,7 +34,13 @@ function MovieDetails() {
       <section>
         <Link to={backLinkHref}>Go Back</Link>
         <div>
-          <img src={posterAddress} alt={title} width="200px" />
+          {!isPosterLoaded && <PosterPlaceholder />}
+          <img
+            src={posterAddress}
+            alt={title}
+            width="200px"
+            onLoad={() => setIsPosterLoaded(true)}
+          />
         </div>
         <div>
           <h1>{title}</h1>
@@ -52,8 +61,9 @@ function MovieDetails() {
             </li>
           </ul>
         </nav>
-        <Suspense fallback={<div>Loading...</div>}></Suspense>
-        <Outlet />
+        <Suspense fallback={<LoaderComp />}>
+          <Outlet />
+        </Suspense>
       </section>
     </>
   );

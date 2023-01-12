@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getCreditsById } from 'services/services';
 import { normalizeCredits } from 'services/normalize';
 import CastDetails from 'components/CastDetails/CastDetails';
+import NotFoundMessage from 'components/NotFoundMessage/NotFoundMessage';
 
 function Cast() {
   const [cast, setCast] = useState([]);
@@ -19,10 +20,14 @@ function Cast() {
 
   return (
     <ul>
-      {cast.map(artist => {
-        const { actorName } = artist;
-        return <CastDetails key={actorName} data={artist} />;
-      })}
+      {cast.length ? (
+        cast.map(person => {
+          const { id } = person;
+          return <CastDetails key={id} data={person} />;
+        })
+      ) : (
+        <NotFoundMessage />
+      )}
     </ul>
   );
 }
@@ -31,8 +36,9 @@ export default Cast;
 
 CastDetails.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     profilePhoto: PropTypes.string,
-    actorName: PropTypes.string,
-    charName: PropTypes.string,
+    actorName: PropTypes.string.isRequired,
+    charName: PropTypes.string.isRequired,
   }).isRequired,
 };

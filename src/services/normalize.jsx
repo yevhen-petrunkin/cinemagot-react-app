@@ -7,6 +7,7 @@ export function normalizeMovies(movies) {
 
 export function normalizeCredits(credits) {
   return credits.map(credit => ({
+    id: credit.id,
     profilePhoto: credit.profile_path,
     actorName: credit.name,
     charName: credit.character,
@@ -15,6 +16,7 @@ export function normalizeCredits(credits) {
 
 export function normalizeReviews(reviews) {
   return reviews.map(review => ({
+    id: review.id,
     author: review.author,
     content: review.content,
   }));
