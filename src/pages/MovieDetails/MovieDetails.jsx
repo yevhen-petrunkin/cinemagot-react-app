@@ -72,12 +72,12 @@ function MovieDetails() {
         <nav>
           <List>
             <ListItem>
-              <AdditLink to="cast" state={{ from: location.state.from }}>
+              <AdditLink to="cast" state={{ from: backLinkHref }}>
                 Cast
               </AdditLink>
             </ListItem>
             <ListItem>
-              <AdditLink to="review" state={{ from: location.state.from }}>
+              <AdditLink to="review" state={{ from: backLinkHref }}>
                 Reviews
               </AdditLink>
             </ListItem>
