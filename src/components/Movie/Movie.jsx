@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { StyledLink } from './Movie.styled';
 
 function Movie({ id, movieName, location }) {
   let movieId = '';
@@ -18,9 +18,9 @@ function Movie({ id, movieName, location }) {
 
   return (
     <li>
-      <Link to={movieId} state={{ from: location }}>
+      <StyledLink to={movieId} state={{ from: location }}>
         {movieName}
-      </Link>
+      </StyledLink>
     </li>
   );
 }

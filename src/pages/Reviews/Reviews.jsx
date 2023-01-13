@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getReviewsById } from 'services';
 import { normalizeReviews } from 'services';
+import { List } from './Review.styled';
 import ReviewDetails from 'components/ReviewDetails';
 import NotFoundMessage from 'components/NotFoundMessage';
 
@@ -21,7 +22,7 @@ function Reviews() {
   }, [movieId]);
 
   return (
-    <ul>
+    <List>
       {reviews.length ? (
         reviews.map(review => {
           const { id } = review;
@@ -30,7 +31,7 @@ function Reviews() {
       ) : (
         <NotFoundMessage />
       )}
-    </ul>
+    </List>
   );
 }
 

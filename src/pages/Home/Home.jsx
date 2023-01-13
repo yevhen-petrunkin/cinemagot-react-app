@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getTrendingMovies } from 'services';
 import { normalizeMovies } from 'services';
+import { HomeCaption } from './Home.styled';
 import SearchList from 'components/SearchList';
 
 function Home() {
@@ -18,7 +19,7 @@ function Home() {
 
   return (
     <section>
-      <h1>Trending Today</h1>
+      <HomeCaption>Trending Today</HomeCaption>
       <SearchList movies={trendingMovies} location={location} />
     </section>
   );

@@ -1,7 +1,20 @@
 import { useState, useEffect, Suspense } from 'react';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { getMovieById, getPictureAddress } from 'services';
 import { stringifyData } from 'services';
+import {
+  GoBackBtn,
+  Poster,
+  MovieCaption,
+  TextContent,
+  OverviewCaption,
+  GenresCaption,
+  AdditCaption,
+  List,
+  ListItem,
+  AdditLink,
+} from './MovieDetails.styled';
 import { PosterPlaceholder } from 'components/Placeholder';
 import LoaderComp from 'components/Loader';
 
@@ -32,34 +45,38 @@ function MovieDetails() {
   return (
     <>
       <section>
-        <Link to={backLinkHref}>Go Back</Link>
+        <GoBackBtn to={backLinkHref}>
+          <HiArrowNarrowLeft />
+          <span>Go Back</span>
+        </GoBackBtn>
         <div>
           {!isPosterLoaded && <PosterPlaceholder />}
-          <img
+          <Poster
             src={posterAddress}
             alt={title}
-            width="200px"
             onLoad={() => setIsPosterLoaded(true)}
           />
         </div>
-        <div>
-          <h1>{title}</h1>
-          <p>User Score: {score}</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          <p>{genreString}</p>
+        <div style={{ padding: '20px 0' }}>
+          <MovieCaption>{title}</MovieCaption>
+          <TextContent>User Score: {score}</TextContent>
+          <OverviewCaption>Overview</OverviewCaption>
+          <TextContent>{overview}</TextContent>
+          <GenresCaption>Genres</GenresCaption>
+          <TextContent>{genreString}</TextContent>
         </div>
       </section>
       <section>
-        <h4>Additional Information</h4>
+        <AdditCaption>Additional Information</AdditCaption>
         <nav>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-              <Link to="review">Reviews</Link>
-            </li>
-          </ul>
+          <List>
+            <ListItem>
+              <AdditLink to="cast">Cast</AdditLink>
+            </ListItem>
+            <ListItem>
+              <AdditLink to="review">Reviews</AdditLink>
+            </ListItem>
+          </List>
         </nav>
         <Suspense fallback={<LoaderComp />}>
           <Outlet />

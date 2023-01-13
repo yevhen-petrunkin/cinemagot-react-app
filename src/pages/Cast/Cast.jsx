@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCreditsById } from 'services';
 import { normalizeCredits } from 'services';
+import { List } from './Cast.styled';
 import CastDetails from 'components/CastDetails';
 import NotFoundMessage from 'components/NotFoundMessage';
 
@@ -19,7 +20,7 @@ function Cast() {
   }, [movieId]);
 
   return (
-    <ul>
+    <List>
       {cast.length ? (
         cast.map(person => {
           const { id } = person;
@@ -28,7 +29,7 @@ function Cast() {
       ) : (
         <NotFoundMessage />
       )}
-    </ul>
+    </List>
   );
 }
 

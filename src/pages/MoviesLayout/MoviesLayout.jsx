@@ -1,24 +1,34 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import {
+  Header,
+  NavMenu,
+  NavStyledLink,
+  MainContainer,
+} from './MoviesLayout.styled';
 import LoaderComp from 'components/Loader';
 
 function MoviesLayout() {
   return (
     <>
-      <header>
+      <Header>
         <nav>
-          <ul>
+          <NavMenu>
             <li>
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/movies">Movies</NavLink>
+              <NavStyledLink to="/">Home</NavStyledLink>
             </li>
-          </ul>
+            <li>
+              <NavStyledLink to="/movies">Movies</NavStyledLink>
+            </li>
+          </NavMenu>
         </nav>
-      </header>
+      </Header>
       <main>
-        <Suspense fallback={<LoaderComp />}>
-          <Outlet />
-        </Suspense>
+        <MainContainer>
+          <Suspense fallback={<LoaderComp />}>
+            <Outlet />
+          </Suspense>
+        </MainContainer>
       </main>
     </>
   );

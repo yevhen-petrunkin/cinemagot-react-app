@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getPictureAddress } from 'services';
 import PropTypes from 'prop-types';
+import { Actor, Photo, Info } from './CastDetails.styled';
 import { PhotoPlaceholder } from 'components/Placeholder';
 
 function CastDetails({ data }) {
@@ -8,17 +9,16 @@ function CastDetails({ data }) {
   const { profilePhoto, actorName, charName } = data;
   const photo = getPictureAddress(profilePhoto);
   return (
-    <li>
+    <Actor>
       {!isPhotoLoaded && <PhotoPlaceholder />}
-      <img
+      <Photo
         src={photo}
         alt={actorName}
-        width="100px"
         onLoad={() => setIsPhotoLoaded(true)}
       />
-      <p>{actorName}</p>
-      <p>Character: {charName}</p>
-    </li>
+      <Info>{actorName}</Info>
+      <Info>Character: {charName}</Info>
+    </Actor>
   );
 }
 

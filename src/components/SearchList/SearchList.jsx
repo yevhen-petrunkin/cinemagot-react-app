@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
+import { List } from './SearchList.styled';
 import Movie from 'components/Movie';
 
 function SearchList({ movies, location }) {
   return (
-    <ul>
+    <List>
       {movies.map(movie => {
         const { id, movieName } = movie;
         return (
           <Movie key={id} id={id} movieName={movieName} location={location} />
         );
       })}
-    </ul>
+    </List>
   );
 }
 

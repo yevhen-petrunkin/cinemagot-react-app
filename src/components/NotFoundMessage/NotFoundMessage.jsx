@@ -1,7 +1,9 @@
+import { Message } from './NotFoundMessage.styled';
+
 function NotFoundMessage() {
   return (
     <div>
-      <span>Searching for information. Can't find yet.</span>
+      <Message>Searching for information. Can't find yet.</Message>
     </div>
   );
 }

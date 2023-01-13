@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
+import { Review, Author } from './ReviewDetails.styled';
 
 function ReviewDetails({ data }) {
   const { author, content } = data;
 
   return (
-    <li>
-      <h5>Author: {author}</h5>
+    <Review>
+      <Author>Author: {author}</Author>
       <p>{content}</p>
-    </li>
+    </Review>
   );
 }
 
