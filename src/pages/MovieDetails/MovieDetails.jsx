@@ -30,6 +30,7 @@ function MovieDetails() {
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+  console.log(backLinkHref);
 
   useEffect(() => {
     getMovieById(movieId).then(movie => {
@@ -71,10 +72,14 @@ function MovieDetails() {
         <nav>
           <List>
             <ListItem>
-              <AdditLink to="cast">Cast</AdditLink>
+              <AdditLink to="cast" state={{ from: location.state.from }}>
+                Cast
+              </AdditLink>
             </ListItem>
             <ListItem>
-              <AdditLink to="review">Reviews</AdditLink>
+              <AdditLink to="review" state={{ from: location.state.from }}>
+                Reviews
+              </AdditLink>
             </ListItem>
           </List>
         </nav>
