@@ -70,5 +70,5 @@ export async function getReviewsById(id) {
 }
 
 export function getPictureAddress(param) {
-  return `${PICTURE_BASE}${param}`;
+  return param ? `${PICTURE_BASE}${param}` : '';
 }

@@ -19,29 +19,32 @@ import { PosterPlaceholder } from 'components/Placeholder';
 import LoaderComp from 'components/Loader';
 
 function MovieDetails() {
-  const [posterAddress, setPosterAddress] = useState('');
+  const [movieData, setMovieData] = useState({});
   const [isPosterLoaded, setIsPosterLoaded] = useState(false);
-  const [title, setTitle] = useState('');
-  const [score, setScore] = useState(0);
-  const [overview, setOverview] = useState('');
-  const [genreString, setGenreString] = useState('');
 
   const { movieId } = useParams();
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  console.log(backLinkHref);
 
   useEffect(() => {
     getMovieById(movieId).then(movie => {
       const { poster_path, title, popularity, overview, genres } = movie;
-      setPosterAddress(getPictureAddress(poster_path));
-      setTitle(title);
-      setScore(popularity);
-      setOverview(overview);
-      setGenreString(stringifyData(genres));
+      setMovieData({
+        poster: getPictureAddress(poster_path),
+        title,
+        score: popularity,
+        overview,
+        genres: stringifyData(genres),
+      });
     });
   }, [movieId]);
+
+  if (!movieData) {
+    return <LoaderComp />;
+  }
+
+  const { poster, title, score, overview, genres } = movieData;
 
   return (
     <>
@@ -53,7 +56,7 @@ function MovieDetails() {
         <div>
           {!isPosterLoaded && <PosterPlaceholder />}
           <Poster
-            src={posterAddress}
+            src={poster}
             alt={title}
             onLoad={() => setIsPosterLoaded(true)}
           />
@@ -64,7 +67,7 @@ function MovieDetails() {
           <OverviewCaption>Overview</OverviewCaption>
           <TextContent>{overview}</TextContent>
           <GenresCaption>Genres</GenresCaption>
-          <TextContent>{genreString}</TextContent>
+          <TextContent>{genres}</TextContent>
         </div>
       </section>
       <section>
