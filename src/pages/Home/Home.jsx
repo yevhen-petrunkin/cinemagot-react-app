@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getTrendingMovies } from 'services';
 import { normalizeMovies } from 'services';
 import { HomeCaption } from './Home.styled';
-import SearchList from 'components/SearchList';
+import Gallery from 'components/Gallery';
 
 function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -20,14 +20,14 @@ function Home() {
   return (
     <section>
       <HomeCaption>Trending Today</HomeCaption>
-      <SearchList movies={trendingMovies} location={location} />
+      <Gallery movies={trendingMovies} location={location} />
     </section>
   );
 }
 
 export default Home;
 
-SearchList.propTypes = {
+Gallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getMoviesByKeyword } from 'services';
 import { normalizeMovies } from 'services';
 import SearchForm from 'components/SearchForm';
-import SearchList from 'components/SearchList';
+import Gallery from 'components/Gallery';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -40,7 +40,7 @@ function Movies() {
   return (
     <>
       <SearchForm onSubmit={onFormSubmit} />
-      <SearchList movies={movies} location={location} />
+      <Gallery movies={movies} location={location} />
     </>
   );
 }
@@ -51,7 +51,7 @@ SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-SearchList.propTypes = {
+Gallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

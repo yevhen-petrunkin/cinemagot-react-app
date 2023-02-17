@@ -13,3 +13,5 @@ export {
   getReviewsById,
   getPictureAddress,
 } from './services';
+
+export { mainTheme } from './mainTheme';

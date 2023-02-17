@@ -6,6 +6,7 @@ import {
   NavStyledLink,
   MainContainer,
 } from './MoviesLayout.styled';
+import SearchForm from 'components/SearchForm';
 import LoaderComp from 'components/Loader';
 
 function MoviesLayout() {
@@ -22,6 +23,7 @@ function MoviesLayout() {
             </li>
           </NavMenu>
         </nav>
+        <SearchForm />
       </Header>
       <main>
         <MainContainer>

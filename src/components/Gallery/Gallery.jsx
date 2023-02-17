@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { List } from './SearchList.styled';
+import { List } from './Gallery.styled';
 import Movie from 'components/Movie';
 
-function SearchList({ movies, location }) {
+function Gallery({ movies, location }) {
   return (
     <List>
       {movies.map(movie => {
@@ -15,9 +15,9 @@ function SearchList({ movies, location }) {
   );
 }
 
-export default SearchList;
+export default Gallery;
 
-SearchList.propTypes = {
+Gallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
