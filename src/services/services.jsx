@@ -1,10 +1,12 @@
 const BASE = 'https://api.themoviedb.org/3';
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
-const KEY = 'ae692f579055feb645577941bd67daeb';
+const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
 export async function getTrendingMovies() {
   try {
-    const response = await fetch(`${BASE}/trending/movie/day?api_key=${KEY}`);
+    const response = await fetch(
+      `${BASE}/trending/movie/day?api_key=${TMDB_KEY}`
+    );
     if (response.ok) {
       return await response.json();
     } else {
@@ -18,7 +20,7 @@ export async function getTrendingMovies() {
 export async function getMoviesByKeyword(query) {
   try {
     const response = await fetch(
-      `${BASE}/search/movie?api_key=${KEY}&query=${query}`
+      `${BASE}/search/movie?api_key=${TMDB_KEY}&query=${query}`
     );
     if (response.ok) {
       return await response.json();
@@ -32,7 +34,7 @@ export async function getMoviesByKeyword(query) {
 
 export async function getMovieById(id) {
   try {
-    const response = await fetch(`${BASE}/movie/${id}?api_key=${KEY}`);
+    const response = await fetch(`${BASE}/movie/${id}?api_key=${TMDB_KEY}`);
     if (response.ok) {
       return await response.json();
     } else {
@@ -45,7 +47,9 @@ export async function getMovieById(id) {
 
 export async function getCreditsById(id) {
   try {
-    const response = await fetch(`${BASE}/movie/${id}/credits?api_key=${KEY}`);
+    const response = await fetch(
+      `${BASE}/movie/${id}/credits?api_key=${TMDB_KEY}`
+    );
     if (response.ok) {
       return await response.json();
     } else {
@@ -58,7 +62,9 @@ export async function getCreditsById(id) {
 
 export async function getReviewsById(id) {
   try {
-    const response = await fetch(`${BASE}/movie/${id}/reviews?api_key=${KEY}`);
+    const response = await fetch(
+      `${BASE}/movie/${id}/reviews?api_key=${TMDB_KEY}`
+    );
     if (response.ok) {
       return await response.json();
     } else {

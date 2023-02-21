@@ -3,7 +3,7 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getMoviesByKeyword } from 'services';
 import { normalizeMovies } from 'services';
-import SearchForm from 'components/SearchForm';
+import SearchForm from 'components/Header/SearchForm';
 import Gallery from 'components/Gallery';
 
 function Movies() {

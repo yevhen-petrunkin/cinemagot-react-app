@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
 
 function SearchForm({ onSubmit }) {
@@ -30,6 +30,6 @@ function SearchForm({ onSubmit }) {
 
 export default SearchForm;
 
-SearchForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// SearchForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };
