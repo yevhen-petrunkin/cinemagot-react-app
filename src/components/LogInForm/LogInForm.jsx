@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
-// import { useNavigate } from 'react-router-dom';
+import { close } from 'redux/modalSlice';
 
 function LogInForm() {
-  //   const dispatch = useDispatch();
-  // const [username, setUsername] = useState('');
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-
-  // const navigate = useNavigate();
 
   const handleLogin = event => {
     event.preventDefault();
@@ -18,8 +17,7 @@ function LogInForm() {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
-        // console.log(user);
-        // navigate('/');
+        dispatch(close());
       })
       .catch(error => {
         setError(true);

@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAHqeAsOj-v79JxlSe0iNQtSvn14OHGfJQ',
@@ -15,24 +15,3 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const db = getFirestore(app);
 // console.log('Before: ', auth);
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    const uid = user.uid;
-
-    const fetchData = async () => {
-      const docRef = doc(db, 'users', uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data().country);
-      } else {
-        console.log('No such document!');
-      }
-    };
-
-    fetchData();
-  } else {
-    return;
-  }
-});

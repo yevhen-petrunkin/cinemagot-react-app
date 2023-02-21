@@ -1,17 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db } from '../../firebase';
-// import { useNavigate } from 'react-router-dom';
 import { signUpInputs } from 'services/signUpFormSource';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { close } from 'redux/modalSlice';
 
 function SignUpForm() {
-  //   const dispatch = useDispatch();
-  // const [username, setUsername] = useState('');
+  const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [error, setError] = useState(false);
-
-  // const navigate = useNavigate();
 
   const handleInput = e => {
     const id = e.target.id;
@@ -19,7 +17,7 @@ function SignUpForm() {
     setData({ ...data, [id]: value });
   };
 
-  const handleLogin = async e => {
+  const handleSignUp = async e => {
     e.preventDefault();
 
     try {
@@ -37,6 +35,11 @@ function SignUpForm() {
         ...data,
         timeStamp: serverTimestamp(),
       });
+
+      await setDoc(doc(db, 'favorites', res.user.uid), {});
+      await setDoc(doc(db, 'watchlist', res.user.uid), {});
+      await setDoc(doc(db, 'seen', res.user.uid), {});
+      dispatch(close());
     } catch (error) {
       setError(true);
     }
@@ -46,7 +49,7 @@ function SignUpForm() {
     <>
       <h2>Sign Up</h2>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSignUp}>
         {signUpInputs.map(({ id, label, type, placeholder }) => (
           <div key={id}>
             <label>

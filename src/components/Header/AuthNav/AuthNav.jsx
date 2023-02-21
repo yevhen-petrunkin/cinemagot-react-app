@@ -1,16 +1,20 @@
 import { AuthMenu, AuthBtn } from './AuthNav.styled';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { toggle } from 'redux/modalSlice';
+import { selectModal } from 'redux/selectors';
 import Modal from 'components/Modal';
 import SignUpForm from 'components/SignUpForm';
 import LogInForm from 'components/LogInForm';
 
 function AuthNav() {
-  const [modal, setModal] = useState(false);
   const [formId, setFormId] = useState('');
+  const dispatch = useDispatch();
+  const toggleState = useSelector(selectModal);
 
   const toggleModal = e => {
-    setModal(!modal);
     setFormId(e.target.id);
+    dispatch(toggle());
   };
 
   return (
@@ -27,7 +31,7 @@ function AuthNav() {
           </AuthBtn>
         </li>
       </AuthMenu>
-      {modal && (
+      {toggleState && (
         <Modal>
           {formId === 'signup' && <SignUpForm />}
           {formId === 'login' && <LogInForm />}

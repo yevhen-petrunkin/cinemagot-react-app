@@ -1,22 +1,30 @@
 import { Backdrop, Content } from './Modal.styled';
+import { useDispatch } from 'react-redux';
+import { close } from 'redux/modalSlice';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 
 function Modal({ children }) {
+  const dispatch = useDispatch();
+
   const modalRoot = document.querySelector('#modal-root');
 
   useEffect(() => {
-    window.addEventListener('keydown', e => {
+    const handleKeydown = e => {
       if (e.code === 'Escape') {
-        console.log('Close modal');
+        console.log('Close the modal please');
+        dispatch(close());
       }
-    });
-  }, []);
+    };
+    window.addEventListener('keydown', handleKeydown);
+  }, [dispatch]);
 
   return createPortal(
     <Backdrop>
       <Content>
-        <button type="button">Close</button>
+        <button onClick={() => dispatch(close())} type="button">
+          Close
+        </button>
         {children}
       </Content>
     </Backdrop>,
