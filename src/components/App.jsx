@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { lazy, Suspense } from 'react';
-import { getUserId } from 'redux/authSlice';
-import { selectUserId } from 'redux/selectors';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { getUserData, getAdditionalUserData } from 'redux/userDataSlice';
+import { selectUserData } from 'redux/selectors';
+import {
+  normalizeUserData,
+  normalizeAdditionalUserData,
+} from 'services/normalize';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundMessage from 'components/NotFoundMessage';
 import LoaderComp from 'components/Loader';
+
 const MoviesLayout = lazy(() => import('pages/MoviesLayout'));
 const Home = lazy(() => import('pages/Home'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
@@ -15,33 +20,57 @@ const Cast = lazy(() => import('pages/Cast'));
 const Reviews = lazy(() => import('pages/Reviews'));
 
 export const App = () => {
+  const userData = useSelector(selectUserData);
+  console.log(userData);
   const dispatch = useDispatch();
-  const uid = useSelector(selectUserId);
+  const [extraData, setExtraData] = useState({});
 
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      const userId = user.uid;
-      dispatch(getUserId(userId));
-    } else {
+  useEffect(() => {
+    if (extraData) {
+      dispatch(getAdditionalUserData(extraData));
+    }
+  }, [dispatch, extraData]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        const normalizedUserData = normalizeUserData(user);
+        dispatch(getUserData(normalizedUserData));
+      } else {
+        console.log('No User Logged In:', user);
+        return;
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!userData.userId) {
       return;
     }
-  });
-
-  if (uid) {
-    console.log(uid);
-    const fetchData = async () => {
-      const docRef = doc(db, 'users', uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data().country);
-      } else {
-        console.log('No such document!');
+    const unsub = onSnapshot(
+      doc(db, 'users', userData.userId),
+      { includeMetadataChanges: true },
+      doc => {
+        const normalizedAdditionalUserData = normalizeAdditionalUserData(
+          doc.data()
+        );
+        setExtraData(prevState => {
+          if (
+            JSON.stringify(prevState) ===
+            JSON.stringify(normalizedAdditionalUserData)
+          ) {
+            return prevState;
+          }
+          return normalizedAdditionalUserData;
+        });
       }
-    };
+    );
 
-    fetchData();
-  }
+    return unsub;
+  }, [userData]);
 
   return (
     <Suspense fallback={<LoaderComp />}>

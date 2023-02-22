@@ -1,3 +1,24 @@
+import { additionalUserDataSource } from './additionalUserDataSource';
+
+export function normalizeUserData(user) {
+  return {
+    userId: user.uid,
+    userName: user.displayName,
+    userEmail: user.email,
+    userPhoto: user.photoURL,
+  };
+}
+
+export function normalizeAdditionalUserData(data) {
+  if (!data) {
+    return;
+  }
+  return additionalUserDataSource.reduce((acc, dataItem) => {
+    acc = { ...acc, [dataItem]: data[dataItem] };
+    return acc;
+  }, {});
+}
+
 export function normalizeMovies(movies) {
   return movies.map(movie => ({
     id: movie.id,

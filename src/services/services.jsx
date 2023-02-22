@@ -1,3 +1,6 @@
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+
 const BASE = 'https://api.themoviedb.org/3';
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
@@ -77,4 +80,8 @@ export async function getReviewsById(id) {
 
 export function getPictureAddress(param) {
   return param ? `${PICTURE_BASE}${param}` : '';
+}
+
+export function createPrivateLists(sourceArray, id) {
+  sourceArray.forEach(source => setDoc(doc(db, source, id), {}));
 }

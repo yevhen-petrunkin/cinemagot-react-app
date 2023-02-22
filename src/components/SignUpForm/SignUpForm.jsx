@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { signUpInputs } from 'services/signUpFormSource';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { privateListsSource } from 'services/privateListsSource';
+import { createPrivateLists } from 'services/services';
 import { close } from 'redux/modalSlice';
 
 function SignUpForm() {
@@ -27,6 +29,8 @@ function SignUpForm() {
         data.password
       );
 
+      delete data.password;
+
       await updateProfile(auth.currentUser, {
         displayName: data.username,
       });
@@ -36,9 +40,10 @@ function SignUpForm() {
         timeStamp: serverTimestamp(),
       });
 
-      await setDoc(doc(db, 'favorites', res.user.uid), {});
-      await setDoc(doc(db, 'watchlist', res.user.uid), {});
-      await setDoc(doc(db, 'seen', res.user.uid), {});
+      setData({});
+
+      await createPrivateLists(privateListsSource, res.user.uid);
+
       dispatch(close());
     } catch (error) {
       setError(true);
