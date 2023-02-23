@@ -1,4 +1,4 @@
-import { additionalUserDataSource } from './additionalUserDataSource';
+import { userExtraDataSource } from './sources/userExtraDataSource';
 
 export function normalizeUserData(user) {
   return {
@@ -9,11 +9,11 @@ export function normalizeUserData(user) {
   };
 }
 
-export function normalizeAdditionalUserData(data) {
+export function normalizeUserExtraData(data) {
   if (!data) {
     return;
   }
-  return additionalUserDataSource.reduce((acc, dataItem) => {
+  return userExtraDataSource.reduce((acc, dataItem) => {
     acc = { ...acc, [dataItem]: data[dataItem] };
     return acc;
   }, {});

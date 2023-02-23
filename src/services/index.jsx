@@ -14,4 +14,4 @@ export {
   getPictureAddress,
 } from './services';
 
-export { mainTheme } from './mainTheme';
+export { mainTheme } from './themes/mainTheme';

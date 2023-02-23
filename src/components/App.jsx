@@ -1,14 +1,9 @@
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { getUserData, getAdditionalUserData } from 'redux/userDataSlice';
-import { selectUserData } from 'redux/selectors';
-import {
-  normalizeUserData,
-  normalizeAdditionalUserData,
-} from 'services/normalize';
-import { onAuthStateChanged } from 'firebase/auth';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { selectExtraUser, selectUser } from 'redux/selectors';
+import { fetchUserData, fetchUserExtraData } from 'redux/firebaseOperations';
+import { clearUserExtraData } from 'redux/userExtraDataSlice';
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundMessage from 'components/NotFoundMessage';
 import LoaderComp from 'components/Loader';
@@ -20,57 +15,20 @@ const Cast = lazy(() => import('pages/Cast'));
 const Reviews = lazy(() => import('pages/Reviews'));
 
 export const App = () => {
-  const userData = useSelector(selectUserData);
-  console.log(userData);
+  const isUserAuth = useSelector(selectUser);
+  const userExtraData = useSelector(selectExtraUser);
   const dispatch = useDispatch();
-  const [extraData, setExtraData] = useState({});
+  console.log('Extra: ', userExtraData);
 
   useEffect(() => {
-    if (extraData) {
-      dispatch(getAdditionalUserData(extraData));
-    }
-  }, [dispatch, extraData]);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        const normalizedUserData = normalizeUserData(user);
-        dispatch(getUserData(normalizedUserData));
-      } else {
-        console.log('No User Logged In:', user);
-        return;
-      }
-    });
-    return () => {
-      unsubscribe();
-    };
+    dispatch(fetchUserData());
   }, [dispatch]);
 
   useEffect(() => {
-    if (!userData.userId) {
-      return;
-    }
-    const unsub = onSnapshot(
-      doc(db, 'users', userData.userId),
-      { includeMetadataChanges: true },
-      doc => {
-        const normalizedAdditionalUserData = normalizeAdditionalUserData(
-          doc.data()
-        );
-        setExtraData(prevState => {
-          if (
-            JSON.stringify(prevState) ===
-            JSON.stringify(normalizedAdditionalUserData)
-          ) {
-            return prevState;
-          }
-          return normalizedAdditionalUserData;
-        });
-      }
-    );
-
-    return unsub;
-  }, [userData]);
+    !isUserAuth
+      ? dispatch(clearUserExtraData())
+      : dispatch(fetchUserExtraData(isUserAuth.userId));
+  }, [dispatch, isUserAuth]);
 
   return (
     <Suspense fallback={<LoaderComp />}>

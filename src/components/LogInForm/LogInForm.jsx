@@ -1,65 +1,55 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectLoading, selectError } from 'redux/selectors';
+import { logIn } from 'redux/firebaseOperations';
 import { close } from 'redux/modalSlice';
 
 function LogInForm() {
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
   const dispatch = useDispatch();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
-  const handleLogin = event => {
-    event.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        const user = userCredential.user;
-        dispatch(close());
-      })
-      .catch(error => {
-        setError(true);
-      });
-  };
-
-  const handleLogOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log('After: ', auth);
-      })
-      .catch(error => {
-        // An error happened.
-      });
+  const handleLogin = e => {
+    e.preventDefault();
+    dispatch(logIn({ email, password }));
+    setEmail('');
+    setPassword('');
+    if (!isError && !isLoading) {
+      dispatch(close());
+    }
   };
 
   return (
     <>
       <h2>Log In</h2>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-        </label>
-        <button type="submit">Log In</button>
-        {error && <span>Wrong email or password!</span>}
-      </form>
-      <button onClick={handleLogOut} type="button">
-        Sign Out
-      </button>
+      {isLoading ? (
+        <span>Loading...</span>
+      ) : (
+        <form onSubmit={handleLogin}>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </label>
+          <button type="submit">Log In</button>
+          {isError && (
+            <span>Oops... Something went wrong. Please try again!</span>
+          )}
+        </form>
+      )}
     </>
   );
 }

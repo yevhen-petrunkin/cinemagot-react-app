@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
 import { ThemeProvider } from 'styled-components';
-import { mainTheme } from 'services';
+import { mainTheme } from 'services/themes/mainTheme';
 import { App } from 'components/App';
 
 import 'semantic-ui-css/semantic.min.css';
