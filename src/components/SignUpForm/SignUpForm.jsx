@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
-import { signUp } from 'redux/firebaseOperations';
+import { signUp } from 'redux/redux-operations/firebaseOperations';
 import { signUpInputs } from 'services/sources/signUpFormSource';
-import { close } from 'redux/modalSlice';
+import { close } from 'redux/redux-slices/modalSlice';
 
 function SignUpForm() {
   const isLoading = useSelector(selectLoading);

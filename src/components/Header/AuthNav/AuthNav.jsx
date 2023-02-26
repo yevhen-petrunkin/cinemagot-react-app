@@ -1,7 +1,7 @@
 import { AuthMenu, AuthBtn } from './AuthNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { toggle } from 'redux/modalSlice';
+import { toggle } from 'redux/redux-slices/modalSlice';
 import { selectModal } from 'redux/selectors';
 import Modal from 'components/Modal';
 import SignUpForm from 'components/SignUpForm';

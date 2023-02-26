@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
-import { logIn } from 'redux/firebaseOperations';
-import { close } from 'redux/modalSlice';
+import { logIn } from 'redux/redux-operations/firebaseOperations';
+import { close } from 'redux/redux-slices/modalSlice';
 
 function LogInForm() {
   const isLoading = useSelector(selectLoading);

@@ -8,7 +8,6 @@ import UserMenu from './UserMenu/UserMenu';
 
 function Header() {
   const isUserAuth = useSelector(selectUser);
-  console.log(isUserAuth);
 
   return (
     <HeaderBox>

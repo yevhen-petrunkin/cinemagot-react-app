@@ -1,9 +1,12 @@
 import { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
+import { useDispatch } from 'react-redux';
+import { getMoviesByKeyword } from 'redux/redux-operations/tmdbOperations';
 
-function SearchForm({ onSubmit }) {
+function SearchForm() {
   const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
 
   const submitHandler = evt => {
     evt.preventDefault();
@@ -11,7 +14,7 @@ function SearchForm({ onSubmit }) {
       return;
     }
     setQuery(query.trim().toLowerCase());
-    onSubmit(query);
+    dispatch(getMoviesByKeyword(query));
     setQuery('');
   };
 

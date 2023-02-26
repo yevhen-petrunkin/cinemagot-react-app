@@ -1,6 +1,6 @@
 import { Backdrop, Content } from './Modal.styled';
 import { useDispatch } from 'react-redux';
-import { close } from 'redux/modalSlice';
+import { close } from 'redux/redux-slices/modalSlice';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 

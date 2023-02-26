@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUserExtraData } from './firebaseOperations';
+import { fetchUserExtraData } from '../redux-operations/firebaseOperations';
 
 const initialState = {
   extraUser: null,
@@ -25,7 +25,6 @@ export const userExtraDataSlice = createSlice({
       })
       .addCase(fetchUserExtraData.fulfilled, (state, action) => {
         state.extraLoading = false;
-        console.log(action.payload);
         state.extraUser = action.payload;
         state.extraError = null;
       })

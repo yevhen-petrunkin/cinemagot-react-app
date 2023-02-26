@@ -1,8 +1,11 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectExtraUser, selectUser } from 'redux/selectors';
-import { fetchUserData, fetchUserExtraData } from 'redux/firebaseOperations';
-import { clearUserExtraData } from 'redux/userExtraDataSlice';
+import { selectUser } from 'redux/selectors';
+import {
+  fetchUserData,
+  fetchUserExtraData,
+} from 'redux/redux-operations/firebaseOperations';
+import { clearUserExtraData } from 'redux/redux-slices/userExtraDataSlice';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundMessage from 'components/NotFoundMessage';
@@ -16,9 +19,7 @@ const Reviews = lazy(() => import('pages/Reviews'));
 
 export const App = () => {
   const isUserAuth = useSelector(selectUser);
-  const userExtraData = useSelector(selectExtraUser);
   const dispatch = useDispatch();
-  console.log('Extra: ', userExtraData);
 
   useEffect(() => {
     dispatch(fetchUserData());

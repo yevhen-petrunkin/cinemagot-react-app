@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import { normalizeUserData, normalizeUserExtraData } from 'services/normalize';
 import { createPrivateLists } from 'services/services';
 import { privateListsSource } from 'services/sources/privateListsSource';

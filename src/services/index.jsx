@@ -1,13 +1,6 @@
-export {
-  normalizeMovies,
-  normalizeCredits,
-  normalizeReviews,
-  stringifyData,
-} from './normalize';
+export { normalizeCredits, normalizeReviews, stringifyData } from './normalize';
 
 export {
-  getTrendingMovies,
-  getMoviesByKeyword,
   getMovieById,
   getCreditsById,
   getReviewsById,

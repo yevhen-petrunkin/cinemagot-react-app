@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, logIn, logOut, fetchUserData } from './firebaseOperations';
+import {
+  signUp,
+  logIn,
+  logOut,
+  fetchUserData,
+} from '../redux-operations/firebaseOperations';
 
 const initialState = {
   user: null,

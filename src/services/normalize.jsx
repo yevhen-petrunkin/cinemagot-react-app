@@ -1,4 +1,5 @@
 import { userExtraDataSource } from './sources/userExtraDataSource';
+import { getPictureAddress } from './services';
 
 export function normalizeUserData(user) {
   return {
@@ -19,11 +20,31 @@ export function normalizeUserExtraData(data) {
   }, {});
 }
 
-export function normalizeMovies(movies) {
-  return movies.map(movie => ({
-    id: movie.id,
-    movieName: movie.original_title,
-  }));
+export function normalizeGallery(gallery) {
+  return gallery.map(
+    ({
+      id,
+      original_title,
+      poster_path,
+      release_date,
+      vote_average,
+      vote_count,
+      popularity,
+      overview,
+    }) => {
+      const poster = getPictureAddress(poster_path);
+      return {
+        id,
+        movieName: original_title,
+        poster,
+        release: release_date,
+        aveRate: vote_average,
+        countRate: vote_count,
+        popularity,
+        overview,
+      };
+    }
+  );
 }
 
 export function normalizeCredits(credits) {
