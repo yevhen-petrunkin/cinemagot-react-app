@@ -12,3 +12,7 @@ export const selectGallery = state => state.gallery.gallery;
 export const selectGalleryCaption = state => state.gallery.caption;
 export const selectGalleryLoading = state => state.gallery.loading;
 export const selectGalleryError = state => state.gallery.error;
+export const selectGalleryType = state => state.gallery.galleryType;
+export const selectParams = state => state.gallery.params;
+export const selectValueObject = state => state.gallery.valueObject;
+export const selectRating = state => state.gallery.rating;

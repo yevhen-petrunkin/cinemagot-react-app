@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { defaultValueObjectSource } from 'services/sources/defauldValueObjectSource';
 import {
   getHomePageGallery,
   getMoviesByKeyword,
@@ -10,11 +11,29 @@ const initialState = {
   caption: null,
   loading: false,
   error: null,
+  galleryType: 'trending',
+  params: {},
+  valueObject: defaultValueObjectSource,
+  rating: '',
 };
 
 export const gallerySlice = createSlice({
   name: 'gallery',
   initialState,
+  reducers: {
+    setGalleryType: (state, action) => {
+      state.galleryType = action.payload;
+    },
+    setParams: (state, action) => {
+      state.params = action.payload;
+    },
+    setValueObject: (state, action) => {
+      state.valueObject = action.payload;
+    },
+    setRating: (state, action) => {
+      state.rating = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getHomePageGallery.pending, state => {
@@ -29,7 +48,6 @@ export const gallerySlice = createSlice({
       })
       .addCase(getHomePageGallery.rejected, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.error = action.payload;
       })
       .addCase(getMoviesByKeyword.pending, state => {
@@ -58,10 +76,18 @@ export const gallerySlice = createSlice({
       })
       .addCase(getMoviesByParams.rejected, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.error = action.payload;
       });
   },
 });
+
+export const {
+  setGalleryType,
+  setParams,
+  setValueObject,
+  setRating,
+  setLowerDate,
+  setGreaterDate,
+} = gallerySlice.actions;
 
 export const galleryReducer = gallerySlice.reducer;

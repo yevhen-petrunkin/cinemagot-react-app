@@ -6,8 +6,18 @@ import {
   selectGalleryCaption,
   selectGalleryLoading,
   selectGalleryError,
+  selectGalleryType,
+  selectValueObject,
+  selectParams,
+  selectRating,
   selectUser,
 } from 'redux/selectors';
+import {
+  setGalleryType,
+  setParams,
+  setValueObject,
+  setRating,
+} from 'redux/redux-slices/gallerySlice';
 import {
   getHomePageGallery,
   getMoviesByParams,
@@ -27,16 +37,15 @@ function Home() {
   const caption = useSelector(selectGalleryCaption);
   const isLoading = useSelector(selectGalleryLoading);
   const isError = useSelector(selectGalleryError);
+  const galleryType = useSelector(selectGalleryType);
+  const params = useSelector(selectParams);
+  const valueObject = useSelector(selectValueObject);
+  const rating = useSelector(selectRating);
   const isUserAuth = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const location = useLocation();
-  location.state = { page: 'home' };
 
-  const [galleryType, setGalleryType] = useState('trending');
-  const [params, setParams] = useState({});
-  const [valueObject, setValueObject] = useState(defaultValueObjectSource);
-  const [rating, setRating] = useState('');
   const [lowerDate, setLowerDate] = useState(null);
   const [greaterDate, setGreaterDate] = useState(null);
 
@@ -45,63 +54,48 @@ function Home() {
     if (keys.length) {
       dispatch(getMoviesByParams(params));
     } else {
-      dispatch(getHomePageGallery(galleryType ?? 'trending'));
+      dispatch(getHomePageGallery(galleryType));
     }
   }, [dispatch, galleryType, params]);
 
   const resetParams = () => {
-    setRating('');
-    setParams({});
-    setLowerDate(null);
-    setGreaterDate(null);
-    setValueObject(defaultValueObjectSource);
+    dispatch(setRating(''));
+    dispatch(setParams({}));
+    dispatch(setLowerDate(null));
+    dispatch(setGreaterDate(null));
+    dispatch(setValueObject(defaultValueObjectSource));
   };
 
   const handleRadioBtnChange = e => {
     resetParams();
-    setGalleryType(e.target.value);
+    dispatch(setGalleryType(e.target.value));
   };
 
   const handleSelectGenreChange = e => {
-    setValueObject(prev => {
-      return { ...prev, genres: e };
-    });
-    setParams(prev => {
-      return { ...prev, genres: e };
-    });
+    dispatch(setValueObject({ ...valueObject, genres: e }));
+    dispatch(setParams({ ...params, genres: e }));
   };
 
   const handleNonMultiSelect = (e, objValue) => {
-    setValueObject(prev => {
-      return { ...prev, [objValue]: e };
-    });
-
-    setParams(prev => {
-      return { ...prev, [objValue]: e.value };
-    });
+    dispatch(setValueObject({ ...valueObject, [objValue]: e }));
+    dispatch(setParams({ ...params, [objValue]: e.value }));
   };
 
   const handleRatingChange = e => {
-    setRating(e.target.value);
-    setParams(prev => {
-      return { ...prev, voteAverage: e.target.value };
-    });
+    dispatch(setRating(e.target.value));
+    dispatch(setParams({ ...params, voteAverage: e.target.value }));
   };
 
   const handleLowerDateChange = date => {
     setLowerDate(date);
     const normalizedDate = normalizeDate(date);
-    setParams(prev => {
-      return { ...prev, lowerDate: normalizedDate };
-    });
+    dispatch(setParams({ ...params, lowerDate: normalizedDate }));
   };
 
   const handleGreaterDateChange = date => {
     setGreaterDate(date);
     const normalizedDate = normalizeDate(date);
-    setParams(prev => {
-      return { ...prev, greaterDate: normalizedDate };
-    });
+    dispatch(setParams({ ...params, greaterDate: normalizedDate }));
   };
 
   return (

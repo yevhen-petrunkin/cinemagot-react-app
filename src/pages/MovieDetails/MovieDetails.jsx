@@ -28,16 +28,17 @@ function MovieDetails() {
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
-    getMovieById(movieId).then(movie => {
-      const { poster_path, title, popularity, overview, genres } = movie;
-      setMovieData({
-        poster: getPictureAddress(poster_path),
-        title,
-        score: popularity,
-        overview,
-        genres: stringifyData(genres),
-      });
-    });
+    getMovieById(movieId).then(
+      ({ poster_path, title, popularity, overview, genres }) => {
+        setMovieData({
+          poster: getPictureAddress(poster_path),
+          title,
+          score: popularity,
+          overview,
+          genres: stringifyData(genres),
+        });
+      }
+    );
   }, [movieId]);
 
   if (!movieData) {

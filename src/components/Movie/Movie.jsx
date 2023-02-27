@@ -4,19 +4,7 @@ import { StyledLink, MovieImg, MovieBox } from './Movie.styled';
 function Movie({ movie, location }) {
   const { id, movieName, poster } = movie;
 
-  let movieId = '';
-  const page = location.state.page;
-
-  switch (page) {
-    case 'home':
-      movieId = `/movies/${id}`;
-      break;
-    case 'movies':
-      movieId = `${id}`;
-      break;
-    default:
-      return;
-  }
+  let movieId = id.toString();
 
   return (
     <li>
