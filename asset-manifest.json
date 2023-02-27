@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/cinemagot-react-app/static/css/main.ee390fbb.css",
-    "main.js": "/cinemagot-react-app/static/js/main.e25db106.js",
+    "main.js": "/cinemagot-react-app/static/js/main.5e1c0293.js",
     "static/js/992.19a28d32.chunk.js": "/cinemagot-react-app/static/js/992.19a28d32.chunk.js",
-    "static/js/347.ea4fc4ee.chunk.js": "/cinemagot-react-app/static/js/347.ea4fc4ee.chunk.js",
+    "static/js/65.1bdc8b62.chunk.js": "/cinemagot-react-app/static/js/65.1bdc8b62.chunk.js",
     "static/js/815.f92e2602.chunk.js": "/cinemagot-react-app/static/js/815.f92e2602.chunk.js",
     "static/js/414.e8317b5f.chunk.js": "/cinemagot-react-app/static/js/414.e8317b5f.chunk.js",
     "static/js/661.154a7fef.chunk.js": "/cinemagot-react-app/static/js/661.154a7fef.chunk.js",
@@ -27,9 +27,9 @@
     "static/media/outline-icons.woff2": "/cinemagot-react-app/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/cinemagot-react-app/index.html",
     "main.ee390fbb.css.map": "/cinemagot-react-app/static/css/main.ee390fbb.css.map",
-    "main.e25db106.js.map": "/cinemagot-react-app/static/js/main.e25db106.js.map",
+    "main.5e1c0293.js.map": "/cinemagot-react-app/static/js/main.5e1c0293.js.map",
     "992.19a28d32.chunk.js.map": "/cinemagot-react-app/static/js/992.19a28d32.chunk.js.map",
-    "347.ea4fc4ee.chunk.js.map": "/cinemagot-react-app/static/js/347.ea4fc4ee.chunk.js.map",
+    "65.1bdc8b62.chunk.js.map": "/cinemagot-react-app/static/js/65.1bdc8b62.chunk.js.map",
     "815.f92e2602.chunk.js.map": "/cinemagot-react-app/static/js/815.f92e2602.chunk.js.map",
     "414.e8317b5f.chunk.js.map": "/cinemagot-react-app/static/js/414.e8317b5f.chunk.js.map",
     "661.154a7fef.chunk.js.map": "/cinemagot-react-app/static/js/661.154a7fef.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.ee390fbb.css",
-    "static/js/main.e25db106.js"
+    "static/js/main.5e1c0293.js"
   ]
 }
