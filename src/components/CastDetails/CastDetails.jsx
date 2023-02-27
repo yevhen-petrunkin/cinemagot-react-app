@@ -8,14 +8,18 @@ function CastDetails({ data }) {
   const [isPhotoLoaded, setIsPhotoLoaded] = useState(false);
   const { profilePhoto, actorName, charName } = data;
   const photo = getPictureAddress(profilePhoto);
+
   return (
     <Actor>
       {!isPhotoLoaded && <PhotoPlaceholder />}
-      <Photo
-        src={photo}
-        alt={actorName}
-        onLoad={() => setIsPhotoLoaded(true)}
-      />
+      {photo && (
+        <Photo
+          src={photo}
+          alt={actorName}
+          onLoad={() => setIsPhotoLoaded(true)}
+        />
+      )}
+
       <Info>{actorName}</Info>
       <Info>Character: {charName}</Info>
     </Actor>
@@ -26,7 +30,7 @@ export default CastDetails;
 
 CastDetails.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     profilePhoto: PropTypes.string,
     actorName: PropTypes.string.isRequired,
     charName: PropTypes.string.isRequired,

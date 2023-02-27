@@ -1,5 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
 
@@ -205,3 +206,10 @@ export function getQueryByParams(params) {
     return string;
   }
 }
+
+export const fetchNewsData = async () => {
+  const response = await axios.get(
+    'https://newsapi.org/v2/everything?q=film+director+cinema+actor+movie&apiKey=8078f542b2544c62bfccf1d972ea985e'
+  );
+  return response.data.articles;
+};

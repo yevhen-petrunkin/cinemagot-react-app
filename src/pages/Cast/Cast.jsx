@@ -37,7 +37,7 @@ export default Cast;
 
 CastDetails.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     profilePhoto: PropTypes.string,
     actorName: PropTypes.string.isRequired,
     charName: PropTypes.string.isRequired,

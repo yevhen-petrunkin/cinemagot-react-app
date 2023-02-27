@@ -1,12 +1,13 @@
-import { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getMoviesByKeyword } from 'redux/redux-operations/tmdbOperations';
 
 function SearchForm() {
-  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+
+  const [query, setQuery] = useState('');
 
   const submitHandler = evt => {
     evt.preventDefault();

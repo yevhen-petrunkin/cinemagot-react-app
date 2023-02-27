@@ -13,6 +13,7 @@ import LoaderComp from 'components/Loader';
 
 const MoviesLayout = lazy(() => import('pages/MoviesLayout'));
 const Home = lazy(() => import('pages/Home'));
+const News = lazy(() => import('pages/News'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
 const Cast = lazy(() => import('pages/Cast'));
 const Reviews = lazy(() => import('pages/Reviews'));
@@ -36,6 +37,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<MoviesLayout />}>
           <Route index element={<Home />} />
+          <Route path="news" element={<News />} />
           <Route path="/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="review" element={<Reviews />} />

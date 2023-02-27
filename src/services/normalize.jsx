@@ -48,11 +48,11 @@ export function normalizeGallery(gallery) {
 }
 
 export function normalizeCredits(credits) {
-  return credits.map(credit => ({
-    id: credit.id,
-    profilePhoto: credit.profile_path,
-    actorName: credit.name,
-    charName: credit.character,
+  return credits.map(({ credit_id, profile_path, name, character }) => ({
+    id: credit_id,
+    profilePhoto: profile_path,
+    actorName: name,
+    charName: character,
   }));
 }
 

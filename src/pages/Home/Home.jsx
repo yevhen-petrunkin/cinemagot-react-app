@@ -61,9 +61,9 @@ function Home() {
   const resetParams = () => {
     dispatch(setRating(''));
     dispatch(setParams({}));
-    dispatch(setLowerDate(null));
-    dispatch(setGreaterDate(null));
     dispatch(setValueObject(defaultValueObjectSource));
+    setLowerDate(null);
+    setGreaterDate(null);
   };
 
   const handleRadioBtnChange = e => {

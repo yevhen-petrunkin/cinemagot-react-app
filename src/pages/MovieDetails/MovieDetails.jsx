@@ -56,11 +56,13 @@ function MovieDetails() {
         </GoBackBtn>
         <div>
           {!isPosterLoaded && <PosterPlaceholder />}
-          <Poster
-            src={poster}
-            alt={title}
-            onLoad={() => setIsPosterLoaded(true)}
-          />
+          {poster && (
+            <Poster
+              src={poster}
+              alt={title}
+              onLoad={() => setIsPosterLoaded(true)}
+            />
+          )}
         </div>
         <div style={{ padding: '20px 0' }}>
           <MovieCaption>{title}</MovieCaption>

@@ -6,7 +6,6 @@ export function PosterPlaceholder() {
       style={{
         height: 300,
         width: 200,
-        position: 'absolute',
         borderRadius: '10px',
       }}
     >
