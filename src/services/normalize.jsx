@@ -67,3 +67,10 @@ export function normalizeReviews(reviews) {
 export function stringifyData(array) {
   return array.map(item => item.name).join(', ');
 }
+
+export function normalizeDate(date) {
+  if (!date) {
+    return '';
+  }
+  return date.toISOString().slice(0, 10);
+}

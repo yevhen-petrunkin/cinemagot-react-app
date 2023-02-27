@@ -102,17 +102,106 @@ export function getHomePageGalleryCaption(type) {
 }
 
 export function getQueryByParams(params) {
-  const keys = Object.keys(params);
-  if (!keys.length) {
+  const keyArr = Object.keys(params);
+  if (!keyArr.length) {
     return '';
   }
-  let genresString = '';
-  if (!keys.includes('genres')) {
-    genresString = '';
-  } else {
-    genresString = `&with_genres=${params.genres
-      .map(genre => genre.value)
-      .join(',')}`;
+  const genresString = getGenresString(keyArr);
+  const language = getLanguageString(keyArr);
+  const year = getYearString(keyArr);
+  const greaterDate = getGreaterDateString(keyArr);
+  const lowerDate = getLowerDateString(keyArr);
+  const voteAve = getVoteAverageString(keyArr);
+  const queryString =
+    genresString + language + year + greaterDate + lowerDate + voteAve;
+
+  console.log(queryString);
+
+  return queryString;
+
+  function getGenresString(keys) {
+    let string = '';
+    if (!keys.includes('genres')) {
+      string = '';
+    } else {
+      if (!params.genres.length) {
+        string = '';
+      } else {
+        string = `&with_genres=${params.genres
+          .map(genre => genre.value)
+          .join(',')}`;
+      }
+    }
+    return string;
   }
-  return `${genresString}`;
+
+  function getLanguageString(keys) {
+    let string = '';
+    if (!keys.includes('language')) {
+      string = '';
+    } else {
+      if (params.language === '') {
+        string = '';
+      } else {
+        string = `&with_original_language=${params.language}`;
+      }
+    }
+    return string;
+  }
+
+  function getYearString(keys) {
+    let string = '';
+    if (!keys.includes('year')) {
+      string = '';
+    } else {
+      if (params.year === '') {
+        string = '';
+      } else {
+        string = `&primary_release_year=${params.year}`;
+      }
+    }
+    return string;
+  }
+
+  function getGreaterDateString(keys) {
+    let string = '';
+    if (!keys.includes('greaterDate')) {
+      string = '';
+    } else {
+      if (!params.greaterDate) {
+        string = '';
+      } else {
+        string = `&release_date.gte=${params.greaterDate}`;
+      }
+    }
+    return string;
+  }
+
+  function getLowerDateString(keys) {
+    let string = '';
+    if (!keys.includes('lowerDate')) {
+      string = '';
+    } else {
+      if (!params.lowerDate) {
+        string = '';
+      } else {
+        string = `&release_date.lte=${params.lowerDate}`;
+      }
+    }
+    return string;
+  }
+
+  function getVoteAverageString(keys) {
+    let string = '';
+    if (!keys.includes('voteAverage')) {
+      string = '';
+    } else {
+      if (params.voteAverage === '') {
+        string = '';
+      } else {
+        string = `&vote_average.gte=${params.voteAverage}`;
+      }
+    }
+    return string;
+  }
 }
