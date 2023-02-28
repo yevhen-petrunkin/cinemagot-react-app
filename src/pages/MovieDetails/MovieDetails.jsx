@@ -1,7 +1,8 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
-import { getMovieById, getPictureAddress } from 'services';
+import { fetchMovieById, getPictureAddress } from 'services';
 import { stringifyData } from 'services';
 import {
   GoBackBtn,
@@ -19,7 +20,6 @@ import { PosterPlaceholder } from 'components/Placeholder';
 import LoaderComp from 'components/Loader';
 
 function MovieDetails() {
-  const [movieData, setMovieData] = useState({});
   const [isPosterLoaded, setIsPosterLoaded] = useState(false);
 
   const { movieId } = useParams();
@@ -27,21 +27,23 @@ function MovieDetails() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  useEffect(() => {
-    getMovieById(movieId).then(
-      ({ poster_path, title, popularity, overview, genres }) => {
-        setMovieData({
-          poster: getPictureAddress(poster_path),
-          title,
-          score: popularity,
-          overview,
-          genres: stringifyData(genres),
-        });
-      }
-    );
-  }, [movieId]);
+  const {
+    data: movieData,
+    isLoading,
+    isError,
+  } = useQuery(['movie', movieId], () =>
+    fetchMovieById(movieId).then(
+      ({ poster_path, title, popularity, overview, genres }) => ({
+        poster: getPictureAddress(poster_path),
+        title,
+        score: popularity,
+        overview,
+        genres: stringifyData(genres),
+      })
+    )
+  );
 
-  if (!movieData) {
+  if (isLoading) {
     return <LoaderComp />;
   }
 
@@ -55,7 +57,7 @@ function MovieDetails() {
           <span>Go Back</span>
         </GoBackBtn>
         <div>
-          {!isPosterLoaded && <PosterPlaceholder />}
+          {(!isPosterLoaded || isError) && <PosterPlaceholder />}
           {poster && (
             <Poster
               src={poster}
@@ -65,12 +67,12 @@ function MovieDetails() {
           )}
         </div>
         <div style={{ padding: '20px 0' }}>
-          <MovieCaption>{title}</MovieCaption>
-          <TextContent>User Score: {score}</TextContent>
+          <MovieCaption>{!isError && title}</MovieCaption>
+          <TextContent>User Score: {!isError && score}</TextContent>
           <OverviewCaption>Overview</OverviewCaption>
-          <TextContent>{overview}</TextContent>
+          <TextContent>{!isError && overview}</TextContent>
           <GenresCaption>Genres</GenresCaption>
-          <TextContent>{genres}</TextContent>
+          <TextContent>{!isError && genres}</TextContent>
         </div>
       </section>
       <section>

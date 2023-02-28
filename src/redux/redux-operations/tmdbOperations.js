@@ -34,7 +34,7 @@ export const getMoviesByParams = createAsyncThunk(
     try {
       const queryString = getQueryByParams(params);
       const response = await axios.get(
-        `${TMDB_BASE}/discover/movie?api_key=${TMDB_KEY}${queryString}&sort_by=popularity.desc`
+        `${TMDB_BASE}/discover/movie?api_key=${TMDB_KEY}${queryString}`
       );
       const galleryCaption = 'Look What We Found!';
       const gallery = response.data.results;

@@ -68,6 +68,10 @@ export function stringifyData(array) {
   return array.map(item => item.name).join(', ');
 }
 
+export function stringifyNewsApiQuery(array) {
+  return array.join('+');
+}
+
 export function normalizeDate(date) {
   if (!date) {
     return '';

@@ -1,9 +1,9 @@
 export { normalizeCredits, normalizeReviews, stringifyData } from './normalize';
 
 export {
-  getMovieById,
-  getCreditsById,
-  getReviewsById,
+  fetchMovieById,
+  fetchCreditsById,
+  fetchReviewsById,
   getPictureAddress,
 } from './services';
 

@@ -1,17 +1,9 @@
-import { useState, useEffect } from 'react';
 import { NewsBox, NewsArticle, NewsLink } from './News.styled';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 
 function News() {
-  const [newsData, setNewsData] = useState([]);
-  const { isLoading, isError, data } = useQuery(['news'], fetchNewsData);
-
-  useEffect(() => {
-    if (data) {
-      setNewsData(data);
-    }
-  }, [data]);
+  const { data: news, isLoading, isError } = useQuery(['news'], fetchNewsData);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -25,7 +17,7 @@ function News() {
     <section>
       <h1>Film Industry News</h1>
       <NewsBox>
-        {newsData.map(
+        {news.map(
           ({ author, title, content, publishedAt, url, urlToImage }) => (
             <NewsArticle key={url}>
               <NewsLink href={url}>

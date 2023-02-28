@@ -1,23 +1,31 @@
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
-import { getCreditsById } from 'services';
+import { fetchCreditsById } from 'services';
 import { normalizeCredits } from 'services';
 import { List } from './Cast.styled';
 import CastDetails from 'components/CastDetails';
 import NotFoundMessage from 'components/NotFoundMessage';
+import LoaderComp from 'components/Loader';
 
 function Cast() {
-  const [cast, setCast] = useState([]);
-
   const { movieId } = useParams();
 
-  useEffect(() => {
-    if (!movieId) {
-      return;
-    }
-    getCreditsById(movieId).then(data => setCast(normalizeCredits(data.cast)));
-  }, [movieId]);
+  const {
+    data: cast,
+    isLoading,
+    isError,
+  } = useQuery(['cast', movieId], () =>
+    fetchCreditsById(movieId).then(data => normalizeCredits(data.cast))
+  );
+
+  if (isLoading) {
+    return <LoaderComp />;
+  }
+
+  if (isError) {
+    return <NotFoundMessage />;
+  }
 
   return (
     <List>

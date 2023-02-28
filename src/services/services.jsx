@@ -2,54 +2,40 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
+import { newsApiQueryString } from './sources/newsApiSearchSource';
+
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
 
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
-export async function getMovieById(id) {
-  try {
-    const response = await fetch(
-      `${TMDB_BASE}/movie/${id}?api_key=${TMDB_KEY}`
-    );
-    if (response.ok) {
-      return await response.json();
-    } else {
-      throw new Error('Not Found');
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
+const NEWSAPI_BASE = 'https://newsapi.org/v2';
+const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
+
+export const fetchNewsData = async () => {
+  const response = await axios.get(
+    `${NEWSAPI_BASE}/everything?q=${newsApiQueryString}&apiKey=${NEWSAPI_KEY}`
+  );
+  return response.data.articles;
+};
+
+export async function fetchMovieById(id) {
+  const response = await fetch(`${TMDB_BASE}/movie/${id}?api_key=${TMDB_KEY}`);
+  return await response.json();
 }
 
-export async function getCreditsById(id) {
-  try {
-    const response = await fetch(
-      `${TMDB_BASE}/movie/${id}/credits?api_key=${TMDB_KEY}`
-    );
-    if (response.ok) {
-      return await response.json();
-    } else {
-      throw new Error('Not Found');
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
+export async function fetchCreditsById(id) {
+  const response = await fetch(
+    `${TMDB_BASE}/movie/${id}/credits?api_key=${TMDB_KEY}`
+  );
+  return await response.json();
 }
 
-export async function getReviewsById(id) {
-  try {
-    const response = await fetch(
-      `${TMDB_BASE}/movie/${id}/reviews?api_key=${TMDB_KEY}`
-    );
-    if (response.ok) {
-      return await response.json();
-    } else {
-      throw new Error('Not Found');
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
+export async function fetchReviewsById(id) {
+  const response = await fetch(
+    `${TMDB_BASE}/movie/${id}/reviews?api_key=${TMDB_KEY}`
+  );
+  return await response.json();
 }
 
 export function getPictureAddress(param) {
@@ -206,10 +192,3 @@ export function getQueryByParams(params) {
     return string;
   }
 }
-
-export const fetchNewsData = async () => {
-  const response = await axios.get(
-    'https://newsapi.org/v2/everything?q=film+director+cinema+actor+movie&apiKey=8078f542b2544c62bfccf1d972ea985e'
-  );
-  return response.data.articles;
-};
