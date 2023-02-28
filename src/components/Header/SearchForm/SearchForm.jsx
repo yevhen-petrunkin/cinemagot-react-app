@@ -1,11 +1,13 @@
 // import PropTypes from 'prop-types';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getMoviesByKeyword } from 'redux/redux-operations/tmdbOperations';
 
 function SearchForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [query, setQuery] = useState('');
 
@@ -17,6 +19,7 @@ function SearchForm() {
     setQuery(query.trim().toLowerCase());
     dispatch(getMoviesByKeyword(query));
     setQuery('');
+    navigate('/movies');
   };
 
   return (

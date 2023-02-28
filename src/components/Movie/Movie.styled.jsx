@@ -12,5 +12,5 @@ export const MovieImg = styled.img`
 `;
 
 export const MovieBox = styled.div`
-  width: 200px;
+  width: 260px;
 `;

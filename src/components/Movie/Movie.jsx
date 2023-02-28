@@ -4,10 +4,22 @@ import { StyledLink, MovieImg, MovieBox } from './Movie.styled';
 import { PosterPlaceholder } from 'components/Placeholder';
 
 function Movie({ movie, location }) {
+  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
+
   const { id, movieName, poster } = movie;
 
-  let movieId = id.toString();
-  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
+  let movieId = '';
+
+  switch (location.state.page) {
+    case 'home':
+      movieId = 'movies/' + id.toString();
+      break;
+    case 'movies':
+      movieId = id.toString();
+      break;
+    default:
+      return;
+  }
 
   return (
     <li>
@@ -19,7 +31,7 @@ function Movie({ movie, location }) {
             <MovieImg
               src={poster}
               alt="movieName"
-              width="200px"
+              width="100%"
               onLoad={() => setIsPosterLoaded(true)}
             />
           )}

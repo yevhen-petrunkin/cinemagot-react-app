@@ -45,6 +45,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const location = useLocation();
+  location.state = { page: 'home' };
 
   const [lowerDate, setLowerDate] = useState(null);
   const [greaterDate, setGreaterDate] = useState(null);
