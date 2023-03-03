@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/668.8f621470.chunk.js","mappings":"iMAIA,MAJA,WACE,OAAO,sCACR,C","sources":["pages/UserInfo/UserInfo.jsx"],"sourcesContent":["function UserInfo() {\n  return <span>UserInfo</span>;\n}\n\nexport default UserInfo;\n"],"names":[],"sourceRoot":""}
