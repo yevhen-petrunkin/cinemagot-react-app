@@ -6,11 +6,17 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot,
+  serverTimestamp,
+} from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { normalizeUserData, normalizeUserExtraData } from 'services/normalize';
-import { createPrivateLists } from 'services/services';
-import { privateListsSource } from 'services/sources/privateListsSource';
+import { createUserLists } from 'services/services';
+import { userLists } from 'services/sources/userListsSource';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -21,22 +27,16 @@ export const signUp = createAsyncThunk(
         data.email,
         data.password
       );
-
       delete data.password;
-
       await updateProfile(res.user, {
         displayName: data.username,
       });
-
       await setDoc(doc(db, 'users', res.user.uid), {
         ...data,
         timeStamp: serverTimestamp(),
       });
-
-      createPrivateLists(privateListsSource, res.user.uid);
-
+      createUserLists(userLists, res.user.uid);
       const normalizedUserData = normalizeUserData(res.user);
-
       return normalizedUserData;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -84,9 +84,7 @@ export const fetchUserData = createAsyncThunk(
           reject();
         }
       });
-      return () => {
-        unsubscribe();
-      };
+      return () => unsubscribe();
     });
   }
 );
@@ -103,5 +101,29 @@ export const fetchUserExtraData = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const fetchUserLists = createAsyncThunk(
+  'userList/fetchUserLists',
+  async (userId, _) => {
+    return new Promise((resolve, reject) => {
+      const userListRef = doc(db, 'userLists', userId);
+      const unsubscribe = onSnapshot(
+        userListRef,
+        list => {
+          if (list.exists()) {
+            resolve(list.data());
+          } else {
+            reject('UserLists object is empty');
+          }
+        },
+        error => {
+          console.log('Failed to fetch userLists:', error.message);
+          reject();
+        }
+      );
+      return () => unsubscribe();
+    });
   }
 );

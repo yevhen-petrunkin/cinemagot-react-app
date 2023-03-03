@@ -27,6 +27,7 @@ import { defaultValueObjectSource } from 'services/sources/defauldValueObjectSou
 import { normalizeDate } from 'services/normalize';
 
 import { HomeCaption } from './Home.styled';
+import Container from 'components/Container';
 import GalleryMenu from 'components/GalleryMenu';
 import GallerySelectMenu from 'components/GallerySelectMenu';
 import GalleryDatePickerMenu from 'components/GalleryDatePickerMenu';
@@ -101,50 +102,50 @@ function Home() {
 
   return (
     <section>
-      <HomeCaption>{caption ?? 'CineMaGot'}</HomeCaption>
-      <ul>
-        <li>
-          <GalleryMenu onChange={handleRadioBtnChange} />
-        </li>
-        {isUserAuth && (
-          <>
-            <li>
-              <GallerySelectMenu
-                onGenreChange={handleSelectGenreChange}
-                onOtherChange={handleNonMultiSelect}
-                object={valueObject}
-              />
-            </li>
-            <li>
-              <GalleryDatePickerMenu
-                lowerDate={lowerDate}
-                greaterDate={greaterDate}
-                onLowerChange={handleLowerDateChange}
-                onGreaterChange={handleGreaterDateChange}
-              />
-            </li>
-            <li>
-              <label>
-                Rating not less than:
-                <input
-                  type="number"
-                  min="0"
-                  max="10"
-                  step="0.1"
-                  value={rating}
-                  placeholder="Enter number from 0 to 10"
-                  onChange={handleRatingChange}
+      <Container>
+        <HomeCaption>{caption ?? 'CineMaGot'}</HomeCaption>
+        <ul>
+          <li>
+            <GalleryMenu onChange={handleRadioBtnChange} />
+          </li>
+          {isUserAuth && (
+            <>
+              <li>
+                <GallerySelectMenu
+                  onGenreChange={handleSelectGenreChange}
+                  onOtherChange={handleNonMultiSelect}
+                  object={valueObject}
                 />
-              </label>
-            </li>
-          </>
-        )}
-      </ul>
-
-      {isLoading && <span>Loading...</span>}
-      {isError && <span>Oops... Something went wrong!</span>}
-
-      {gallery && <Gallery movies={gallery} location={location} />}
+              </li>
+              <li>
+                <GalleryDatePickerMenu
+                  lowerDate={lowerDate}
+                  greaterDate={greaterDate}
+                  onLowerChange={handleLowerDateChange}
+                  onGreaterChange={handleGreaterDateChange}
+                />
+              </li>
+              <li>
+                <label>
+                  Rating not less than:
+                  <input
+                    type="number"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    value={rating}
+                    placeholder="Enter number from 0 to 10"
+                    onChange={handleRatingChange}
+                  />
+                </label>
+              </li>
+            </>
+          )}
+        </ul>
+        {isLoading && <span>Loading...</span>}
+        {isError && <span>Oops... Something went wrong!</span>}
+        {gallery && <Gallery movies={gallery} location={location} />}
+      </Container>
     </section>
   );
 }

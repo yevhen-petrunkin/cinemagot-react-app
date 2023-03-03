@@ -1,4 +1,4 @@
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase';
 import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
@@ -14,7 +14,8 @@ const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
 
 export const fetchNewsData = async () => {
   const response = await axios.get(
-    `${NEWSAPI_BASE}/everything?q=${newsApiQueryString}&apiKey=${NEWSAPI_KEY}`
+    `${NEWSAPI_BASE}/everything?q=${newsApiQueryString}&sortBy
+=publishedAt&apiKey=${NEWSAPI_KEY}`
   );
   return response.data.articles;
 };
@@ -42,8 +43,18 @@ export function getPictureAddress(param) {
   return param ? `${PICTURE_BASE}${param}` : '';
 }
 
-export function createPrivateLists(sourceArray, id) {
-  sourceArray.forEach(source => setDoc(doc(db, source, id), {}));
+export function createUserLists(sourceArr, id) {
+  const userListObj = sourceArr.reduce(
+    (aggr, { listId }) => ({ ...aggr, [listId]: [] }),
+    {}
+  );
+  setDoc(doc(db, 'userLists', id), userListObj);
+}
+
+export async function updateUserList(userListRef, list, movieObj) {
+  await updateDoc(userListRef, {
+    [list]: arrayUnion(movieObj),
+  });
 }
 
 export function getHomePageGalleryTypeQuery(type) {

@@ -6,6 +6,7 @@ import {
   selectGalleryLoading,
   selectGalleryError,
 } from 'redux/selectors';
+import Container from 'components/Container';
 import PropTypes from 'prop-types';
 
 import Gallery from 'components/Gallery';
@@ -20,10 +21,12 @@ function Movies() {
 
   return (
     <section>
-      {isLoading && <span>Loading...</span>}
-      {isError && <span>Oops... Something went wrong!</span>}
-      <h1>{caption}</h1>
-      <Gallery movies={movies} location={location} />
+      <Container>
+        {isLoading && <span>Loading...</span>}
+        {isError && <span>Oops... Something went wrong!</span>}
+        <h1>{caption}</h1>
+        <Gallery movies={movies} location={location} />
+      </Container>
     </section>
   );
 }

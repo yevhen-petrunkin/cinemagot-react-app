@@ -1,1 +1,5 @@
-export { PosterPlaceholder, PhotoPlaceholder } from './Placeholder';
+export {
+  GalleryPlaceholder,
+  PosterPlaceholder,
+  PhotoPlaceholder,
+} from './Placeholder';

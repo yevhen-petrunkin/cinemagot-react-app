@@ -11,7 +11,7 @@ function Navbar() {
           <NavStyledLink to="news">News</NavStyledLink>
         </li>
         <li>
-          <NavStyledLink to="/mypage">CineMansion</NavStyledLink>
+          <NavStyledLink to="dashboard">CineMansion</NavStyledLink>
         </li>
       </NavMenu>
     </nav>

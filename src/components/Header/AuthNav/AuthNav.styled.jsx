@@ -9,17 +9,20 @@ export const AuthMenu = styled.ul`
 `;
 
 export const AuthBtn = styled.button`
-  padding: 6px 12px;
+  padding: 8px 12px;
   font-size: 18px;
-  background-color: #cce2ff;
-  border-color: #cce2ff;
-  border-radius: 6px;
+  color: ${p => p.theme.colors.default};
+  background-color: ${p => p.theme.colors.secondaryDark};
+  border: 1px solid ${p => p.theme.colors.secondaryDark};
+  border-radius: 8px;
+  box-shadow: ${p => p.theme.shadows.ordinary};
   cursor: pointer;
+  transition: color 200ms ease, background-color 200ms ease, border 200ms ease;
 
   :hover,
   :focus {
-    color: white;
-    background-color: #4183c4;
-    border-color: #4183c4;
+    color: ${p => p.theme.colors.secondaryDark};
+    background-color: ${p => p.theme.colors.accentLight};
+    border: 1px solid ${p => p.theme.colors.accentLight};
   }
 `;

@@ -18,6 +18,9 @@ const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
 const Cast = lazy(() => import('pages/Cast'));
 const Reviews = lazy(() => import('pages/Reviews'));
+const Dashboard = lazy(() => import('pages/Dashboard'));
+const UserInfo = lazy(() => import('pages/UserInfo'));
+const UserList = lazy(() => import('pages/UserList'));
 
 export const App = () => {
   const isUserAuth = useSelector(selectUser);
@@ -43,6 +46,11 @@ export const App = () => {
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="review" element={<Reviews />} />
+            <Route path="*" element={<NotFoundMessage />} />
+          </Route>
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route path="info" element={<UserInfo />} />
+            <Route path="info/:listId" element={<UserList />} />
             <Route path="*" element={<NotFoundMessage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />

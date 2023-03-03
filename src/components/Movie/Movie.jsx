@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { StyledLink, MovieImg, MovieBox } from './Movie.styled';
-import { PosterPlaceholder } from 'components/Placeholder';
+import { StyledLink, MovieImg, MovieBox, MovieName } from './Movie.styled';
+import { GalleryPlaceholder } from 'components/Placeholder';
 
 function Movie({ movie, location }) {
   const [isPosterLoaded, setIsPosterLoaded] = useState(false);
@@ -25,13 +25,12 @@ function Movie({ movie, location }) {
     <li>
       <StyledLink to={movieId} state={{ from: location }}>
         <MovieBox>
-          <p>{movieName}</p>
-          {!isPosterLoaded && <PosterPlaceholder />}
+          <MovieName>{movieName}</MovieName>
+          {!isPosterLoaded && <GalleryPlaceholder />}
           {poster && (
             <MovieImg
               src={poster}
               alt="movieName"
-              width="100%"
               onLoad={() => setIsPosterLoaded(true)}
             />
           )}

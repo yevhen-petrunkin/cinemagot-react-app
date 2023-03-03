@@ -5,12 +5,12 @@ export const NewsBox = styled.div`
   align-items: baseline;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 `;
 
 export const NewsArticle = styled.article`
   padding: 12px;
-  width: 350px;
+  width: 340px;
 
   background-color: ${p => p.theme.colors.default};
   border-radius: ${p => p.theme.radii[2]}px;
@@ -19,6 +19,7 @@ export const NewsArticle = styled.article`
 `;
 
 export const NewsLink = styled.a`
+  text-decoration: none;
   color: ${p => p.theme.colors.secondaryDark};
 `;
 

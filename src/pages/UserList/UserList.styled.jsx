@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const ListBox = styled.div`
+  padding: 20px 40px;
+`;
+
+export const List = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 40px;
+`;
+
 export const StyledLink = styled(Link)`
   padding: 8px 0;
   display: inline-block;

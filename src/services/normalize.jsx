@@ -78,3 +78,59 @@ export function normalizeDate(date) {
   }
   return date.toISOString().slice(0, 10);
 }
+
+export function normalizeDateString(dateString) {
+  if (!dateString) {
+    return '';
+  }
+  const date = dateString.slice(0, 10);
+  const time = dateString.slice(11, 19);
+  return date + ' ' + time;
+}
+
+export function normalizeMovieData(movieObj) {
+  const {
+    id,
+    imdb_id,
+    title,
+    original_title,
+    tagline,
+    overview,
+    genres,
+    adult,
+    poster_path,
+    video,
+    release_date,
+    budget,
+    revenue,
+    runtime,
+    production_companies,
+    popularity,
+    vote_average,
+    vote_count,
+  } = movieObj;
+
+  const companies = production_companies.filter(company => company.logo_path);
+  const poster = getPictureAddress(poster_path);
+
+  return {
+    id,
+    specificId: imdb_id,
+    title,
+    origTitle: original_title,
+    slogan: tagline,
+    overview,
+    genres,
+    adult,
+    poster,
+    video,
+    date: release_date,
+    budget,
+    revenue,
+    runtime,
+    companies,
+    popularity,
+    score: vote_average,
+    voteCount: vote_count,
+  };
+}

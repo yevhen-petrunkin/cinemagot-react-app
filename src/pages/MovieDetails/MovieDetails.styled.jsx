@@ -3,27 +3,31 @@ import { Link } from 'react-router-dom';
 
 export const GoBackBtn = styled(Link)`
   margin-bottom: 10px;
-  padding: 5px 12px;
+  padding: 8px 12px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 16px;
-  background-color: #cce2ff;
-  border-color: #cce2ff;
-  border-radius: 6px;
+  text-decoration: none;
+  color: ${p => p.theme.colors.default};
+  background-color: ${p => p.theme.colors.secondaryDark};
+  border: 1px solid ${p => p.theme.colors.secondaryDark};
+  border-radius: 8px;
+  box-shadow: ${p => p.theme.shadows.ordinary};
   cursor: pointer;
+  transition: color 200ms ease, background-color 200ms ease, border 200ms ease;
 
   :hover,
   :focus {
-    color: white;
-    background-color: #4183c4;
-    border-color: #4183c4;
+    color: ${p => p.theme.colors.secondaryDark};
+    background-color: ${p => p.theme.colors.accentLight};
+    border: 1px solid ${p => p.theme.colors.accentLight};
   }
 `;
 
 export const Poster = styled.img`
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 460px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px black;
 `;
@@ -66,4 +70,5 @@ export const ListItem = styled.li`
 
 export const AdditLink = styled(Link)`
   padding: 10px 0;
+  text-decoration: none;
 `;

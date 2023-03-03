@@ -16,3 +16,7 @@ export const selectGalleryType = state => state.gallery.galleryType;
 export const selectParams = state => state.gallery.params;
 export const selectValueObject = state => state.gallery.valueObject;
 export const selectRating = state => state.gallery.rating;
+
+export const selectUserListObj = state => state.userList.userListObj;
+export const selectListLoading = state => state.userList.loading;
+export const selectListError = state => state.userList.error;

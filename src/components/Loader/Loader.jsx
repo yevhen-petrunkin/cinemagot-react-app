@@ -1,7 +1,5 @@
-import { Loader } from 'semantic-ui-react';
-
 function LoaderComp() {
-  return <Loader active inline="centered" />;
+  return;
 }
 
 export default LoaderComp;
