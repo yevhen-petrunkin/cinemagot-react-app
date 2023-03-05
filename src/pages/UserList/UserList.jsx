@@ -7,21 +7,26 @@ import {
   MovieName,
 } from './UserList.styled';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   selectUserListObj,
+  selectUser,
   selectListError,
   selectListLoading,
 } from 'redux/selectors';
 import { dashMenuSource } from 'services/sources/dashMenuSource';
 import { GalleryPlaceholder } from 'components/Placeholder';
+import UserGalleryBtnSet from 'components/UserGalleryBtnSet/UserGalleryBtnSet';
 
 function UserList() {
+  const location = useLocation();
   const { listId } = useParams();
   const userListObj = useSelector(selectUserListObj);
   const isLoading = useSelector(selectListLoading);
   const isError = useSelector(selectListError);
+  const user = useSelector(selectUser);
+  const [userId, setUserId] = useState('');
   const [list, setList] = useState({});
   const [isPosterLoaded, setIsPosterLoaded] = useState(false);
 
@@ -32,26 +37,33 @@ function UserList() {
           ...prev,
           userList: dashMenuSource[1].listRef,
           caption: dashMenuSource[1].caption,
+          content: dashMenuSource[1].content,
         }));
         break;
       case 'watchlist':
         setList(prev => ({
           ...prev,
           userList: dashMenuSource[2].listRef,
-          caption: dashMenuSource[2].caption,
+          content: dashMenuSource[2].content,
         }));
         break;
       case 'seenlist':
         setList(prev => ({
           ...prev,
           userList: dashMenuSource[3].listRef,
-          caption: dashMenuSource[3].caption,
+          content: dashMenuSource[3].content,
         }));
         break;
       default:
         return;
     }
   }, [listId]);
+
+  useEffect(() => {
+    if (user) {
+      setUserId(user.userId);
+    }
+  }, [user]);
 
   return (
     <section>
@@ -62,11 +74,12 @@ function UserList() {
           <>
             <h2>{list.caption}</h2>
             <List>
-              {userListObj[list.userList].map(({ id, title, poster }) => {
+              {userListObj[list.userList].map(movie => {
+                const { id, title, poster } = movie;
                 let movieId = '/movies/' + id.toString();
                 return (
                   <li key={id}>
-                    <StyledLink to={movieId}>
+                    <StyledLink to={movieId} state={{ from: location }}>
                       <MovieBox>
                         <MovieName>{title}</MovieName>
                         {!isPosterLoaded && <GalleryPlaceholder />}
@@ -79,6 +92,7 @@ function UserList() {
                         )}
                       </MovieBox>
                     </StyledLink>
+                    <UserGalleryBtnSet movieData={{ list, movie, userId }} />
                   </li>
                 );
               })}

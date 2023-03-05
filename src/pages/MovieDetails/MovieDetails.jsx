@@ -64,6 +64,7 @@ function MovieDetails() {
           </div>
           <div style={{ padding: '20px 0' }}>
             <HandleListBtnSet movieData={movieData} />
+
             <MovieCaption>{!isError && title}</MovieCaption>
             <TextContent>User Score: {!isError && popularity}</TextContent>
             <OverviewCaption>Overview</OverviewCaption>

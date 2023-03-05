@@ -1,18 +1,31 @@
-import { NavMenu, NavStyledLink } from './Navbar.styled';
+import { NavMenu, StyledNavLink } from './Navbar.styled';
+import { navbarPublicLinks } from 'services/sources/navbarPublicLinkSource';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/selectors';
 
 function Navbar() {
+  const isUserAuth = useSelector(selectUser);
+  const handleNavLinkClick = () => {
+    sessionStorage.removeItem('isFirstDashboard');
+  };
+
   return (
     <nav>
       <NavMenu>
-        <li>
-          <NavStyledLink to="/">Home</NavStyledLink>
-        </li>
-        <li>
-          <NavStyledLink to="news">News</NavStyledLink>
-        </li>
-        <li>
-          <NavStyledLink to="dashboard">CineMansion</NavStyledLink>
-        </li>
+        {navbarPublicLinks.map(({ id, link, content }) => (
+          <li key={id}>
+            <StyledNavLink to={link} onClick={handleNavLinkClick}>
+              {content}
+            </StyledNavLink>
+          </li>
+        ))}
+        {isUserAuth && (
+          <li>
+            <StyledNavLink to="dashboard" onClick={handleNavLinkClick}>
+              CineMansion
+            </StyledNavLink>
+          </li>
+        )}
       </NavMenu>
     </nav>
   );

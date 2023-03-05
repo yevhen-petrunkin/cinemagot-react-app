@@ -1,22 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
 } from 'firebase/auth';
-import {
-  doc,
-  getDoc,
-  setDoc,
-  onSnapshot,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { normalizeUserData, normalizeUserExtraData } from 'services/normalize';
 import { createUserLists } from 'services/services';
-import { userLists } from 'services/sources/userListsSource';
+import { userListBtnSetSource } from 'services/sources/btnSetSource';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -35,7 +28,7 @@ export const signUp = createAsyncThunk(
         ...data,
         timeStamp: serverTimestamp(),
       });
-      createUserLists(userLists, res.user.uid);
+      createUserLists(userListBtnSetSource, res.user.uid);
       const normalizedUserData = normalizeUserData(res.user);
       return normalizedUserData;
     } catch (error) {
@@ -65,29 +58,10 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     await signOut(auth);
-    console.log('After: ', auth);
   } catch (error) {
     throw thunkAPI.rejectWithValue(error.message);
   }
 });
-
-export const fetchUserData = createAsyncThunk(
-  'auth/fetchUserData',
-  async () => {
-    return new Promise((resolve, reject) => {
-      const unsubscribe = onAuthStateChanged(auth, user => {
-        if (user) {
-          const normalizedUserData = normalizeUserData(user);
-          resolve(normalizedUserData);
-        } else {
-          console.log('No User Logged In:', user);
-          reject();
-        }
-      });
-      return () => unsubscribe();
-    });
-  }
-);
 
 export const fetchUserExtraData = createAsyncThunk(
   'userExtraData/fetchUserExtraData',
@@ -101,29 +75,5 @@ export const fetchUserExtraData = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
-
-export const fetchUserLists = createAsyncThunk(
-  'userList/fetchUserLists',
-  async (userId, _) => {
-    return new Promise((resolve, reject) => {
-      const userListRef = doc(db, 'userLists', userId);
-      const unsubscribe = onSnapshot(
-        userListRef,
-        list => {
-          if (list.exists()) {
-            resolve(list.data());
-          } else {
-            reject('UserLists object is empty');
-          }
-        },
-        error => {
-          console.log('Failed to fetch userLists:', error.message);
-          reject();
-        }
-      );
-      return () => unsubscribe();
-    });
   }
 );

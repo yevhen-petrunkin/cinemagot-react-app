@@ -11,7 +11,7 @@ export const NavMenu = styled.ul`
   list-style: none;
 `;
 
-export const NavStyledLink = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
 

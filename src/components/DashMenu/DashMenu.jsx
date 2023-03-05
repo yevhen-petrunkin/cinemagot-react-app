@@ -1,18 +1,18 @@
 import { dashMenuSource } from 'services/sources/dashMenuSource';
 import { NavMenu, NavStyledLink } from './DashMenu.styled';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 function DashMenu() {
   const navigate = useNavigate();
-  const isFirstRender = useRef(true);
+  const isFirstDashboard = sessionStorage.getItem('isFirstDashboard');
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      navigate('info');
+    if (!isFirstDashboard) {
+      sessionStorage.setItem('isFirstDashboard', 'true');
+      navigate('info/');
     }
-  }, [navigate]);
+  }, [isFirstDashboard, navigate]);
 
   return (
     <>

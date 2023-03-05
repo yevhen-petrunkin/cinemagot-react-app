@@ -63,6 +63,40 @@ export const getMoviesByKeyword = createAsyncThunk(
   }
 );
 
+export const getRecommendedMovies = createAsyncThunk(
+  'movies/getRecommendedMovies',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${TMDB_BASE}/movie/${id}/recommendations?api_key=${TMDB_KEY}`
+      );
+      const galleryCaption = 'Recommended Movies';
+      const gallery = response.data.results;
+      const normalizedGallery = await normalizeGallery(gallery);
+      return { normalizedGallery, galleryCaption };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getSimilarMovies = createAsyncThunk(
+  'movies/getSimilarMovies',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${TMDB_BASE}/movie/${id}/similar?api_key=${TMDB_KEY}`
+      );
+      const galleryCaption = 'Similar Movies';
+      const gallery = response.data.results;
+      const normalizedGallery = await normalizeGallery(gallery);
+      return { normalizedGallery, galleryCaption };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getMovieById = createAsyncThunk(
   'movies/getMovieById',
   async (id, thunkAPI) => {

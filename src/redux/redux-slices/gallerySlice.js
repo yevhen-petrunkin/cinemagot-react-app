@@ -4,6 +4,8 @@ import {
   getHomePageGallery,
   getMoviesByKeyword,
   getMoviesByParams,
+  getRecommendedMovies,
+  getSimilarMovies,
 } from 'redux/redux-operations/tmdbOperations';
 
 const initialState = {
@@ -75,6 +77,34 @@ export const gallerySlice = createSlice({
         state.error = null;
       })
       .addCase(getMoviesByParams.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getRecommendedMovies.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getRecommendedMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.gallery = action.payload.normalizedGallery;
+        state.caption = action.payload.galleryCaption;
+        state.error = null;
+      })
+      .addCase(getRecommendedMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getSimilarMovies.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getSimilarMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.gallery = action.payload.normalizedGallery;
+        state.caption = action.payload.galleryCaption;
+        state.error = null;
+      })
+      .addCase(getSimilarMovies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

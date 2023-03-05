@@ -1,14 +1,21 @@
 // import PropTypes from 'prop-types';
 import { List } from './Gallery.styled';
+import { Navigate } from 'react-router-dom';
 import Movie from 'components/Movie';
 
 function Gallery({ movies, location }) {
   return (
-    <List>
-      {movies.map(movie => {
-        return <Movie key={movie.id} movie={movie} location={location} />;
-      })}
-    </List>
+    <>
+      {!movies ? (
+        <Navigate to="/" />
+      ) : (
+        <List>
+          {movies.map(movie => {
+            return <Movie key={movie.id} movie={movie} location={location} />;
+          })}
+        </List>
+      )}
+    </>
   );
 }
 

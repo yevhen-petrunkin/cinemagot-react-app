@@ -4,8 +4,7 @@ import {
   PhotoHolder,
   HolderImg,
 } from './Placeholder.styled';
-import photoholder from '../../images/photoholder.jpg';
-import placeholder from '../../images/placeholder.jpg';
+import placeholder from '../../images/photoholder.jpg';
 
 export function GalleryPlaceholder() {
   return (
@@ -26,7 +25,7 @@ export function PosterPlaceholder() {
 export function PhotoPlaceholder() {
   return (
     <PhotoHolder>
-      <HolderImg src={photoholder} alt="placeholder" />
+      <HolderImg src={placeholder} alt="placeholder" />
     </PhotoHolder>
   );
 }

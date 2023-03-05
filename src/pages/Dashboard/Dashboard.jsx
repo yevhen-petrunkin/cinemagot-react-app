@@ -9,26 +9,13 @@ import {
   UserBtnSet,
   UserBtn,
 } from './Dashboard.styled';
-import { useEffect, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserLists } from 'redux/redux-operations/firebaseOperations';
-import { selectUser } from 'redux/selectors';
 import DashMenu from 'components/DashMenu';
 import LoaderComp from 'components/Loader';
 import magot from '../../images/logo.jpg';
 
 function Dashboard() {
-  const isUserAuth = useSelector(selectUser);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isUserAuth) {
-      const userId = isUserAuth.userId;
-      dispatch(fetchUserLists(userId));
-    }
-  }, [dispatch, isUserAuth]);
-
   return (
     <section>
       <DashContainer>

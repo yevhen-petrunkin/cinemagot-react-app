@@ -12,6 +12,8 @@ const UserMenu = () => {
   const handleLogOut = () => {
     dispatch(logOut());
     dispatch(clearUserLists());
+    sessionStorage.removeItem('isFirstDashboard');
+    sessionStorage.removeItem('isUserIn');
   };
 
   return (

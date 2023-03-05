@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
 import { logIn } from 'redux/redux-operations/firebaseOperations';
-import { close } from 'redux/redux-slices/modalSlice';
+import { closeModal } from 'redux/redux-slices/modalSlice';
 
 function LogInForm() {
   const isLoading = useSelector(selectLoading);
@@ -17,7 +17,7 @@ function LogInForm() {
     setEmail('');
     setPassword('');
     if (!isError && !isLoading) {
-      dispatch(close());
+      dispatch(closeModal());
     }
   };
 

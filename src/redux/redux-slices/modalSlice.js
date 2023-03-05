@@ -2,16 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const modalSlice = createSlice({
   name: 'modal',
-  initialState: false,
+  initialState: { isModalOpen: false, isPicBoardOpen: false },
   reducers: {
-    toggle(state) {
-      return !state;
+    openModal(state) {
+      state.isModalOpen = true;
     },
-    close(state) {
-      return (state = false);
+    closeModal(state) {
+      state.isModalOpen = false;
+    },
+    openPicBoard(state) {
+      state.isPicBoardOpen = true;
+    },
+    closePicBoard(state) {
+      state.isPicBoardOpen = false;
     },
   },
 });
 
-export const { toggle, close } = modalSlice.actions;
+export const { openModal, closeModal, openPicBoard, closePicBoard } =
+  modalSlice.actions;
 export const modalReducer = modalSlice.reducer;

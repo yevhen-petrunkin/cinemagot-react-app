@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const DashContainer = styled.div`
   display: grid;
   grid-template-columns: minmax(232px, 232px) 1fr;
+  height: 100vh;
 `;
 
 export const DashBox = styled.div`
-  height: 100vh;
+  height: 100%;
   font-size: 20px;
   text-align: center;
   color: ${p => p.theme.colors.default};

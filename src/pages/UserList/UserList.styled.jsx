@@ -50,3 +50,7 @@ export const MovieName = styled.h3`
   border-radius: 4px;
   box-shadow: ${p => p.theme.shadows.ordinary};
 `;
+
+export const DeleteBtn = styled.button`
+  display: block;
+`;

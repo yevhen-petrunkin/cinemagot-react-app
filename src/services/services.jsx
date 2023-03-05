@@ -1,4 +1,10 @@
-import { doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import {
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
@@ -57,6 +63,12 @@ export async function updateUserList(userListRef, list, movieObj) {
   });
 }
 
+export async function deleteFromUserList(userListRef, list, movieObj) {
+  await updateDoc(userListRef, {
+    [list]: arrayRemove(movieObj),
+  });
+}
+
 export function getHomePageGalleryTypeQuery(type) {
   const {
     trendingMoviesQuery,
@@ -112,8 +124,6 @@ export function getQueryByParams(params) {
   const voteAve = getVoteAverageString(keyArr);
   const queryString =
     genresString + language + year + greaterDate + lowerDate + voteAve;
-
-  console.log(queryString);
 
   return queryString;
 

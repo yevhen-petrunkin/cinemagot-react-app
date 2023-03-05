@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  signUp,
-  logIn,
-  logOut,
-  fetchUserData,
-} from '../redux-operations/firebaseOperations';
+import { signUp, logIn, logOut } from '../redux-operations/firebaseOperations';
 
 const initialState = {
   user: null,
@@ -15,6 +10,11 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    fetchUserData(state, action) {
+      state.user = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(signUp.pending, state => {
@@ -55,21 +55,10 @@ export const authSlice = createSlice({
       .addCase(logOut.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
-      .addCase(fetchUserData.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUserData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.error = null;
-      })
-      .addCase(fetchUserData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
       });
   },
 });
+
+export const { fetchUserData } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

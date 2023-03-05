@@ -1,19 +1,18 @@
-import { Backdrop, Content } from './Modal.styled';
+import { Backdrop, Content } from './PicBoard.styled';
 import { useDispatch } from 'react-redux';
-import { closeModal } from 'redux/redux-slices/modalSlice';
+import { closePicBoard } from 'redux/redux-slices/modalSlice';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 
-function Modal({ children }) {
+function PicBoard({ isPicBoardOpen, children }) {
   const dispatch = useDispatch();
-
-  const modalRoot = document.querySelector('#modal-root');
+  const picBoardRoot = document.querySelector('#picboard-root');
 
   useEffect(() => {
     const handleKeydown = e => {
       if (e.code === 'Escape') {
-        console.log('Close the modal please');
-        dispatch(closeModal());
+        console.log('Close the board please');
+        dispatch(closePicBoard());
       }
     };
     window.addEventListener('keydown', handleKeydown);
@@ -22,14 +21,14 @@ function Modal({ children }) {
   return createPortal(
     <Backdrop>
       <Content>
-        <button onClick={() => dispatch(closeModal())} type="button">
+        <button onClick={() => dispatch(closePicBoard())} type="button">
           Close
         </button>
         {children}
       </Content>
     </Backdrop>,
-    modalRoot
+    picBoardRoot
   );
 }
 
-export default Modal;
+export default PicBoard;

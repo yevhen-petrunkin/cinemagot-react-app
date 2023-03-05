@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
-import { userLists } from 'services/sources/userListsSource';
+import { userListBtnSetSource } from 'services/sources/btnSetSource';
 import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
@@ -38,7 +38,7 @@ function HandleListBtnSet({ movieData }) {
 
   return (
     <div>
-      {userLists.map(({ listId, text }) => (
+      {userListBtnSetSource.map(({ listId, text }) => (
         <button
           key={listId}
           type="button"

@@ -1,13 +1,16 @@
 import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
-import {
-  fetchUserData,
-  fetchUserExtraData,
-} from 'redux/redux-operations/firebaseOperations';
 import { clearUserExtraData } from 'redux/redux-slices/userExtraDataSlice';
+import { fetchUserLists } from 'redux/redux-slices/userListSlice';
+import { fetchUserData } from 'redux/redux-slices/authSlice';
+import { fetchUserExtraData } from 'redux/redux-operations/firebaseOperations';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { auth, db } from '../firebase';
+import { normalizeUserData } from 'services/normalize';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundMessage from 'components/NotFoundMessage';
 import LoaderComp from 'components/Loader';
 
@@ -25,16 +28,41 @@ const UserList = lazy(() => import('pages/UserList'));
 export const App = () => {
   const isUserAuth = useSelector(selectUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isUserIn = sessionStorage.getItem('isUserIn');
 
   useEffect(() => {
-    dispatch(fetchUserData());
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        const normalizedUserData = normalizeUserData(user);
+        dispatch(fetchUserData(normalizedUserData));
+      } else {
+        console.log('No User Logged In:', user);
+      }
+    });
+    return () => unsubscribe();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isUserAuth) {
+      onSnapshot(doc(db, 'userLists', isUserAuth.userId), doc => {
+        dispatch(fetchUserLists(doc.data()));
+      });
+    }
+  }, [dispatch, isUserAuth]);
 
   useEffect(() => {
     !isUserAuth
       ? dispatch(clearUserExtraData())
       : dispatch(fetchUserExtraData(isUserAuth.userId));
   }, [dispatch, isUserAuth]);
+
+  useEffect(() => {
+    if (isUserAuth && !isUserIn) {
+      sessionStorage.setItem('isUserIn', 'true');
+      navigate('dashboard');
+    }
+  }, [isUserAuth, isUserIn, navigate]);
 
   return (
     <Suspense fallback={<LoaderComp />}>
@@ -48,11 +76,13 @@ export const App = () => {
             <Route path="review" element={<Reviews />} />
             <Route path="*" element={<NotFoundMessage />} />
           </Route>
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route path="info" element={<UserInfo />} />
-            <Route path="info/:listId" element={<UserList />} />
-            <Route path="*" element={<NotFoundMessage />} />
-          </Route>
+          {isUserAuth && (
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="info" element={<UserInfo />} />
+              <Route path="info/:listId" element={<UserList />} />
+              <Route path="*" element={<NotFoundMessage />} />
+            </Route>
+          )}
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

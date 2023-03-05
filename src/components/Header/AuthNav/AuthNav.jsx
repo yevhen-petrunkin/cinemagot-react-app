@@ -1,7 +1,7 @@
 import { AuthMenu, AuthBtn } from './AuthNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { toggle } from 'redux/redux-slices/modalSlice';
+import { openModal } from 'redux/redux-slices/modalSlice';
 import { selectModal } from 'redux/selectors';
 import Modal from 'components/Modal';
 import SignUpForm from 'components/SignUpForm';
@@ -10,28 +10,28 @@ import LogInForm from 'components/LogInForm';
 function AuthNav() {
   const [formId, setFormId] = useState('');
   const dispatch = useDispatch();
-  const toggleState = useSelector(selectModal);
+  const isModalOpen = useSelector(selectModal);
 
-  const toggleModal = e => {
+  const openAuthModal = e => {
     setFormId(e.target.id);
-    dispatch(toggle());
+    dispatch(openModal());
   };
 
   return (
     <>
       <AuthMenu>
         <li>
-          <AuthBtn id="signup" type="button" onClick={toggleModal}>
+          <AuthBtn id="signup" type="button" onClick={openAuthModal}>
             Sign Up
           </AuthBtn>
         </li>
         <li>
-          <AuthBtn id="login" type="button" onClick={toggleModal}>
+          <AuthBtn id="login" type="button" onClick={openAuthModal}>
             Log In
           </AuthBtn>
         </li>
       </AuthMenu>
-      {toggleState && (
+      {isModalOpen && (
         <Modal>
           {formId === 'signup' && <SignUpForm />}
           {formId === 'login' && <LogInForm />}

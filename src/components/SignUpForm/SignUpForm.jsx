@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
 import { signUp } from 'redux/redux-operations/firebaseOperations';
 import { signUpInputs } from 'services/sources/signUpFormSource';
-import { close } from 'redux/redux-slices/modalSlice';
+import { closeModal } from 'redux/redux-slices/modalSlice';
 
 function SignUpForm() {
   const isLoading = useSelector(selectLoading);
@@ -22,7 +22,7 @@ function SignUpForm() {
     dispatch(signUp(data));
     setData({});
     if (!isError && !isLoading) {
-      dispatch(close());
+      dispatch(closeModal());
     }
   };
 
