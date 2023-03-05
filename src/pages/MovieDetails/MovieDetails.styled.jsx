@@ -25,6 +25,15 @@ export const GoBackBtn = styled(Link)`
   }
 `;
 
+export const ContentBox = styled.div`
+  margin-bottom: 20px;
+  padding: 20px;
+  color: ${p => p.theme.colors.default};
+  background-color: ${p => p.theme.colors.primaryDark};
+  box-shadow: ${p => p.theme.shadows.ordinary};
+  border-radius: 12px;
+`;
+
 export const Poster = styled.img`
   width: 300px;
   height: 460px;
@@ -32,27 +41,17 @@ export const Poster = styled.img`
   box-shadow: 1px 1px 3px black;
 `;
 
-export const MovieCaption = styled.h1`
+export const MainCaption = styled.h1`
   margin-bottom: 10px;
   font-size: 28px;
 `;
 
-export const OverviewCaption = styled.h2`
-  margin-bottom: 10px;
-  font-size: 26px;
-`;
-
-export const GenresCaption = styled.h3`
+export const Caption = styled.h2`
   margin-bottom: 10px;
   font-size: 24px;
 `;
 
-export const AdditCaption = styled.h4`
-  margin-bottom: 10px;
-  font-size: 22px;
-`;
-
-export const TextContent = styled.p`
+export const Content = styled.p`
   margin-bottom: 10px;
   font-size: 20px;
 `;
@@ -60,7 +59,7 @@ export const TextContent = styled.p`
 export const List = styled.ul`
   margin: 0;
   padding: 5px 0;
-  font-size: 22px;
+  font-size: 20px;
   list-style: none;
 `;
 
@@ -69,6 +68,13 @@ export const ListItem = styled.li`
 `;
 
 export const AdditLink = styled(Link)`
-  padding: 10px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
   text-decoration: none;
+  color: ${p => p.theme.colors.accentLight};
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 `;

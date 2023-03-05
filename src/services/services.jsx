@@ -11,12 +11,20 @@ import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource
 import { newsApiQueryString } from './sources/newsApiSearchSource';
 
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
+const VIDEO_BASE = 'https://www.youtube.com/embed';
 
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
 const NEWSAPI_BASE = 'https://newsapi.org/v2';
 const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
+
+export async function fetchVideosById(id) {
+  const response = await axios.get(
+    `${TMDB_BASE}/movie/${id}/videos?api_key=${TMDB_KEY}`
+  );
+  return response.data;
+}
 
 export async function fetchNewsData() {
   const response = await axios.get(
@@ -49,6 +57,10 @@ export async function fetchReviewsById(id) {
 
 export function getPictureAddress(param) {
   return param ? `${PICTURE_BASE}${param}` : '';
+}
+
+export function getVideoAddress(param) {
+  return param ? `${VIDEO_BASE}/${param}?autoplay=1` : '';
 }
 
 export function createUserLists(sourceArr, id) {

@@ -1,11 +1,10 @@
 import {
   GoBackBtn,
+  ContentBox,
   Poster,
-  MovieCaption,
-  TextContent,
-  OverviewCaption,
-  GenresCaption,
-  AdditCaption,
+  MainCaption,
+  Content,
+  Caption,
   List,
   ListItem,
   AdditLink,
@@ -19,6 +18,7 @@ import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { PosterPlaceholder } from 'components/Placeholder';
 import Container from 'components/Container';
 import HandleListBtnSet from 'components/HandleListBtnSet';
+import VideoList from 'components/VideoList/VideoList';
 import LoaderComp from 'components/Loader';
 
 function MovieDetails() {
@@ -62,41 +62,51 @@ function MovieDetails() {
               />
             )}
           </div>
-          <div style={{ padding: '20px 0' }}>
+          <div>
             <HandleListBtnSet movieData={movieData} />
-
-            <MovieCaption>{!isError && title}</MovieCaption>
-            <TextContent>User Score: {!isError && popularity}</TextContent>
-            <OverviewCaption>Overview</OverviewCaption>
-            <TextContent>{!isError && overview}</TextContent>
-            <GenresCaption>Genres</GenresCaption>
-            <TextContent>{!isError && genresString}</TextContent>
+            <ContentBox>
+              <MainCaption>{!isError && title}</MainCaption>
+              <Content>User Score: {!isError && popularity}</Content>
+            </ContentBox>
+            <ContentBox>
+              <Caption>Overview</Caption>
+              <Content>{!isError && overview}</Content>
+            </ContentBox>
+            <ContentBox>
+              <Caption>Genres</Caption>
+              <Content>{!isError && genresString}</Content>
+            </ContentBox>
+            <ContentBox>
+              <Caption>Watch Trailers</Caption>
+              <VideoList movieId={movieId} />
+            </ContentBox>
           </div>
         </Container>
       </section>
 
       <section>
         <Container>
-          <AdditCaption>Additional Information</AdditCaption>
+          <ContentBox>
+            <Caption>Additional Information</Caption>
+            <nav>
+              <List>
+                <ListItem>
+                  <AdditLink to="cast" state={{ from: backLinkHref }}>
+                    Cast
+                  </AdditLink>
+                </ListItem>
+                <ListItem>
+                  <AdditLink to="review" state={{ from: backLinkHref }}>
+                    Reviews
+                  </AdditLink>
+                </ListItem>
+              </List>
+            </nav>
 
-          <nav>
-            <List>
-              <ListItem>
-                <AdditLink to="cast" state={{ from: backLinkHref }}>
-                  Cast
-                </AdditLink>
-              </ListItem>
-              <ListItem>
-                <AdditLink to="review" state={{ from: backLinkHref }}>
-                  Reviews
-                </AdditLink>
-              </ListItem>
-            </List>
-          </nav>
-
-          <Suspense fallback={<LoaderComp />}>
-            <Outlet />
-          </Suspense>
+            <Suspense fallback={<LoaderComp />}>
+              <Outlet />
+            </Suspense>
+          </ContentBox>
         </Container>
       </section>
     </>

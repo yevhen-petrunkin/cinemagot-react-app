@@ -1,5 +1,5 @@
 import { userExtraDataSource } from './sources/userExtraDataSource';
-import { getPictureAddress } from './services';
+import { getPictureAddress, getVideoAddress } from './services';
 
 export function normalizeUserData(user) {
   return {
@@ -141,5 +141,16 @@ export function normalizePicGallery(obj) {
     const url = getPictureAddress(file_path);
     number += 1;
     return { url, number };
+  });
+}
+
+export function normalizeVideos(obj) {
+  const filteredVideos = obj.results.filter(
+    ({ site }) => site.toLowerCase() === 'youtube'
+  );
+  return filteredVideos.map(({ name, type, published_at, id, key }) => {
+    const date = normalizeDateString(published_at);
+    const url = getVideoAddress(key);
+    return { id, videoName: name, type, date, url };
   });
 }

@@ -5,6 +5,7 @@ export {
   fetchCreditsById,
   fetchReviewsById,
   getPictureAddress,
+  fetchVideosById,
 } from './services';
 
 export { mainTheme } from './themes/mainTheme';
