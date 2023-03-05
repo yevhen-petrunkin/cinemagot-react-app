@@ -1,23 +1,38 @@
-import { deleteFromUserList } from 'services/services';
-import { db } from '../../firebase';
-import { doc } from '@firebase/firestore';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPicBoard } from 'redux/selectors';
+import { openPicBoard } from 'redux/redux-slices/modalSlice';
 import {
   getRecommendedMovies,
   getSimilarMovies,
+  getPicturesById,
 } from 'redux/redux-operations/tmdbOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { openPicBoard } from 'redux/redux-slices/modalSlice';
-import { selectPicBoard } from 'redux/selectors';
-import PicBoard from 'components/PicBoard/PicBoard';
+import { db } from '../../firebase';
+import { doc } from '@firebase/firestore';
+import { useMutation } from '@tanstack/react-query';
+import { deleteFromUserList } from 'services/services';
+
+import PicBoard from 'components/PicBoard';
+import PictureGallery from 'components/PictureGallery';
 
 function UserGalleryBtnSet({ movieData }) {
   const { list, movie, userId } = movieData;
+  const movieId = movie.id;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isPicBoardOpen = useSelector(selectPicBoard);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+
+    if (isPicBoardOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'visible';
+    }
+  }, [isPicBoardOpen]);
 
   const deleteFromListMutation = useMutation(
     ({ list, movie }) => {
@@ -42,10 +57,10 @@ function UserGalleryBtnSet({ movieData }) {
   const handleUserGalleryBtnClick = evt => {
     switch (evt.target.id) {
       case 'recommend':
-        dispatch(getRecommendedMovies(movie.id));
+        dispatch(getRecommendedMovies(movieId));
         break;
       case 'similar':
-        dispatch(getSimilarMovies(movie.id));
+        dispatch(getSimilarMovies(movieId));
         break;
       default:
         return;
@@ -53,7 +68,8 @@ function UserGalleryBtnSet({ movieData }) {
     navigate('/movies');
   };
 
-  const handlePicBoardBtnClick = e => {
+  const handlePicBoardBtnClick = () => {
+    dispatch(getPicturesById(movieId));
     dispatch(openPicBoard());
   };
 
@@ -74,7 +90,11 @@ function UserGalleryBtnSet({ movieData }) {
       <button type="button" onClick={handlePicBoardBtnClick}>
         See Pics
       </button>
-      {isPicBoardOpen && <PicBoard />}
+      {isPicBoardOpen && (
+        <PicBoard>
+          <PictureGallery />
+        </PicBoard>
+      )}
     </div>
   );
 }

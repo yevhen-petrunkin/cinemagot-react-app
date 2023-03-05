@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { normalizeGallery } from 'services/normalize';
+import { normalizeGallery, normalizePicGallery } from 'services/normalize';
 import {
   getHomePageGalleryTypeQuery,
   getHomePageGalleryCaption,
@@ -11,7 +11,7 @@ const TMDB_BASE = 'https://api.themoviedb.org/3';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
 export const getHomePageGallery = createAsyncThunk(
-  'movies/getHomePageGallery',
+  'home/getHomePageGallery',
   async (type, thunkAPI) => {
     try {
       const query = getHomePageGalleryTypeQuery(type);
@@ -29,7 +29,7 @@ export const getHomePageGallery = createAsyncThunk(
 );
 
 export const getMoviesByParams = createAsyncThunk(
-  'movies/getMoviesByGenres',
+  'home/getMoviesByGenres',
   async (params, thunkAPI) => {
     try {
       const queryString = getQueryByParams(params);
@@ -133,6 +133,20 @@ export const getReviewsById = createAsyncThunk(
         `${TMDB_BASE}/movie/${id}/reviews?api_key=${TMDB_KEY}`
       );
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getPicturesById = createAsyncThunk(
+  'info/getPicturesById',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${TMDB_BASE}/movie/${id}/images?api_key=${TMDB_KEY}`
+      );
+      return normalizePicGallery(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

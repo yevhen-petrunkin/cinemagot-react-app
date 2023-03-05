@@ -134,3 +134,12 @@ export function normalizeMovieData(movieObj) {
     voteCount: vote_count,
   };
 }
+
+export function normalizePicGallery(obj) {
+  let number = 0;
+  return obj.posters.map(({ file_path }) => {
+    const url = getPictureAddress(file_path);
+    number += 1;
+    return { url, number };
+  });
+}

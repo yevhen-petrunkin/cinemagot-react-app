@@ -8,6 +8,9 @@ export const selectExtraError = state => state.userExtraData.extraError;
 
 export const selectModal = state => state.modal.isModalOpen;
 export const selectPicBoard = state => state.modal.isPicBoardOpen;
+export const selectPicturesLoading = state => state.modal.loading;
+export const selectPicturesError = state => state.modal.error;
+export const selectPictures = state => state.modal.pictures;
 
 export const selectGallery = state => state.gallery.gallery;
 export const selectGalleryCaption = state => state.gallery.caption;

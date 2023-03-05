@@ -7,17 +7,12 @@ import Container from 'components/Container';
 function News() {
   const { data: news, isLoading, isError } = useQuery(['news'], fetchNewsData);
 
-  // setInterval(() => {
-  //   fetchNewsData();
-  //   console.log('Tick');
-  // }, 5000);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (isError) {
-    return <div>Error fetching data</div>;
+    return <div>Oops... Something went wrong!</div>;
   }
 
   return (

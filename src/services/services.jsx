@@ -18,31 +18,33 @@ const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 const NEWSAPI_BASE = 'https://newsapi.org/v2';
 const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
 
-export const fetchNewsData = async () => {
+export async function fetchNewsData() {
   const response = await axios.get(
     `${NEWSAPI_BASE}/everything?q=${newsApiQueryString}&sortBy
 =publishedAt&apiKey=${NEWSAPI_KEY}`
   );
   return response.data.articles;
-};
+}
 
 export async function fetchMovieById(id) {
-  const response = await fetch(`${TMDB_BASE}/movie/${id}?api_key=${TMDB_KEY}`);
-  return await response.json();
+  const response = await axios.get(
+    `${TMDB_BASE}/movie/${id}?api_key=${TMDB_KEY}`
+  );
+  return response.data;
 }
 
 export async function fetchCreditsById(id) {
-  const response = await fetch(
+  const response = await axios.get(
     `${TMDB_BASE}/movie/${id}/credits?api_key=${TMDB_KEY}`
   );
-  return await response.json();
+  return response.data;
 }
 
 export async function fetchReviewsById(id) {
-  const response = await fetch(
+  const response = await axios.get(
     `${TMDB_BASE}/movie/${id}/reviews?api_key=${TMDB_KEY}`
   );
-  return await response.json();
+  return response.data;
 }
 
 export function getPictureAddress(param) {

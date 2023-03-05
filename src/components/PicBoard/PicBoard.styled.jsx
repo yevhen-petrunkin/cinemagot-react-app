@@ -15,10 +15,15 @@ export const Content = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px;
-  min-height: 300px;
-  max-width: 600px;
+  max-width: 90vw;
   width: 100%;
-  background-color: ${p => p.theme.colors.default};
+  background-color: transparent;
   border-radius: 8px;
-  box-shadow: ${p => p.theme.shadows.blurred};
+  box-shadow: ${p => p.theme.shadows.minimum};
+  overflow: hidden;
+`;
+
+export const ContentBox = styled.div`
+  height: 90vh;
+  overflow-y: auto;
 `;
