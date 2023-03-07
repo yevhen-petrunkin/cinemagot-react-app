@@ -1,9 +1,10 @@
 // import PropTypes from 'prop-types';
-import { Form, Input, SubmitBtn } from './SearchForm.styled';
+import { Form, Input } from './SearchForm.styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getMoviesByKeyword } from 'redux/redux-operations/tmdbOperations';
+import Button from 'components/Button';
 
 function SearchForm() {
   const dispatch = useDispatch();
@@ -30,7 +31,15 @@ function SearchForm() {
         value={query}
         onChange={evt => setQuery(evt.target.value)}
       />
-      <SubmitBtn type="submit">Search</SubmitBtn>
+      <Button
+        id="submit"
+        type="submit"
+        text="Search"
+        fontSize="18"
+        onClick={() => {
+          return;
+        }}
+      />
     </Form>
   );
 }

@@ -1,4 +1,4 @@
-import { AuthMenu, AuthBtn } from './AuthNav.styled';
+import { AuthMenu } from './AuthNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { openModal } from 'redux/redux-slices/modalSlice';
@@ -6,6 +6,7 @@ import { selectModal } from 'redux/selectors';
 import Modal from 'components/Modal';
 import SignUpForm from 'components/SignUpForm';
 import LogInForm from 'components/LogInForm';
+import Button from 'components/Button';
 
 function AuthNav() {
   const [formId, setFormId] = useState('');
@@ -21,14 +22,22 @@ function AuthNav() {
     <>
       <AuthMenu>
         <li>
-          <AuthBtn id="signup" type="button" onClick={openAuthModal}>
-            Sign Up
-          </AuthBtn>
+          <Button
+            id="signup"
+            type="button"
+            text="Sign Up"
+            fontSize="18"
+            onClick={openAuthModal}
+          />
         </li>
         <li>
-          <AuthBtn id="login" type="button" onClick={openAuthModal}>
-            Log In
-          </AuthBtn>
+          <Button
+            id="login"
+            type="button"
+            text="Log In"
+            fontSize="18"
+            onClick={openAuthModal}
+          />
         </li>
       </AuthMenu>
       {isModalOpen && (

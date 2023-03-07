@@ -1,8 +1,9 @@
-import { MenuBox, LogOutBtn } from './UserMenu.styled';
+import { MenuBox } from './UserMenu.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectError } from 'redux/selectors';
 import { logOut } from 'redux/redux-operations/firebaseOperations';
 import { clearUserLists } from 'redux/redux-slices/userListSlice';
+import Button from 'components/Button';
 
 const UserMenu = () => {
   const { userName } = useSelector(selectUser);
@@ -20,9 +21,13 @@ const UserMenu = () => {
     <div>
       <MenuBox>
         <span>{userName}</span>
-        <LogOutBtn onClick={handleLogOut} type="button">
-          Log Out
-        </LogOutBtn>
+        <Button
+          id="logout"
+          type="button"
+          text="Log Out"
+          fontSize="18"
+          onClick={handleLogOut}
+        />
       </MenuBox>
       {isError && <span>Could not log out</span>}
     </div>
