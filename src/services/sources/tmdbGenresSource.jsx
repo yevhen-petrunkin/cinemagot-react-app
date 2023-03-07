@@ -19,3 +19,25 @@ export const tmdbGenres = [
   { value: 10752, label: 'War' },
   { value: 37, label: 'Western' },
 ];
+
+export const tmdbGenreColors = [
+  { color: '#f9f871', genre: 'Action' },
+  { color: '#ffBe4d', genre: 'Adventure' },
+  { color: '#ff8051', genre: 'Animation' },
+  { color: '#f44169', genre: 'Comedy' },
+  { color: '#00c6b3', genre: 'Crime' },
+  { color: '#0096e2', genre: 'Documentary' },
+  { color: '#0053ca', genre: 'Drama' },
+  { color: '#ffe8ff', genre: 'Family' },
+  { color: '#c2fcf3', genre: 'Fantasy' },
+  { color: '#8a6b9a', genre: 'History' },
+  { color: '#d24717', genre: 'Horror' },
+  { color: '#930100', genre: 'Music' },
+  { color: '#e8d5b5', genre: 'Mystery' },
+  { color: '#8bafce', genre: 'Romance' },
+  { color: '#fffade', genre: 'Science Fiction' },
+  { color: '#8bafce', genre: 'TV Movie' },
+  { color: '#ffaaff', genre: 'Thriller' },
+  { color: '#6e5e00', genre: 'War' },
+  { color: '#954f00', genre: 'Western' },
+];

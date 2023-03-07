@@ -38,7 +38,7 @@ export const Poster = styled.img`
   width: 300px;
   height: 460px;
   border-radius: 10px;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: ${p => p.theme.shadows.ordinary};
 `;
 
 export const MainCaption = styled.h1`

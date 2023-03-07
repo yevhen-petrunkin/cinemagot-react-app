@@ -2,10 +2,15 @@ import { NewsBox, NewsArticle, NewsLink } from './News.styled';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
+import { newsApiQueryString } from 'services/sources/newsApiSearchSource';
 import Container from 'components/Container';
 
 function News() {
-  const { data: news, isLoading, isError } = useQuery(['news'], fetchNewsData);
+  const {
+    data: news,
+    isLoading,
+    isError,
+  } = useQuery(['news'], () => fetchNewsData(newsApiQueryString));
 
   if (isLoading) {
     return <div>Loading...</div>;

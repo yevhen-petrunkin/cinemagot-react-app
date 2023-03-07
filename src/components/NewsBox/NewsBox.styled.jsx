@@ -1,16 +1,29 @@
 import styled from 'styled-components';
 
-export const NewsBox = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
+export const Box = styled.div`
+  width: 100%;
+  height: 84vh;
+  overflow-y: auto;
+`;
+
+export const List = styled.ul`
+  margin: 0;
+  margin-bottom: 12px;
+  padding: 0;
+  list-style: none;
+`;
+
+export const Poster = styled.img`
+  width: 260px;
+  height: 400px;
+  border-radius: 8px;
+  box-shadow: ${p => p.theme.shadows.ordinary};
 `;
 
 export const NewsArticle = styled.article`
+  margin-bottom: 8px;
   padding: 12px;
-  width: 340px;
+  width: 260px;
   background-color: ${p => p.theme.colors.default};
   border-radius: ${p => p.theme.radii[2]}px;
   box-shadow: ${p => p.theme.shadows.ordinary};

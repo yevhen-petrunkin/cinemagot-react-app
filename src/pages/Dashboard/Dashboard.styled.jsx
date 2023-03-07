@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DashContainer = styled.div`
   display: grid;
   grid-template-columns: minmax(232px, 232px) 1fr;
-  height: 100vh;
+  height: 90vh;
 `;
 
 export const DashBox = styled.div`

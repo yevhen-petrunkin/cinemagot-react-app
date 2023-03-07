@@ -11,4 +11,5 @@ export const VideoBox = styled.div`
 export const Video = styled.iframe`
   width: 100%;
   height: 100%;
+  transform: translate(-2px, -2px);
 `;

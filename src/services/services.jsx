@@ -8,7 +8,6 @@ import {
 import { db } from '../firebase';
 import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
-import { newsApiQueryString } from './sources/newsApiSearchSource';
 
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
 const VIDEO_BASE = 'https://www.youtube.com/embed';
@@ -26,9 +25,10 @@ export async function fetchVideosById(id) {
   return response.data;
 }
 
-export async function fetchNewsData() {
+export async function fetchNewsData(queryString) {
+  console.log('tick');
   const response = await axios.get(
-    `${NEWSAPI_BASE}/everything?q=${newsApiQueryString}&sortBy
+    `${NEWSAPI_BASE}/everything?q=${queryString}&sortBy
 =publishedAt&apiKey=${NEWSAPI_KEY}`
   );
   return response.data.articles;
@@ -37,6 +37,13 @@ export async function fetchNewsData() {
 export async function fetchMovieById(id) {
   const response = await axios.get(
     `${TMDB_BASE}/movie/${id}?api_key=${TMDB_KEY}`
+  );
+  return response.data;
+}
+
+export async function fetchLatestMovie() {
+  const response = await axios.get(
+    `${TMDB_BASE}/movie/latest?api_key=${TMDB_KEY}`
   );
   return response.data;
 }
@@ -59,8 +66,18 @@ export function getPictureAddress(param) {
   return param ? `${PICTURE_BASE}${param}` : '';
 }
 
-export function getVideoAddress(param) {
-  return param ? `${VIDEO_BASE}/${param}?autoplay=1` : '';
+export function getVideoAddress(param, number) {
+  return param ? `${VIDEO_BASE}/${param}?autoplay=${number}` : '';
+}
+
+export function getStartingVideo(videos) {
+  if (!videos) {
+    return;
+  }
+  const filteredVideos = videos.filter(
+    ({ type }) => type.toLowerCase() === 'trailer'
+  );
+  return filteredVideos[0];
 }
 
 export function createUserLists(sourceArr, id) {

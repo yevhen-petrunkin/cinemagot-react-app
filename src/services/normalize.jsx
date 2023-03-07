@@ -1,5 +1,6 @@
 import { userExtraDataSource } from './sources/userExtraDataSource';
 import { getPictureAddress, getVideoAddress } from './services';
+import { defaultMovieDataObject } from './sources/defauldValueObjectSource';
 
 export function normalizeUserData(user) {
   return {
@@ -69,7 +70,19 @@ export function stringifyData(array) {
 }
 
 export function stringifyNewsApiQuery(array) {
-  return array.join('+');
+  if (!array) {
+    return '';
+  }
+  return array.join('+').toLowerCase();
+}
+
+export function makeNewsApiQueryFromString(string) {
+  if (!string) {
+    return;
+  }
+  const array = string.split(' ');
+  const stringifiedQuery = array.join('+').toLowerCase();
+  return 'film+movie+' + stringifiedQuery;
 }
 
 export function normalizeDate(date) {
@@ -89,6 +102,9 @@ export function normalizeDateString(dateString) {
 }
 
 export function normalizeMovieData(movieObj) {
+  if (!movieObj) {
+    return defaultMovieDataObject;
+  }
   const {
     id,
     imdb_id,
@@ -144,13 +160,13 @@ export function normalizePicGallery(obj) {
   });
 }
 
-export function normalizeVideos(obj) {
+export function normalizeVideos(obj, number) {
   const filteredVideos = obj.results.filter(
     ({ site }) => site.toLowerCase() === 'youtube'
   );
   return filteredVideos.map(({ name, type, published_at, id, key }) => {
     const date = normalizeDateString(published_at);
-    const url = getVideoAddress(key);
+    const url = getVideoAddress(key, number);
     return { id, videoName: name, type, date, url };
   });
 }
