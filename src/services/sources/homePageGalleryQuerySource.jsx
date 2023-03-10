@@ -3,7 +3,7 @@ export const homePageGalleryQuerySource = {
   currentMoviesQuery: 'movie/now_playing',
   popularMoviesQuery: 'movie/popular',
   topMoviesQuery: 'movie/top_rated',
-  trendingMoviesCaption: 'Trending Today',
+  trendingMoviesCaption: 'Movies Trending Today',
   currentMoviesCaption: 'Currently Running at Cinemas',
   popularMoviesCaption: 'Popular Current Movies',
   topMoviesCaption: 'Top Rated Movies of All Times',

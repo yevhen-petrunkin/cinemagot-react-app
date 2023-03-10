@@ -2,31 +2,39 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledLink = styled(Link)`
-  padding: 8px 0;
-  display: inline-block;
+  padding: 0;
+  display: block;
   text-decoration: none;
   color: ${p => p.theme.colors.default};
   text-shadow: ${p => p.theme.shadows.ordinary};
 `;
 
-export const MovieImg = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
 export const MovieBox = styled.div`
   position: relative;
-  width: 260px;
-  height: 400px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 3px black;
+  min-width: 27vw;
+  min-height: 60vh;
+  border-radius: 12px;
+  box-shadow: ${p => p.theme.shadows.ordinary};
   overflow: hidden;
+  transition: transform 750ms ease;
+  will-change: transform;
+`;
+
+export const ImgBox = styled.div`
+  position: absolute;
+  z-index: -1;
+  min-width: 100%;
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  transition: transform 750ms ease;
+  will-change: transform;
 `;
 
 export const MovieName = styled.h3`
-  position: absolute;
-  top: 8px;
-  left: 8px;
+  position: relative;
   padding: 8px;
   margin: 0;
   width: 228px;
@@ -35,4 +43,5 @@ export const MovieName = styled.h3`
   background-color: ${p => p.theme.colors.secondaryDark};
   border-radius: 4px;
   box-shadow: ${p => p.theme.shadows.ordinary};
+  will-change: transform;
 `;

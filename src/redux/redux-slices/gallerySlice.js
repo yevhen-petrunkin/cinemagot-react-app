@@ -17,6 +17,7 @@ const initialState = {
   params: {},
   valueObject: defaultValueObjectSource,
   rating: '',
+  index: 0,
 };
 
 export const gallerySlice = createSlice({
@@ -34,6 +35,9 @@ export const gallerySlice = createSlice({
     },
     setRating: (state, action) => {
       state.rating = action.payload;
+    },
+    setIndex: (state, action) => {
+      state.index = action.payload;
     },
   },
   extraReducers: builder => {
@@ -118,6 +122,7 @@ export const {
   setRating,
   setLowerDate,
   setGreaterDate,
+  setIndex,
 } = gallerySlice.actions;
 
 export const galleryReducer = gallerySlice.reducer;

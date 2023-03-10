@@ -1,22 +1,23 @@
+import { Menu, MenuItem, Label, Input } from './GalleryMenu.styled';
 import { homePageMenuSource } from 'services/sources/homePageMenuSource';
 
 function GalleryMenu({ onChange }) {
   return (
-    <ul>
+    <Menu>
       {homePageMenuSource.map(({ id, label, value }) => (
-        <li key={id}>
-          <label style={{ display: 'block' }}>
-            <input
+        <MenuItem key={id}>
+          <Label>
+            <Input
               type="radio"
               name="galleryChoice"
               value={value}
               onChange={onChange}
             />
             {label}
-          </label>
-        </li>
+          </Label>
+        </MenuItem>
       ))}
-    </ul>
+    </Menu>
   );
 }
 

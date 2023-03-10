@@ -1,14 +1,14 @@
+import { Menu, MenuItem, Label, Input } from './GallerySelectMenu.styled';
 import { selectNonMultiFields } from 'services/sources/homePageNonMultiSelectFieldSource';
 import { tmdbGenres } from 'services/sources/tmdbGenresSource';
-import Select from 'react-select';
 
 function GallerySelectMenu({ onGenreChange, onOtherChange, object }) {
   return (
-    <ul>
-      <li>
-        <label>
+    <Menu>
+      <MenuItem>
+        <Label>
           Select genres:
-          <Select
+          <Input
             options={tmdbGenres}
             value={object.genres}
             isMulti={true}
@@ -17,10 +17,10 @@ function GallerySelectMenu({ onGenreChange, onOtherChange, object }) {
             isSearchable={true}
             onChange={onGenreChange}
           />
-        </label>
-      </li>
+        </Label>
+      </MenuItem>
       <li>
-        <ul>
+        <Menu>
           {selectNonMultiFields.map(
             ({
               id,
@@ -31,10 +31,10 @@ function GallerySelectMenu({ onGenreChange, onOtherChange, object }) {
               hideSelected,
               isSearcheable,
             }) => (
-              <li key={id}>
-                <label>
+              <MenuItem key={id}>
+                <Label>
                   {label}
-                  <Select
+                  <Input
                     options={optionsSource}
                     value={object[objValue]}
                     backspaceRemovesValue={isBackspaceRemovable}
@@ -42,13 +42,13 @@ function GallerySelectMenu({ onGenreChange, onOtherChange, object }) {
                     isSearchable={isSearcheable}
                     onChange={e => onOtherChange(e, objValue)}
                   />
-                </label>
-              </li>
+                </Label>
+              </MenuItem>
             )
           )}
-        </ul>
+        </Menu>
       </li>
-    </ul>
+    </Menu>
   );
 }
 

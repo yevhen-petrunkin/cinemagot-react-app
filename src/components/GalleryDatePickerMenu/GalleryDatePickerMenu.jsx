@@ -1,4 +1,4 @@
-import DatePicker from 'react-datepicker';
+import { Menu, MenuItem, Label, Input } from './GalleryDatePickerMenu.styled';
 
 function GalleryDatePickerMenu({
   onLowerChange,
@@ -7,20 +7,20 @@ function GalleryDatePickerMenu({
   greaterDate,
 }) {
   return (
-    <ul>
-      <li>
-        <label>
+    <Menu>
+      <MenuItem>
+        <Label>
           Movies not later than:
-          <DatePicker selected={lowerDate} onChange={onLowerChange} />
-        </label>
-      </li>
-      <li>
-        <label>
+          <Input selected={lowerDate} onChange={onLowerChange} />
+        </Label>
+      </MenuItem>
+      <MenuItem>
+        <Label>
           Movies not earlier than:
-          <DatePicker selected={greaterDate} onChange={onGreaterChange} />
-        </label>
-      </li>
-    </ul>
+          <Input selected={greaterDate} onChange={onGreaterChange} />
+        </Label>
+      </MenuItem>
+    </Menu>
   );
 }
 

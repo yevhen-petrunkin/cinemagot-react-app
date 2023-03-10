@@ -1,3 +1,12 @@
+import {
+  GalleryBox,
+  HomeCaption,
+  MenuBox,
+  Menu,
+  MenuItem,
+  Label,
+  Input,
+} from './Home.styled';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +19,7 @@ import {
   selectValueObject,
   selectParams,
   selectRating,
+  selectIndex,
   selectUser,
 } from 'redux/selectors';
 import {
@@ -26,8 +36,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { defaultValueObjectSource } from 'services/sources/defauldValueObjectSource';
 import { normalizeDate } from 'services/normalize';
 
-import { HomeCaption } from './Home.styled';
-import Container from 'components/Container';
+import { FreeContainer } from 'components/Container';
+import Hero from 'components/Hero';
 import GalleryMenu from 'components/GalleryMenu';
 import GallerySelectMenu from 'components/GallerySelectMenu';
 import GalleryDatePickerMenu from 'components/GalleryDatePickerMenu';
@@ -42,6 +52,7 @@ function Home() {
   const params = useSelector(selectParams);
   const valueObject = useSelector(selectValueObject);
   const rating = useSelector(selectRating);
+  const index = useSelector(selectIndex);
   const isUserAuth = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -101,52 +112,61 @@ function Home() {
   };
 
   return (
-    <section>
-      <Container>
-        <HomeCaption>{caption ?? 'CineMaGot'}</HomeCaption>
-        <ul>
-          <li>
-            <GalleryMenu onChange={handleRadioBtnChange} />
-          </li>
-          {isUserAuth && (
-            <>
-              <li>
-                <GallerySelectMenu
-                  onGenreChange={handleSelectGenreChange}
-                  onOtherChange={handleNonMultiSelect}
-                  object={valueObject}
-                />
-              </li>
-              <li>
-                <GalleryDatePickerMenu
-                  lowerDate={lowerDate}
-                  greaterDate={greaterDate}
-                  onLowerChange={handleLowerDateChange}
-                  onGreaterChange={handleGreaterDateChange}
-                />
-              </li>
-              <li>
-                <label>
-                  Rating not less than:
-                  <input
-                    type="number"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    value={rating}
-                    placeholder="Enter number from 0 to 10"
-                    onChange={handleRatingChange}
-                  />
-                </label>
-              </li>
-            </>
-          )}
-        </ul>
-        {isLoading && <span>Loading...</span>}
-        {isError && <span>Oops... Something went wrong!</span>}
-        {gallery && <Gallery movies={gallery} location={location} />}
-      </Container>
-    </section>
+    <>
+      <section>
+        <Hero />
+      </section>
+      <section>
+        <FreeContainer>
+          <GalleryBox>
+            <MenuBox isActive={index > 0}>
+              <HomeCaption>{caption ?? 'CineMaGot'}</HomeCaption>
+              <Menu>
+                <li>
+                  <GalleryMenu onChange={handleRadioBtnChange} />
+                </li>
+                {isUserAuth && (
+                  <>
+                    <li>
+                      <GallerySelectMenu
+                        onGenreChange={handleSelectGenreChange}
+                        onOtherChange={handleNonMultiSelect}
+                        object={valueObject}
+                      />
+                    </li>
+                    <li>
+                      <GalleryDatePickerMenu
+                        lowerDate={lowerDate}
+                        greaterDate={greaterDate}
+                        onLowerChange={handleLowerDateChange}
+                        onGreaterChange={handleGreaterDateChange}
+                      />
+                    </li>
+                    <MenuItem>
+                      <Label>
+                        Rating not less than:
+                        <Input
+                          type="number"
+                          min="0"
+                          max="10"
+                          step="0.1"
+                          value={rating}
+                          placeholder="0 to 10"
+                          onChange={handleRatingChange}
+                        />
+                      </Label>
+                    </MenuItem>
+                  </>
+                )}
+              </Menu>
+            </MenuBox>
+            {isLoading && <span>Loading...</span>}
+            {isError && <span>Oops... Something went wrong!</span>}
+            {gallery && <Gallery movies={gallery} location={location} />}
+          </GalleryBox>
+        </FreeContainer>
+      </section>
+    </>
   );
 }
 

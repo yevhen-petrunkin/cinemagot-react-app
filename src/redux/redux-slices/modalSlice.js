@@ -4,6 +4,7 @@ import { getPicturesById } from 'redux/redux-operations/tmdbOperations';
 const initialState = {
   isModalOpen: false,
   isPicBoardOpen: false,
+  isBurgerOpen: false,
   pictures: null,
   loading: false,
   error: null,
@@ -27,6 +28,9 @@ export const modalSlice = createSlice({
     },
     clearPictures(state) {
       state.pictures = null;
+    },
+    toggleBurger(state) {
+      state.isBurgerOpen = !state.isBurgerOpen;
     },
   },
   extraReducers: builder => {
@@ -53,5 +57,6 @@ export const {
   openPicBoard,
   closePicBoard,
   clearPictures,
+  toggleBurger,
 } = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;

@@ -120,6 +120,9 @@ export function countFavoriteGenres(obj) {
 }
 
 function getGenreArray(data) {
+  if (!data) {
+    return [];
+  }
   return data.favList.flatMap(({ genres }) =>
     genres.map(genre => genre.name.toLowerCase())
   );

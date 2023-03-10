@@ -1,12 +1,18 @@
 // import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { StyledLink, MovieImg, MovieBox, MovieName } from './Movie.styled';
+import { useEffect, useState } from 'react';
+import { StyledLink, MovieBox, ImgBox, MovieName } from './Movie.styled';
 import { GalleryPlaceholder } from 'components/Placeholder';
 
 function Movie({ movie, location }) {
   const [isPosterLoaded, setIsPosterLoaded] = useState(false);
 
   const { id, movieName, poster } = movie;
+
+  useEffect(() => {
+    if (poster) {
+      setIsPosterLoaded(true);
+    }
+  }, [poster]);
 
   let movieId = '';
 
@@ -22,21 +28,19 @@ function Movie({ movie, location }) {
   }
 
   return (
-    <li>
-      <StyledLink to={movieId} state={{ from: location }}>
-        <MovieBox>
-          <MovieName>{movieName}</MovieName>
-          {!isPosterLoaded && <GalleryPlaceholder />}
-          {poster && (
-            <MovieImg
-              src={poster}
-              alt="movieName"
-              onLoad={() => setIsPosterLoaded(true)}
-            />
-          )}
+    <StyledLink to={movieId} state={{ from: location }}>
+      {!isPosterLoaded && <GalleryPlaceholder />}
+      {poster && (
+        <MovieBox data-swiper-parallax="10%">
+          <ImgBox
+            style={{ backgroundImage: `url(${poster})` }}
+            data-swiper-parallax="15%"
+          >
+            <MovieName data-swiper-parallax="5%">{movieName}</MovieName>
+          </ImgBox>
         </MovieBox>
-      </StyledLink>
-    </li>
+      )}
+    </StyledLink>
   );
 }
 

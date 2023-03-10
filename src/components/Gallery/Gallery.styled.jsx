@@ -1,4 +1,12 @@
 import styled from 'styled-components';
+import { Swiper } from 'swiper/react';
+import 'swiper/swiper.min.css';
+
+export const StyledSwiper = styled(Swiper)`
+  height: 86vh;
+  overflow: visible;
+  transition: transform 750ms ease;
+`;
 
 export const List = styled.ul`
   margin: 0;

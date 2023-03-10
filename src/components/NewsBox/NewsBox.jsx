@@ -44,24 +44,18 @@ function NewsBox() {
 
   const genresString = stringifyData(genres);
 
-  // const {
-  //   data: newsData,
-  //   isLoading: isNewsLoading,
-  //   isError: isNewsError,
-  // } = useQuery(['news', query], () => fetchNewsData(query));
+  const {
+    data: newsData,
+    isLoading: isNewsLoading,
+    isError: isNewsError,
+  } = useQuery(['news', query], () => fetchNewsData(query));
 
   useEffect(() => {
-    if (
-      movieData
-      // && newsData
-    ) {
+    if (movieData && newsData) {
       setMovie(movieData);
-      // setNews(newsData);
+      setNews(newsData);
     }
-  }, [
-    movieData,
-    // newsData
-  ]);
+  }, [movieData, newsData]);
 
   const queryString = makeNewsApiQueryFromString(title);
 
@@ -103,8 +97,8 @@ function NewsBox() {
       <section>
         <h2>Latest News</h2>
         <div>
-          {/* {isNewsLoading && <p>Loading News...</p>}
-          {isNewsError && <p>Oops... Something went wrong!</p>} */}
+          {isNewsLoading && <p>Loading News...</p>}
+          {isNewsError && <p>Oops... Something went wrong!</p>}
           {news.map(
             ({ author, title, content, publishedAt, url, urlToImage }) => {
               const date = normalizeDateString(publishedAt);

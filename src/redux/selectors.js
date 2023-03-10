@@ -8,6 +8,7 @@ export const selectExtraError = state => state.userExtraData.extraError;
 
 export const selectModal = state => state.modal.isModalOpen;
 export const selectPicBoard = state => state.modal.isPicBoardOpen;
+export const selectBurger = state => state.modal.isBurgerOpen;
 export const selectPicturesLoading = state => state.modal.loading;
 export const selectPicturesError = state => state.modal.error;
 export const selectPictures = state => state.modal.pictures;
@@ -20,6 +21,7 @@ export const selectGalleryType = state => state.gallery.galleryType;
 export const selectParams = state => state.gallery.params;
 export const selectValueObject = state => state.gallery.valueObject;
 export const selectRating = state => state.gallery.rating;
+export const selectIndex = state => state.gallery.index;
 
 export const selectUserListObj = state => state.userList.userListObj;
 export const selectListLoading = state => state.userList.loading;
