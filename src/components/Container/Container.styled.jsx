@@ -64,6 +64,7 @@ export const FreeWrapper = styled.div`
 
 export const HeroWrapper = styled.div`
   margin: 0 auto;
+  margin-top: ${p => p.theme.space[1] * 30}px;
   box-sizing: border-box;
 
   @media only screen and (min-width: 1440px) {
@@ -77,21 +78,25 @@ export const HeroWrapper = styled.div`
   }
 
   @media only screen and (max-width: 1199px) {
+    margin-top: ${p => p.theme.space[1] * 28}px;
     max-width: 992px;
     max-height: 661.33px;
   }
 
   @media only screen and (max-width: 991px) {
+    margin-top: ${p => p.theme.space[1] * 28}px;
     max-width: 960px;
     max-height: 640px;
   }
 
   @media only screen and (max-width: 767px) {
+    margin-top: ${p => p.theme.space[1] * 18}px;
     max-width: 720px;
     max-height: 480px;
   }
 
   @media only screen and (max-width: 479px) {
+    margin-top: ${p => p.theme.space[1] * 16}px;
     max-width: 425px;
     max-height: 283.33px;
   }

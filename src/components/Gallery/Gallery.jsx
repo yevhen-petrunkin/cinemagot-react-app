@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux';
 
 import { setIndex } from 'redux/redux-slices/gallerySlice';
-import { StyledSwiper, List } from './Gallery.styled';
+import { StyledSwiper } from './Gallery.styled';
 import { SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Mousewheel,

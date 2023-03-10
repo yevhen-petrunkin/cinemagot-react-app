@@ -3,6 +3,7 @@ import heading from 'images/heading.jpg';
 
 export const HeaderSection = styled.header`
   position: fixed;
+  top: 0;
   width: 100%;
   background-image: url(${heading});
   background-size: cover;
