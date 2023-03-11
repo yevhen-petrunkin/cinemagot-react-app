@@ -16,6 +16,7 @@ function LogInForm() {
     dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
+    sessionStorage.removeItem('mute');
     if (!isError && !isLoading) {
       dispatch(closeModal());
     }

@@ -2,11 +2,10 @@ import {
   Video,
   VideoBox,
   VideoBtnSet,
-  VideoBtn,
   HeroCaption,
   HeroBtnSet,
 } from './Hero.styled';
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { openModal } from 'redux/redux-slices/modalSlice';
@@ -18,29 +17,36 @@ import { HeroButton } from 'components/Button';
 
 import SignUpForm from 'components/SignUpForm';
 import LogInForm from 'components/LogInForm';
-import intro1 from '../../video/intro-01.mp4';
-import intro2 from '../../video/intro-02.mp4';
+
+import intro1 from 'video/intro-01.mp4';
+import intro2 from 'video/intro-02.mp4';
 
 function Hero() {
   const videoRef = useRef(null);
+  const mute = sessionStorage.getItem('mute');
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectModal);
   const isUserAuth = useSelector(selectUser);
 
   const [muted, setMuted] = useState(true);
+  const [autoplay, setAutoplay] = useState(true);
   const [formId, setFormId] = useState('');
+
+  useEffect(() => {
+    if (mute) {
+      setAutoplay(false);
+    }
+  }, [autoplay, mute]);
+
+  const handleVideoEnd = () => {
+    sessionStorage.setItem('mute', 'true');
+    setAutoplay(false);
+  };
 
   const openAuthModal = e => {
     setFormId(e.target.id);
     dispatch(openModal());
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !muted;
-      setMuted(!muted);
-    }
   };
 
   const playVideo = () => {
@@ -54,12 +60,8 @@ function Hero() {
       <VideoBox>
         <HeroCaption>Cinemagot</HeroCaption>
         <VideoBtnSet>
-          <VideoBtn type="button" onClick={toggleMute}>
-            Toggle Mute
-          </VideoBtn>
-          <VideoBtn type="button" onClick={playVideo}>
-            Play
-          </VideoBtn>
+          <HeroButton id="mute" text="Mute" onClick={() => setMuted(!muted)} />
+          <HeroButton id="play" text="Play" onClick={playVideo} />
         </VideoBtnSet>
         {!isUserAuth && (
           <HeroBtnSet>
@@ -72,12 +74,24 @@ function Hero() {
           </HeroBtnSet>
         )}
         {!isUserAuth && (
-          <Video ref={videoRef} autoPlay preload="auto">
+          <Video
+            ref={videoRef}
+            autoPlay={autoplay}
+            muted={muted}
+            preload="auto"
+            onEnded={handleVideoEnd}
+          >
             <source src={intro1} type="video/mp4" />
           </Video>
         )}
         {isUserAuth && (
-          <Video ref={videoRef} autoPlay preload="auto">
+          <Video
+            ref={videoRef}
+            autoPlay={autoplay}
+            muted={muted}
+            preload="auto"
+            onEnded={handleVideoEnd}
+          >
             <source src={intro2} type="video/mp4" />
           </Video>
         )}

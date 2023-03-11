@@ -1,103 +1,99 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding-top: ${p => p.theme.space[4]}px;
-  padding-bottom: ${p => p.theme.space[4]}px;
-  padding-left: ${p => p.theme.space[3]}px;
-  padding-right: ${p => p.theme.space[3]}px;
+  ${({ theme: { space, mediaQueries } }) => `
+  margin: ${space[0]}px auto;
+  padding-top: ${space[4]}px;
+  padding-bottom: ${space[4]}px;
+  padding-left: ${space[3]}px;
+  padding-right: ${space[3]}px;
 
-  @media only screen and (min-width: 1440px) {
+  ${mediaQueries.huge} {
     max-width: 1440px;
   }
 
-  @media only screen and (max-width: 1439px) {
+  ${mediaQueries.extraLarge} {
     max-width: 1365px;
   }
 
-  @media only screen and (max-width: 1199px) {
+  ${mediaQueries.large} {
     max-width: 992px;
   }
 
-  @media only screen and (max-width: 991px) {
+  ${mediaQueries.medium} {
     max-width: 960px;
   }
 
-  @media only screen and (max-width: 767px) {
+  ${mediaQueries.small} {
     max-width: 720px;
   }
 
-  @media only screen and (max-width: 479px) {
+  ${mediaQueries.tiny} {
     max-width: 425px;
-  }
+  }`}
 `;
 
 export const FreeWrapper = styled.div`
-  margin: 0 auto;
-  box-sizing: border-box;
+  ${({ theme: { space, mediaQueries } }) => `
+  margin: ${space[0]}px auto;
 
-  @media only screen and (min-width: 1440px) {
+  ${mediaQueries.huge} {
     max-width: 1440px;
   }
 
-  @media only screen and (max-width: 1439px) {
+  ${mediaQueries.extraLarge} {
     max-width: 1365px;
   }
 
-  @media only screen and (max-width: 1199px) {
+  ${mediaQueries.large} {
     max-width: 992px;
   }
 
-  @media only screen and (max-width: 991px) {
+ ${mediaQueries.medium} {
     max-width: 960px;
   }
 
-  @media only screen and (max-width: 767px) {
+  ${mediaQueries.small} {
     max-width: 720px;
   }
 
-  @media only screen and (max-width: 479px) {
+  ${mediaQueries.tiny} {
     max-width: 425px;
-  }
+  }`}
 `;
 
 export const HeroWrapper = styled.div`
-  margin: 0 auto;
-  margin-top: ${p => p.theme.space[1] * 30}px;
-  box-sizing: border-box;
+  ${({ theme: { space, mediaQueries } }) => `
+  margin: ${space[0]}px auto;
+  padding-top: ${space[1] * 30}px;
+  height: 78vw;
 
-  @media only screen and (min-width: 1440px) {
+  ${mediaQueries.huge} {
     max-width: 1440px;
-    max-height: 960px;
+    height: 1040px;
   }
 
-  @media only screen and (max-width: 1439px) {
+  ${mediaQueries.extraLarge} {
     max-width: 1365px;
-    max-height: 910px;
   }
 
-  @media only screen and (max-width: 1199px) {
-    margin-top: ${p => p.theme.space[1] * 28}px;
+   ${mediaQueries.large} {
+    padding-top: ${space[1] * 28}px;
     max-width: 992px;
-    max-height: 661.33px;
   }
 
-  @media only screen and (max-width: 991px) {
-    margin-top: ${p => p.theme.space[1] * 28}px;
+  ${mediaQueries.medium} {
+    padding-top: ${space[1] * 28}px;
     max-width: 960px;
-    max-height: 640px;
   }
 
-  @media only screen and (max-width: 767px) {
-    margin-top: ${p => p.theme.space[1] * 18}px;
+  ${mediaQueries.small} {
+    padding-top: ${space[1] * 18}px;
     max-width: 720px;
-    max-height: 480px;
   }
 
-  @media only screen and (max-width: 479px) {
-    margin-top: ${p => p.theme.space[1] * 16}px;
+  ${mediaQueries.tiny} {
+    padding-top: ${space[1] * 16}px;
     max-width: 425px;
-    max-height: 283.33px;
-  }
+  }`}
 `;

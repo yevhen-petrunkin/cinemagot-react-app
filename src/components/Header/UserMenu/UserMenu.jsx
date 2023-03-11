@@ -29,6 +29,7 @@ const UserMenu = () => {
     dispatch(clearUserLists());
     sessionStorage.removeItem('isFirstDashboard');
     sessionStorage.removeItem('isUserIn');
+    sessionStorage.removeItem('mute');
   };
 
   return (

@@ -1,24 +1,27 @@
 import styled from 'styled-components';
 
 export const MenuBox = styled.div`
+  ${({ theme: { space, colors, fontSizes, mediaQueries } }) => `
   display: flex;
   align-items: center;
-  gap: ${p => p.theme.space[5]}px;
-  font-size: ${p => p.theme.fontSizes[3]}px;
-  color: ${p => p.theme.colors.accentWeak};
+  gap: ${space[5]}px;
+  font-size: ${fontSizes[3]}px;
+  color: ${colors.accentWeak};
 
-  @media only screen and (max-width: 1199px) {
-    gap: ${p => p.theme.space[3]}px;
+ ${mediaQueries.large} {
+    gap: ${space[3]}px;
   }
 
-  @media only screen and (max-width: 479px) {
+  ${mediaQueries.tiny} {
     flex-direction: column;
-    gap: ${p => p.theme.space[1] * 6}px;
-  }
+    gap: ${space[1] * 6}px;
+  } `}
 `;
 
 export const UserBox = styled.div`
+  ${({ theme: { space } }) => `
   display: flex;
   align-items: center;
-  gap: ${p => p.theme.space[3]}px;
+  gap: ${space[3]}px;
+  `}
 `;

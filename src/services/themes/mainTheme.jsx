@@ -1,31 +1,39 @@
 // import './fonts.css';
 
+const breakpoints = ['479px', '767px', '991px', '1199px', '1439px', '1440px'];
+
+const colors = {
+  primary: '#6a1b9a',
+  primaryStrong: '#4a148c',
+  primaryWeak: '#7b1fa2',
+  secondary: '#7e7383',
+  secondaryStrong: '#4d4352',
+  secondaryWeak: '#b3a7b8',
+  accent: '#d24717',
+  accentWeak: '#ff8051',
+  success: '#30beb0',
+  alert: '#930100',
+  defaultWeak: '#fff6ff',
+  defaultStrong: '#000000',
+};
+
 export const mainTheme = {
   space: [0, 4, 8, 12, 16, 20],
-  colors: {
-    primary: '#6a1b9a',
-    primaryStrong: '#4a148c',
-    primaryWeak: '#7b1fa2',
-    secondary: '#7e7383',
-    secondaryStrong: '#4d4352',
-    secondaryWeak: '#b3a7b8',
-    accent: '#d24717',
-    accentWeak: '#ff8051',
-    success: '#30beb0',
-    alert: '#930100',
-    defaultWeak: '#fff6ff',
-    defaultStrong: '#000000',
-  },
+  colors,
   fontSizes: [8, 12, 16, 20, 24, 28, 32],
   fontWeights: [400, 700, 900],
   lineHeights: [1.2, 1.3, 1.4, 1.5],
   letterSpacings: [1.2, 1.3, 1.4, 1.5, 2],
   sizes: [0, 4, 8, 12, 16, 20],
   borders: {
-    input: '2px solid #4d4352',
-    inputHover: '2px solid #ff8051',
-    btn: '1px solid #4d4352',
-    btnHover: '1px solid #ff8051',
+    input: `2px solid ${colors.secondaryStrong}`,
+    inputHover: `2px solid ${colors.accentWeak}`,
+    btn: `1px solid ${colors.secondaryStrong}`,
+    btnHover: `1px solid ${colors.accentWeak}`,
+    heroBtn: `2px solid ${colors.defaultWeak}`,
+    heroBtnHover: `2px solid ${colors.accent}`,
+    heroBtnSmall: `1px solid ${colors.defaultWeak}`,
+    heroBtnSmallHover: `1px solid ${colors.accent}`,
   },
   radii: [0, 4, 8, 12, 16, 20],
   zIndices: [0, 1, 2, 3, 4, 5],
@@ -38,5 +46,15 @@ export const mainTheme = {
       '0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12)',
     blurred:
       '0px 6px 6px -3px rgba(0, 0, 0, 0.2), 0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12)',
+    textOrdinary: `1px 1px 2px ${colors.defaultStrong}`,
+  },
+  breakpoints,
+  mediaQueries: {
+    tiny: `@media screen and (max-width: ${breakpoints[0]})`,
+    small: `@media screen and (max-width: ${breakpoints[1]})`,
+    medium: `@media screen and (max-width: ${breakpoints[2]})`,
+    large: `@media screen and (max-width: ${breakpoints[3]})`,
+    extraLarge: `@media screen and (max-width: ${breakpoints[4]})`,
+    huge: `@media screen and (min-width: ${breakpoints[5]})`,
   },
 };

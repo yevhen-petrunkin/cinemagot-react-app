@@ -1,43 +1,46 @@
 import styled from 'styled-components';
 
 export const LogoBox = styled.div`
+  ${({ theme: { space, mediaQueries } }) => `
   display: flex;
   align-items: center;
-  gap: ${p => p.theme.space[5]}px;
+  gap: ${space[5]}px;
 
-  @media only screen and (max-width: 767px) {
-    gap: ${p => p.theme.space[2]}px;
-  }
+  ${mediaQueries.small} {
+    gap: ${space[2]}px;
+  } `}
 `;
 
 export const ImgBox = styled.div`
-  width: ${p => p.theme.sizes[1] * 25}px;
-  height: ${p => p.theme.sizes[1] * 25}px;
-  border-radius: ${p => p.theme.radii[2]}px;
+  ${({ theme: { sizes, radii, mediaQueries } }) => `
+  width: ${sizes[1] * 25}px;
+  height: ${sizes[1] * 25}px;
+  border-radius: ${radii[2]}px;
   overflow: hidden;
 
-  @media only screen and (max-width: 1199px) {
-    width: ${p => p.theme.sizes[1] * 23}px;
-    height: ${p => p.theme.sizes[1] * 23}px;
+   ${mediaQueries.large} {
+    width: ${sizes[1] * 23}px;
+    height: ${sizes[1] * 23}px;
   }
 
-  @media only screen and (max-width: 767px) {
-    width: ${p => p.theme.sizes[1] * 10}px;
-    height: ${p => p.theme.sizes[1] * 10}px;
-  }
+   ${mediaQueries.small} {
+    width: ${sizes[1] * 10}px;
+    height: ${sizes[1] * 10}px;
+  } `}
 `;
 
 export const LogoText = styled.span`
-  font-size: ${p => p.theme.fontSizes[2] * 2}px;
-  font-weight: ${p => p.theme.fontWeights[1]};
-  letter-spacing: ${p => p.theme.letterSpacings[4]}px;
+  ${({ theme: { fontSizes, fontWeights, letterSpacings, mediaQueries } }) => `
+  font-size: ${fontSizes[2] * 2}px;
+  font-weight: ${fontWeights[1]};
+  letter-spacing: ${letterSpacings[4]}px;
   text-transform: uppercase;
 
-  @media only screen and (max-width: 991px) {
-    font-size: ${p => p.theme.fontSizes[1] * 2}px;
+  ${mediaQueries.medium} {
+    font-size: ${fontSizes[1] * 2}px;
   }
 
-  @media only screen and (max-width: 767px) {
-    font-size: ${p => p.theme.fontSizes[2]}px;
-  }
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[2]}px;
+  } `}
 `;

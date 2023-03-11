@@ -1,64 +1,68 @@
 import styled from 'styled-components';
-import heading from 'images/heading.jpg';
+import heading from 'images/heading-2.jpg';
 
 export const HeaderSection = styled.header`
+  ${({ theme: { zIndices, shadows, mediaQueries } }) => `
   position: fixed;
   top: 0;
   width: 100%;
   background-image: url(${heading});
   background-size: cover;
-  background-position: 0 32%;
+  background-position: 0 50%;
   background-repeat: no-repeat;
-  z-index: ${p => p.theme.zIndices[5]};
-  box-shadow: ${p => p.theme.shadows.elevated};
+  z-index: ${zIndices[5]};
+  box-shadow: ${shadows.elevated};
   overflow: hidden;
 
-  @media only screen and (max-width: 1199px) {
-    background-position: 0 34%;
+  ${mediaQueries.large} {
+    background-position: 0 50%;
   }
 
-  @media only screen and (max-width: 991px) {
-    background-position: 0 35%;
+ ${mediaQueries.medium} {
+    background-position: 0 44%;
   }
 
-  @media only screen and (max-width: 767px) {
-    background-position: 0 36%;
+ ${mediaQueries.small} {
+    background-position: 0 56%;
   }
 
-  @media only screen and (max-width: 479px) {
-    background-position: 0 37%;
-  }
+  ${mediaQueries.tiny} {
+    background-position: 0 32%;
+  } `}
 `;
 
 export const HeaderBg = styled.div`
+  ${({ theme: { colors } }) => `
   width: 100%;
-  background-color: ${p => p.theme.colors.primaryStrong};
-  opacity: 0.9;
+  background-color: ${colors.primaryStrong};
+  opacity: 0.9; `}
 `;
 
 export const HeaderBox = styled.div`
+  ${({ theme: { space, colors, fontSizes, sizes, shadows, mediaQueries } }) => `
   position: relative;
-  margin: ${p => p.theme.space[0]} auto;
-  padding-left: ${p => p.theme.space[5]}px;
-  padding-right: ${p => p.theme.space[5]}px;
+  margin: ${space[0]} auto;
+  padding-left: ${space[5]}px;
+  padding-right: ${space[5]}px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: ${p => p.theme.sizes[1] * 30}px;
-  font-size: ${p => p.theme.fontSizes[4]}px;
-  text-shadow: 1px 1px 2px ${p => p.theme.colors.defaultStrong};
-  color: ${p => p.theme.colors.defaultWeak};
+  height: ${sizes[1] * 30}px;
+  font-size: ${fontSizes[4]}px;
+  text-shadow: ${shadows.textOrdinary};
+  color: ${colors.defaultWeak};
 
-  @media only screen and (max-width: 1199px) {
-    font-size: ${p => p.theme.fontSizes[3]}px;
-    height: ${p => p.theme.sizes[1] * 28}px;
+  ${mediaQueries.large} {
+    font-size: ${fontSizes[3]}px;
+    height: ${sizes[1] * 28}px;
   }
 
-  @media only screen and (max-width: 767px) {
-    height: ${p => p.theme.sizes[1] * 18}px;
+ ${mediaQueries.small} {
+    height: ${sizes[1] * 18}px;
   }
 
-  @media only screen and (max-width: 479px) {
-    height: ${p => p.theme.sizes[1] * 16}px;
+  ${mediaQueries.tiny} {
+    height: ${sizes[1] * 16}px;
   }
+  `}
 `;

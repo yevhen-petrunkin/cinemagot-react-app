@@ -26,7 +26,6 @@ export async function fetchVideosById(id) {
 }
 
 export async function fetchNewsData(queryString) {
-  console.log('tick');
   const response = await axios.get(
     `${NEWSAPI_BASE}/everything?q=${queryString}&sortBy
 =publishedAt&apiKey=${NEWSAPI_KEY}`

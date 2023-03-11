@@ -21,6 +21,7 @@ function SignUpForm() {
     e.preventDefault();
     dispatch(signUp(data));
     setData({});
+    sessionStorage.removeItem('mute');
     if (!isError && !isLoading) {
       dispatch(closeModal());
     }
