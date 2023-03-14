@@ -48,7 +48,7 @@ export const HeroBtn = styled.button`
   color: ${colors.defaultWeak};
   background-color: transparent;
   border: ${borders.heroBtn};
-  border-radius: ${radii[5]}px;
+  border-radius: ${radii[2]}px;
   box-shadow: ${shadows.elevated};
   cursor: pointer;
   transition: color 200ms ease, border 200ms ease;
@@ -63,14 +63,14 @@ export const HeroBtn = styled.button`
   ${mediaQueries.large} {
     padding: ${space[3]}px ${space[1] * 7}px;
     font-size: ${fontSizes[4]}px;
-    border-radius: ${radii[4]}px;
+    border-radius: ${radii[2]}px;
   }
 
   ${mediaQueries.small} {
     padding: ${space[2]}px ${space[4]}px;
     font-size: ${fontSizes[4]}px;
     border: ${borders.heroBtnSmall};
-    border-radius: ${radii[3]}px;
+    border-radius: ${radii[2]}px;
 
     &:hover,
     &:focus {
@@ -82,7 +82,7 @@ export const HeroBtn = styled.button`
     padding: ${space[1]}px ${space[3]}px;
     font-size: ${fontSizes[1]}px;
     border: ${borders.heroBtnSmall};
-    border-radius: ${radii[2]}px;
+    border-radius: ${radii[1]}px;
 
     &:hover,
     &:focus {

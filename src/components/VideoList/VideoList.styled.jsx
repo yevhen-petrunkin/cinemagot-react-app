@@ -24,7 +24,7 @@ export const VideoBtn = styled.button`
   padding-top: 8px;
   padding-bottom: 8px;
   font-size: 20px;
-  color: ${p => p.theme.colors.accentLight};
+  color: ${p => p.theme.colors.accentWeak};
   background-color: transparent;
   border: none;
   cursor: pointer;

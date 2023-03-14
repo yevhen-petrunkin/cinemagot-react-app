@@ -1,18 +1,43 @@
 // import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { StyledLink, MovieBox, ImgBox, MovieName } from './Movie.styled';
-import { GalleryPlaceholder } from 'components/Placeholder';
+
+import {
+  StyledLink,
+  MovieBox,
+  ImgBox,
+  InfoBox,
+  Info,
+  Date,
+  RateBox,
+  MovieName,
+} from './Movie.styled';
+import { useEffect } from 'react';
+
+import { StarWidg, HeartWidg } from 'components/Widgets';
+import placeholder from 'images/photoholder.jpg';
+
+const isTouchDevice = () => {
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  );
+};
 
 function Movie({ movie, location }) {
-  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
-
-  const { id, movieName, poster } = movie;
-
   useEffect(() => {
-    if (poster) {
-      setIsPosterLoaded(true);
+    if (isTouchDevice()) {
+      const movieBoxes = document.querySelectorAll('.MovieBox');
+      movieBoxes.forEach(movieBox => {
+        movieBox.addEventListener('touchstart', () => {
+          const infoBox = movieBox.querySelector('.InfoBox');
+          infoBox.classList.toggle('show');
+        });
+      });
     }
-  }, [poster]);
+  }, []);
+
+  const { id, movieName, poster, overview, release, popularity, aveRate } =
+    movie;
 
   let movieId = '';
 
@@ -28,19 +53,34 @@ function Movie({ movie, location }) {
   }
 
   return (
-    <StyledLink to={movieId} state={{ from: location }}>
-      {!isPosterLoaded && <GalleryPlaceholder />}
+    <>
       {poster && (
-        <MovieBox data-swiper-parallax="10%">
-          <ImgBox
-            style={{ backgroundImage: `url(${poster})` }}
-            data-swiper-parallax="15%"
-          >
-            <MovieName data-swiper-parallax="5%">{movieName}</MovieName>
-          </ImgBox>
+        <MovieBox>
+          <ImgBox img={poster || placeholder} />
+          <InfoBox>
+            <MovieName>{movieName}</MovieName>
+            <Info>{overview}</Info>
+
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <RateBox>
+                <StarWidg number={popularity} />
+                <HeartWidg number={aveRate} />
+              </RateBox>
+              <Date>{release}</Date>
+            </div>
+            <StyledLink to={movieId} state={{ from: location }}>
+              See More
+            </StyledLink>
+          </InfoBox>
         </MovieBox>
       )}
-    </StyledLink>
+    </>
   );
 }
 

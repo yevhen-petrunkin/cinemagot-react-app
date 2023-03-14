@@ -18,7 +18,7 @@ export const Content = styled.div`
   min-height: 300px;
   max-width: 600px;
   width: 100%;
-  background-color: ${p => p.theme.colors.default};
+  background-color: ${p => p.theme.colors.primaryWeak};
   border-radius: 8px;
   box-shadow: ${p => p.theme.shadows.blurred};
 `;

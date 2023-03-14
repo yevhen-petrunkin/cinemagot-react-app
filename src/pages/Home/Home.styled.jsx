@@ -1,67 +1,62 @@
 import styled from 'styled-components';
 
 export const GalleryBox = styled.div`
+  ${({ theme: { colors, sizes, mediaQueries } }) => `
   position: relative;
-  min-height: 86vh;
-  background-color: #000;
+  height: ${sizes[1] * 184}px;
+  background-color: ${colors.defaultStrong};
   overflow: hidden;
+  
+  ${mediaQueries.huge} {
+    height: ${sizes[1] * 255}px;
+  }
+
+  ${mediaQueries.extraLarge} {
+    height: ${sizes[1] * 192}px;
+  }
+
+  ${mediaQueries.large} {
+    height: ${sizes[1] * 192}px;
+  }
+
+  ${mediaQueries.medium} {
+    height: ${sizes[1] * 167}px;
+  }
+  
+  `}
 `;
 
-export const HomeCaption = styled.h2`
-  margin: 0;
-  padding: 8px 0;
-  font-size: 28px;
-  color: ${p => p.theme.colors.accentLight};
-  text-transform: uppercase;
-  text-shadow: ${p => p.theme.shadows.ordinary};
+export const OpenSection = styled.div`
+  position: relative;
 `;
 
-export const Menu = styled.ul`
-  padding: 0;
-  margin: 0;
-  list-style: none;
-`;
-
-export const MenuBox = styled.div`
-  position: absolute;
-  z-index: 2;
-  padding: 20px 32px;
-  margin-bottom: 20px;
-  width: 29vw;
-  min-height: 86vh;
-  box-sizing: border-box;
-  font-size: 16px;
-  color: ${p => p.theme.colors.default};
-  text-shadow: ${p => p.theme.shadows.minimum};
-  background-color: ${p => p.theme.colors.primary};
-  box-shadow: ${p => p.theme.shadows.ordinary};
-  transform: translateX(${p => (p.isActive ? -29 : 0)}vw);
-  opacity: ${p => (p.isActive ? 0 : 1)};
-  transition: opacity 700ms ease, transform 700ms ease;
-`;
-
-export const MenuItem = styled.li`
-  padding-top: 24px;
-  padding-bottom: 16px;
-`;
-
-export const Label = styled.label`
+export const UpButton = styled.button`
+  ${({
+    theme: { space, colors, borders, radii, shadows },
+    width,
+    height,
+    bgcolor,
+  }) => `
+  margin: ${space[1] * 10}px auto;
+  padding: ${space[2]}px;
+  display: block;
+  width: ${width}px;
+  height: ${height}px;
+  color: ${colors.defaultWeak};
+  background-color: ${bgcolor};
+  border: ${borders.btn};
+  border-radius: ${radii[1]}px;
+  box-shadow: ${shadows.ordinary};
+  overflow: hidden;
   cursor: pointer;
-`;
-
-export const Input = styled.input`
-  margin-top: 8px;
-  margin-left: 12px;
-  display: inline;
-  width: 33.5%;
-  height: 36px;
-  font-size: 16px;
-  color: ${p => p.theme.colors.secondaryDark};
-  border-radius: 4px;
-  outline: none;
+  transition: color 300ms ease, border 300ms ease;
 
   &:hover,
-  &focus {
-    outline: none;
+  &:focus {
+    border: ${borders.btnHover};
   }
+
+  &:active {
+    color: ${colors.accentWeak};
+  } `}
 `;

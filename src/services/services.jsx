@@ -99,7 +99,7 @@ export async function deleteFromUserList(userListRef, list, movieObj) {
   });
 }
 
-export function getHomePageGalleryTypeQuery(type) {
+export function getHomePageGalleryTypeQuery(type, number) {
   const {
     trendingMoviesQuery,
     currentMoviesQuery,

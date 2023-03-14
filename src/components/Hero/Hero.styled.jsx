@@ -22,14 +22,15 @@ export const Video = styled.video`
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 0.8;
-  object-fit: fill;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const HeroCaption = styled.h1`
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 1px 1px 10px ${p => p.theme.colors.defaultStrong};
+  text-shadow: ${p => p.theme.shadows.textCaption};
   color: ${p => p.theme.colors.accent};
 
   @media only screen and (min-width: 1440px) {
@@ -59,60 +60,66 @@ export const HeroCaption = styled.h1`
 
 export const HeroBtnSet = styled.div`
   position: absolute;
-  left: 2vw;
-  bottom: 60px;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 20px;
 
+  @media only screen and (min-width: 1440px) {
+  }
+
+  @media only screen and (max-width: 1439px) {
+  }
+
   @media only screen and (max-width: 1199px) {
-    bottom: 40px;
   }
 
   @media only screen and (max-width: 991px) {
     gap: 16px;
-    bottom: 40px;
   }
 
   @media only screen and (max-width: 767px) {
     gap: 12px;
-    bottom: 20px;
   }
 
   @media only screen and (max-width: 479px) {
-    bottom: 8px;
     gap: 8px;
   }
 `;
 
 export const VideoBtnSet = styled.div`
   position: absolute;
-  right: 2vw;
-  bottom: 60px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
   gap: 20px;
 
+  @media only screen and (min-width: 1440px) {
+  }
+
+  @media only screen and (max-width: 1439px) {
+  }
+
   @media only screen and (max-width: 1199px) {
-    bottom: 40px;
   }
 
   @media only screen and (max-width: 991px) {
     gap: 16px;
-    bottom: 40px;
   }
 
   @media only screen and (max-width: 767px) {
     gap: 12px;
-    bottom: 20px;
   }
 
   @media only screen and (max-width: 479px) {
     gap: 8px;
-    bottom: 8px;
   }
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DashContainer = styled.div`
+  padding-top: 120px;
   display: grid;
   grid-template-columns: minmax(232px, 232px) 1fr;
   height: 90vh;
@@ -10,7 +11,7 @@ export const DashBox = styled.div`
   height: 100%;
   font-size: 20px;
   text-align: center;
-  color: ${p => p.theme.colors.default};
+  color: ${p => p.theme.colors.defaultWeak};
   background-color: ${p => p.theme.colors.primary};
   box-shadow: ${p => p.theme.shadows.elevated};
 `;

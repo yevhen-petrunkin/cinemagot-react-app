@@ -15,8 +15,8 @@ export function TotalByListWidg() {
 
   const lists = preparedData.map(list => list.list);
   const numbers = preparedData.map(list => list.total);
-  const { accentLight, success, secondaryLight } = mainTheme.colors;
-  const colors = [accentLight, secondaryLight, success];
+  const { accentWeak, success, secondaryWeak } = mainTheme.colors;
+  const colors = [accentWeak, secondaryWeak, success];
 
   const options = {
     maintainAspectRatio: false,

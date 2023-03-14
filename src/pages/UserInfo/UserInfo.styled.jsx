@@ -7,7 +7,7 @@ export const Grid = styled.div`
   grid-template-rows: repeat(6, 1fr);
   gap: 12px;
   height: 87vh;
-  color: ${p => p.theme.colors.default};
+  color: ${p => p.theme.colors.defaultWeak};
 `;
 
 export const Cell = styled.div`

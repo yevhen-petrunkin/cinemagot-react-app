@@ -2,16 +2,20 @@
 
 import {
   StyledLink,
+  MovieWrapper,
   MovieBox,
   ImgBox,
   ImgBgBox,
   MovieName,
+  RateBox,
 } from './GalleryMovie.styled';
+
+import { StarWidg, HeartWidg } from 'components/Widgets';
 
 import placeholder from 'images/photoholder.jpg';
 
 function GalleryMovie({ movie, location }) {
-  const { id, movieName, poster } = movie;
+  const { id, movieName, poster, popularity, aveRate } = movie;
 
   let movieId = '';
 
@@ -27,19 +31,26 @@ function GalleryMovie({ movie, location }) {
   }
 
   return (
-    <StyledLink to={movieId} state={{ from: location }}>
-      <MovieName>{movieName}</MovieName>
-      <MovieBox data-swiper-parallax="7%">
-        <ImgBox
-          style={{ backgroundImage: `url(${poster || placeholder})` }}
-          data-swiper-parallax="7%"
-        ></ImgBox>
-        <ImgBgBox
-          style={{ backgroundImage: `url(${poster || placeholder})` }}
-          data-swiper-parallax="7%"
-        ></ImgBgBox>
-      </MovieBox>
-    </StyledLink>
+    <MovieWrapper>
+      <MovieName data-swiper-parallax="7%">{movieName}</MovieName>
+      <StyledLink to={movieId} state={{ from: location }}>
+        <MovieBox data-swiper-parallax="7%">
+          <ImgBox
+            style={{ backgroundImage: `url(${poster || placeholder})` }}
+            data-swiper-parallax="7%"
+          >
+            <RateBox>
+              <StarWidg number={popularity} />
+              <HeartWidg number={aveRate} />
+            </RateBox>
+          </ImgBox>
+          <ImgBgBox
+            style={{ backgroundImage: `url(${poster || placeholder})` }}
+            data-swiper-parallax="7%"
+          />
+        </MovieBox>
+      </StyledLink>
+    </MovieWrapper>
   );
 }
 

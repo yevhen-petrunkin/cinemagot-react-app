@@ -1,4 +1,5 @@
 import {
+  MovieBox,
   GoBackBtn,
   ContentBox,
   Poster,
@@ -48,39 +49,41 @@ function MovieDetails() {
     <>
       <section>
         <Container>
-          <GoBackBtn to={backLinkHref}>
-            <HiArrowNarrowLeft />
-            <span>Go Back</span>
-          </GoBackBtn>
-          <div>
-            {(!isPosterLoaded || isError) && <PosterPlaceholder />}
-            {poster && (
-              <Poster
-                src={poster}
-                alt={title}
-                onLoad={() => setIsPosterLoaded(true)}
-              />
-            )}
-          </div>
-          <div>
-            <HandleListBtnSet movieData={movieData} />
-            <ContentBox>
-              <MainCaption>{!isError && title}</MainCaption>
-              <Content>User Score: {!isError && popularity}</Content>
-            </ContentBox>
-            <ContentBox>
-              <Caption>Overview</Caption>
-              <Content>{!isError && overview}</Content>
-            </ContentBox>
-            <ContentBox>
-              <Caption>Genres</Caption>
-              <Content>{!isError && genresString}</Content>
-            </ContentBox>
-            <ContentBox>
-              <Caption>Watch Trailers</Caption>
-              <VideoList movieId={movieId} />
-            </ContentBox>
-          </div>
+          <MovieBox>
+            <GoBackBtn to={backLinkHref}>
+              <HiArrowNarrowLeft />
+              <span>Go Back</span>
+            </GoBackBtn>
+            <div>
+              {(!isPosterLoaded || isError) && <PosterPlaceholder />}
+              {poster && (
+                <Poster
+                  src={poster}
+                  alt={title}
+                  onLoad={() => setIsPosterLoaded(true)}
+                />
+              )}
+            </div>
+            <div>
+              <HandleListBtnSet movieData={movieData} />
+              <ContentBox>
+                <MainCaption>{!isError && title}</MainCaption>
+                <Content>User Score: {!isError && popularity}</Content>
+              </ContentBox>
+              <ContentBox>
+                <Caption>Overview</Caption>
+                <Content>{!isError && overview}</Content>
+              </ContentBox>
+              <ContentBox>
+                <Caption>Genres</Caption>
+                <Content>{!isError && genresString}</Content>
+              </ContentBox>
+              <ContentBox>
+                <Caption>Watch Trailers</Caption>
+                <VideoList movieId={movieId} />
+              </ContentBox>
+            </div>
+          </MovieBox>
         </Container>
       </section>
 

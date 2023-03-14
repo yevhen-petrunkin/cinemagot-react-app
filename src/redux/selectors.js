@@ -22,6 +22,11 @@ export const selectParams = state => state.gallery.params;
 export const selectValueObject = state => state.gallery.valueObject;
 export const selectRating = state => state.gallery.rating;
 export const selectIndex = state => state.gallery.index;
+export const selectMousewheel = state => state.gallery.isMousewheel;
+export const selectOpenGallery = state => state.gallery.isOpenGallery;
+export const selectOpenGalleryRef = state => state.gallery.isOpenGalleryRef;
+export const selectPage = state => state.gallery.page;
+export const selectTotalPageNum = state => state.gallery.totalPageNum;
 
 export const selectUserListObj = state => state.userList.userListObj;
 export const selectListLoading = state => state.userList.loading;

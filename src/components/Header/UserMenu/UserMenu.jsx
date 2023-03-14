@@ -25,11 +25,11 @@ const UserMenu = () => {
   } = useMedia();
 
   const handleLogOut = () => {
-    dispatch(logOut());
-    dispatch(clearUserLists());
     sessionStorage.removeItem('isFirstDashboard');
     sessionStorage.removeItem('isUserIn');
     sessionStorage.removeItem('mute');
+    dispatch(logOut());
+    dispatch(clearUserLists());
   };
 
   return (

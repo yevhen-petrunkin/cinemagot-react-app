@@ -1,8 +1,9 @@
 // import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-
+import { StyledSwiper, RewindIconBtn } from './Gallery.styled';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIndex, selectMousewheel } from 'redux/selectors';
 import { setIndex } from 'redux/redux-slices/gallerySlice';
-import { StyledSwiper } from './Gallery.styled';
 import { SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Mousewheel,
@@ -15,13 +16,27 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigate } from 'react-router-dom';
 import { homePageSwiperBreakpoints } from 'services/sources/homePageSwiperBreakpointsSource';
+import { useMedia } from 'services/media/useMedia';
 
 import GalleryMovie from './GalleryMovie';
+import { TfiControlBackward } from 'react-icons/tfi';
 
 SwiperCore.use([Mousewheel, Navigation, Keyboard, Scrollbar, Parallax]);
 
 function Gallery({ movies, location }) {
+  const swiperRef = useRef(null);
+  const index = useSelector(selectIndex);
+  const mousewheel = useSelector(selectMousewheel);
+
+  const { isLower } = useMedia();
+
   const dispatch = useDispatch();
+
+  function handleRewindClick() {
+    const swiper = swiperRef.current.swiper;
+    dispatch(setIndex(0));
+    swiper.slideTo(0);
+  }
 
   const handleSlideChange = swiper => {
     dispatch(setIndex(swiper.activeIndex));
@@ -33,21 +48,32 @@ function Gallery({ movies, location }) {
         <Navigate to="/" />
       ) : (
         <>
+          {index > 0 && (
+            <RewindIconBtn type="button" onClick={handleRewindClick}>
+              <TfiControlBackward style={{ width: '100%', height: '100%' }} />
+            </RewindIconBtn>
+          )}
           <StyledSwiper
+            ref={swiperRef}
+            iswaiting={(index === 0).toString()}
+            key={mousewheel ? 'enabled' : 'disabled'}
             modules={[Navigation]}
             parallax={true}
-            speed={800}
-            navigation
+            speed={isLower ? 600 : 800}
+            navigation={isLower || index === 0 ? false : true}
             keyboard={{ enabled: true }}
             scrollbar={{ draggable: true }}
-            mousewheel={{
-              sensitivity: 3,
-              thresholdDelt: 10,
-              thresholdTime: 5,
-            }}
+            mousewheel={
+              mousewheel
+                ? {
+                    sensitivity: 3,
+                    thresholdDelt: 10,
+                    thresholdTime: 5,
+                  }
+                : false
+            }
             breakpoints={homePageSwiperBreakpoints}
             onSlideChange={handleSlideChange}
-            // onSwiper={swiper => console.log(swiper)}
           >
             {movies.map(movie => {
               return (
@@ -63,16 +89,6 @@ function Gallery({ movies, location }) {
           </StyledSwiper>
         </>
       )}
-
-      {/* {!movies ? (
-        <Navigate to="/" />
-      ) : (
-        <List>
-          {movies.map(movie => {
-            return <Movie key={movie.id} movie={movie} location={location} />;
-          })}
-        </List>
-      )} */}
     </>
   );
 }

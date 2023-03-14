@@ -1,3 +1,4 @@
+import { MoviesBox } from './Movies.styled';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
@@ -8,8 +9,7 @@ import {
 } from 'redux/selectors';
 import Container from 'components/Container';
 import PropTypes from 'prop-types';
-
-import Gallery from 'components/Gallery';
+import HomeGallery from 'components/HomeGallery';
 
 function Movies() {
   const location = useLocation();
@@ -22,10 +22,12 @@ function Movies() {
   return (
     <section>
       <Container>
-        {isLoading && <span>Loading...</span>}
-        {isError && <span>Oops... Something went wrong!</span>}
-        <h1>{caption}</h1>
-        <Gallery movies={movies} location={location} />
+        <MoviesBox>
+          {isLoading && <span>Loading...</span>}
+          {isError && <span>Oops... Something went wrong!</span>}
+          <h1>{caption}</h1>
+          <HomeGallery movies={movies} location={location} />
+        </MoviesBox>
       </Container>
     </section>
   );
@@ -33,7 +35,7 @@ function Movies() {
 
 export default Movies;
 
-Gallery.propTypes = {
+HomeGallery.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       page: PropTypes.string.isRequired,

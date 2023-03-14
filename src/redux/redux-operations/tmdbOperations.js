@@ -12,16 +12,22 @@ const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
 export const getHomePageGallery = createAsyncThunk(
   'home/getHomePageGallery',
-  async (type, thunkAPI) => {
+  async ({ galleryType, page }, thunkAPI) => {
     try {
-      const query = getHomePageGalleryTypeQuery(type);
+      let pageString = '';
+      if (galleryType !== 'trending') {
+        pageString = `&page=${page}`;
+      }
+
+      const query = getHomePageGalleryTypeQuery(galleryType);
       const response = await axios.get(
-        `${TMDB_BASE}/${query}?api_key=${TMDB_KEY}`
+        `${TMDB_BASE}/${query}?api_key=${TMDB_KEY}${pageString}`
       );
       const gallery = response.data.results;
       const normalizedGallery = await normalizeGallery(gallery);
-      const galleryCaption = getHomePageGalleryCaption(type);
-      return { normalizedGallery, galleryCaption };
+      const totalPageNum = response.data.total_pages;
+      const galleryCaption = getHomePageGalleryCaption(galleryType);
+      return { normalizedGallery, galleryCaption, totalPageNum };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -30,16 +36,17 @@ export const getHomePageGallery = createAsyncThunk(
 
 export const getMoviesByParams = createAsyncThunk(
   'home/getMoviesByGenres',
-  async (params, thunkAPI) => {
+  async ({ params, page }, thunkAPI) => {
     try {
       const queryString = getQueryByParams(params);
       const response = await axios.get(
-        `${TMDB_BASE}/discover/movie?api_key=${TMDB_KEY}${queryString}`
+        `${TMDB_BASE}/discover/movie?api_key=${TMDB_KEY}${queryString}&page=${page}`
       );
       const galleryCaption = 'Look What We Found!';
       const gallery = response.data.results;
       const normalizedGallery = await normalizeGallery(gallery);
-      return { normalizedGallery, galleryCaption };
+      const totalPageNum = response.data.total_pages;
+      return { normalizedGallery, galleryCaption, totalPageNum };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -15,11 +15,11 @@ export const NavStyledLink = styled(NavLink)`
   transition: background-color 200ms ease;
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.default};
-    background-color: ${p => p.theme.colors.primaryLight};
+    color: ${p => p.theme.colors.defaultWeak};
+    background-color: ${p => p.theme.colors.primaryWeak};
   }
   &.active {
-    color: ${p => p.theme.colors.accentLight};
-    background-color: ${p => p.theme.colors.primaryDark};
+    color: ${p => p.theme.colors.accentWeak};
+    background-color: ${p => p.theme.colors.primaryStrong};
   }
 `;

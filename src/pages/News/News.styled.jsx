@@ -11,7 +11,7 @@ export const NewsBox = styled.div`
 export const NewsArticle = styled.article`
   padding: 12px;
   width: 340px;
-  background-color: ${p => p.theme.colors.default};
+  background-color: ${p => p.theme.colors.defaultWeak};
   border-radius: ${p => p.theme.radii[2]}px;
   box-shadow: ${p => p.theme.shadows.ordinary};
   overflow: hidden;
@@ -19,7 +19,7 @@ export const NewsArticle = styled.article`
 
 export const NewsLink = styled.a`
   text-decoration: none;
-  color: ${p => p.theme.colors.secondaryDark};
+  color: ${p => p.theme.colors.secondaryStrong};
 `;
 
 export const NewsImg = styled.img`

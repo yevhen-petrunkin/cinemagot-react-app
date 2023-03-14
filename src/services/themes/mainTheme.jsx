@@ -15,6 +15,7 @@ const colors = {
   alert: '#930100',
   defaultWeak: '#fff6ff',
   defaultStrong: '#000000',
+  star: 'yellow',
 };
 
 export const mainTheme = {
@@ -34,6 +35,7 @@ export const mainTheme = {
     heroBtnHover: `2px solid ${colors.accent}`,
     heroBtnSmall: `1px solid ${colors.defaultWeak}`,
     heroBtnSmallHover: `1px solid ${colors.accent}`,
+    starHeartWidg: `2px solid ${colors.defaultStrong}`,
   },
   radii: [0, 4, 8, 12, 16, 20],
   zIndices: [0, 1, 2, 3, 4, 5],
@@ -46,7 +48,8 @@ export const mainTheme = {
       '0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12)',
     blurred:
       '0px 6px 6px -3px rgba(0, 0, 0, 0.2), 0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12)',
-    textOrdinary: `1px 1px 2px ${colors.defaultStrong}`,
+    textOrdinary: `1px 1px 1px ${colors.defaultStrong}`,
+    textCaption: `1px 1px 10px ${colors.defaultStrong}`,
   },
   breakpoints,
   mediaQueries: {

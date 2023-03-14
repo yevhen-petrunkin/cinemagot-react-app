@@ -18,6 +18,11 @@ const initialState = {
   valueObject: defaultValueObjectSource,
   rating: '',
   index: 0,
+  isMousewheel: false,
+  isOpenGallery: false,
+  openGalleryRef: null,
+  page: 1,
+  totalPageNum: 1,
 };
 
 export const gallerySlice = createSlice({
@@ -39,6 +44,18 @@ export const gallerySlice = createSlice({
     setIndex: (state, action) => {
       state.index = action.payload;
     },
+    setMousewheel: (state, action) => {
+      state.isMousewheel = action.payload;
+    },
+    setOpenGallery: (state, action) => {
+      state.isOpenGallery = action.payload;
+    },
+    setOpenGalleryRef: (state, action) => {
+      state.openGalleryRef = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -50,6 +67,7 @@ export const gallerySlice = createSlice({
         state.loading = false;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
+        state.totalPageNum = action.payload.totalPageNum;
         state.error = null;
       })
       .addCase(getHomePageGallery.rejected, (state, action) => {
@@ -78,6 +96,7 @@ export const gallerySlice = createSlice({
         state.loading = false;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
+        state.totalPageNum = action.payload.totalPageNum;
         state.error = null;
       })
       .addCase(getMoviesByParams.rejected, (state, action) => {
@@ -123,6 +142,10 @@ export const {
   setLowerDate,
   setGreaterDate,
   setIndex,
+  setMousewheel,
+  setOpenGallery,
+  setOpenGalleryRef,
+  setPage,
 } = gallerySlice.actions;
 
 export const galleryReducer = gallerySlice.reducer;

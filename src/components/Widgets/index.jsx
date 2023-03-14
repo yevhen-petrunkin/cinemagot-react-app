@@ -6,3 +6,5 @@ export { MeanPopularityWidg } from './MeanPopularityWidg';
 export { MeanScoreWidg } from './MeanScoreWidg';
 export { TotalByListWidg } from './TotalByListWidg';
 export { FavGenresWidg } from './FavGenresWidg';
+export { StarWidg } from './StarWidg';
+export { HeartWidg } from './HeartWidg';

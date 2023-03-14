@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const MovieBox = styled.div`
+  padding-top: 120px;
+`;
+
 export const GoBackBtn = styled(Link)`
   margin-bottom: 10px;
   padding: 8px 12px;
@@ -9,9 +13,9 @@ export const GoBackBtn = styled(Link)`
   gap: 8px;
   font-size: 16px;
   text-decoration: none;
-  color: ${p => p.theme.colors.default};
-  background-color: ${p => p.theme.colors.secondaryDark};
-  border: 1px solid ${p => p.theme.colors.secondaryDark};
+  color: ${p => p.theme.colors.defaultWeak};
+  background-color: ${p => p.theme.colors.secondaryStrong};
+  border: 1px solid ${p => p.theme.colors.secondaryStrong};
   border-radius: 8px;
   box-shadow: ${p => p.theme.shadows.ordinary};
   cursor: pointer;
@@ -19,9 +23,9 @@ export const GoBackBtn = styled(Link)`
 
   :hover,
   :focus {
-    color: ${p => p.theme.colors.secondaryDark};
-    background-color: ${p => p.theme.colors.accentLight};
-    border: 1px solid ${p => p.theme.colors.accentLight};
+    color: ${p => p.theme.colors.secondaryStrong};
+    background-color: ${p => p.theme.colors.accentWeak};
+    border: 1px solid ${p => p.theme.colors.accentWeak};
   }
 `;
 
@@ -29,7 +33,7 @@ export const ContentBox = styled.div`
   margin-bottom: 20px;
   padding: 20px;
   color: ${p => p.theme.colors.default};
-  background-color: ${p => p.theme.colors.primaryDark};
+  background-color: ${p => p.theme.colors.primaryStrong};
   box-shadow: ${p => p.theme.shadows.ordinary};
   border-radius: 12px;
 `;
@@ -71,7 +75,7 @@ export const AdditLink = styled(Link)`
   padding-top: 8px;
   padding-bottom: 8px;
   text-decoration: none;
-  color: ${p => p.theme.colors.accentLight};
+  color: ${p => p.theme.colors.accentWeak};
 
   &:hover,
   &:focus {

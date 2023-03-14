@@ -19,7 +19,7 @@ export const StyledLink = styled(Link)`
   padding: 8px 0;
   display: inline-block;
   text-decoration: none;
-  color: ${p => p.theme.colors.default};
+  color: ${p => p.theme.colors.defaultWeak};
   text-shadow: ${p => p.theme.shadows.ordinary};
 `;
 
@@ -46,7 +46,7 @@ export const MovieName = styled.h3`
   width: 228px;
   font-size: 12px;
   text-align: left;
-  background-color: ${p => p.theme.colors.secondaryDark};
+  background-color: ${p => p.theme.colors.secondaryStrong};
   border-radius: 4px;
   box-shadow: ${p => p.theme.shadows.ordinary};
 `;
