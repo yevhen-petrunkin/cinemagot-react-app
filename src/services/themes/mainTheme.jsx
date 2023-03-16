@@ -36,6 +36,7 @@ export const mainTheme = {
     heroBtnSmall: `1px solid ${colors.defaultWeak}`,
     heroBtnSmallHover: `1px solid ${colors.accent}`,
     starHeartWidg: `2px solid ${colors.defaultStrong}`,
+    video: `4px solid ${colors.accent}`,
   },
   radii: [0, 4, 8, 12, 16, 20],
   zIndices: [0, 1, 2, 3, 4, 5],

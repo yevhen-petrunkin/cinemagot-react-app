@@ -19,7 +19,7 @@ const Home = lazy(() => import('pages/Home'));
 const News = lazy(() => import('pages/News'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
-const Cast = lazy(() => import('pages/Cast'));
+const Credits = lazy(() => import('pages/Credits'));
 const Reviews = lazy(() => import('pages/Reviews'));
 const Dashboard = lazy(() => import('pages/Dashboard'));
 const UserInfo = lazy(() => import('pages/UserInfo'));
@@ -72,7 +72,7 @@ export const App = () => {
           <Route path="news" element={<News />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
+            <Route path="credits" element={<Credits />} />
             <Route path="review" element={<Reviews />} />
             <Route path="*" element={<NotFoundMessage />} />
           </Route>

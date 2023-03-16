@@ -143,6 +143,7 @@ function GalleryMenuBox() {
       <MenuCtrlSet>
         {mousewheel ? (
           <IconButton
+            title="Disable mouse-scroll"
             type="button"
             width={36}
             height={36}
@@ -153,6 +154,7 @@ function GalleryMenuBox() {
           </IconButton>
         ) : (
           <IconButton
+            title="Enable mouse-scroll"
             type="button"
             width={36}
             height={36}
@@ -165,6 +167,7 @@ function GalleryMenuBox() {
 
         {openGallery ? (
           <IconButton
+            title="Fold up gallery"
             type="button"
             width={36}
             height={36}
@@ -175,6 +178,7 @@ function GalleryMenuBox() {
           </IconButton>
         ) : (
           <IconButton
+            title="Unfold gallery"
             type="button"
             width={36}
             height={36}

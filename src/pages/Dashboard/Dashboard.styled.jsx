@@ -4,7 +4,7 @@ export const DashContainer = styled.div`
   padding-top: 120px;
   display: grid;
   grid-template-columns: minmax(232px, 232px) 1fr;
-  height: 90vh;
+  // height: 90vh;
 `;
 
 export const DashBox = styled.div`

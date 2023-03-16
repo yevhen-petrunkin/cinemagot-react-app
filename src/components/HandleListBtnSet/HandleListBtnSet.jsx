@@ -1,3 +1,4 @@
+import { BtnSet, Btn, BtnText } from './HandleListBtnSet.styled';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
@@ -6,6 +7,8 @@ import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
 import { updateUserList } from 'services/services';
+
+import { RxBookmark, RxCheckCircled, RxStar } from 'react-icons/rx';
 
 function HandleListBtnSet({ movieData }) {
   const user = useSelector(selectUser);
@@ -37,17 +40,36 @@ function HandleListBtnSet({ movieData }) {
   };
 
   return (
-    <div>
-      {userListBtnSetSource.map(({ listId, text }) => (
-        <button
-          key={listId}
-          type="button"
-          onClick={() => handleAddToUserListBtnClick(listId)}
-        >
-          {text}
-        </button>
-      ))}
-    </div>
+    <BtnSet>
+      {userListBtnSetSource.map(({ listId, text, icon }) => {
+        let IconComponent;
+
+        switch (icon) {
+          case 'RxStar':
+            IconComponent = RxStar;
+            break;
+          case 'RxBookmark':
+            IconComponent = RxBookmark;
+            break;
+          case 'RxCheckCircled':
+            IconComponent = RxCheckCircled;
+            break;
+          default:
+            IconComponent = null;
+        }
+
+        return (
+          <Btn
+            key={listId}
+            type="button"
+            onClick={() => handleAddToUserListBtnClick(listId)}
+          >
+            <IconComponent />
+            <BtnText>{text}</BtnText>
+          </Btn>
+        );
+      })}
+    </BtnSet>
   );
 }
 

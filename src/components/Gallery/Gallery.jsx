@@ -49,7 +49,11 @@ function Gallery({ movies, location }) {
       ) : (
         <>
           {index > 0 && (
-            <RewindIconBtn type="button" onClick={handleRewindClick}>
+            <RewindIconBtn
+              title="Rewind to menu"
+              type="button"
+              onClick={handleRewindClick}
+            >
               <TfiControlBackward style={{ width: '100%', height: '100%' }} />
             </RewindIconBtn>
           )}

@@ -1,4 +1,14 @@
-import { List, VideoBtn, VideoBox, Video } from './VideoList.styled';
+import {
+  List,
+  VideoBtn,
+  VideoBox,
+  Video,
+  VidItem,
+  Label,
+  Input,
+  DateSet,
+  Date,
+} from './VideoList.styled';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPicBoard } from 'redux/selectors';
@@ -68,26 +78,32 @@ function VideoList({ movieId }) {
             title="YouTube video player"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-          ></Video>
+          />
         )}
       </VideoBox>
       <List>
         {videos &&
           videos.map(({ id, videoName, type, date, url }) => (
-            <li key={id}>
-              <label>
-                <input
+            <VidItem key={id}>
+              <Label>
+                <Input
                   type="radio"
                   name="footageChoice"
                   value={videoName}
                   onChange={() => handleVideoChange(url)}
                 />
-                {type}: {videoName} - {date}
-              </label>
-              <VideoBtn type="button" onClick={() => handleVideoBtnClick(url)}>
-                Open Wide
-              </VideoBtn>
-            </li>
+                {type}: {videoName}
+              </Label>
+              <DateSet>
+                <Date>{date}</Date>
+                <VideoBtn
+                  type="button"
+                  onClick={() => handleVideoBtnClick(url)}
+                >
+                  Open Wide
+                </VideoBtn>
+              </DateSet>
+            </VidItem>
           ))}
       </List>
       {isPicBoardOpen && (

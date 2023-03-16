@@ -1,6 +1,7 @@
 import { userExtraDataSource } from './sources/userExtraDataSource';
 import { getPictureAddress, getVideoAddress } from './services';
 import { defaultMovieDataObject } from './sources/defauldValueObjectSource';
+import { crewSource } from './sources/crewSource';
 
 export function normalizeUserData(user) {
   return {
@@ -48,13 +49,76 @@ export function normalizeGallery(gallery) {
   );
 }
 
-export function normalizeCredits(credits) {
-  return credits.map(({ credit_id, profile_path, name, character }) => ({
-    id: credit_id,
-    profilePhoto: profile_path,
-    actorName: name,
-    charName: character,
-  }));
+export function normalizeCredits(creditArr) {
+  if (!creditArr) {
+    return;
+  }
+  const { crew, cast } = creditArr;
+  const jobTags = crewSource.map(({ jobTag }) => jobTag);
+
+  const crewData = crew
+    .filter(member => jobTags.includes(member.job.toLowerCase()))
+    .map(({ credit_id, profile_path, name, job }) => {
+      const photo = getPictureAddress(profile_path);
+      return {
+        id: credit_id,
+        profilePhoto: photo,
+        memberName: name,
+        job,
+      };
+    });
+
+  const castData = cast.map(({ credit_id, profile_path, name, character }) => {
+    const photo = getPictureAddress(profile_path);
+    return {
+      id: credit_id,
+      profilePhoto: photo,
+      actorName: name,
+      charName: character,
+    };
+  });
+  return { crew: crewData, cast: castData };
+}
+
+export function normalizeCreditList(credits) {
+  if (!credits) {
+    return;
+  }
+  const { crew, cast } = credits;
+  const normalizedCrew = crewSource
+    .map(({ jobTag, jobName }) => {
+      const memberString = stringifyCrewList(crew, jobTag);
+      return { job: jobName, memberString };
+    })
+    .filter(({ memberString }) => memberString);
+
+  const actorString = stringifyActorList(cast);
+  return [...normalizedCrew, { job: 'Actors', memberString: actorString }];
+}
+
+export function stringifyCrewList(list, jobTag) {
+  return list
+    .filter(({ job }) => job.toLowerCase() === jobTag)
+    .reduce((aggr, member, _, arr) => {
+      if (arr.indexOf(member) < 4) {
+        aggr = [...aggr, member.memberName];
+      }
+      return aggr;
+    }, [])
+    .join(', ');
+}
+
+export function stringifyActorList(list) {
+  return (
+    list
+      .reduce((aggr, actor, _, arr) => {
+        if (arr.indexOf(actor) < 5) {
+          aggr = [...aggr, actor.actorName];
+        }
+        return aggr;
+      }, [])
+      .join(', ') + ' et al.'
+  );
 }
 
 export function normalizeReviews(reviews) {
