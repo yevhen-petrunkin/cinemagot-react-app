@@ -1,6 +1,14 @@
 // import './fonts.css';
 
-const breakpoints = ['479px', '767px', '991px', '1199px', '1439px', '1440px'];
+const breakpoints = [
+  '479px',
+  '639px',
+  '767px',
+  '991px',
+  '1199px',
+  '1439px',
+  '1440px',
+];
 
 const colors = {
   primary: '#6a1b9a',
@@ -55,10 +63,11 @@ export const mainTheme = {
   breakpoints,
   mediaQueries: {
     tiny: `@media screen and (max-width: ${breakpoints[0]})`,
-    small: `@media screen and (max-width: ${breakpoints[1]})`,
-    medium: `@media screen and (max-width: ${breakpoints[2]})`,
-    large: `@media screen and (max-width: ${breakpoints[3]})`,
-    extraLarge: `@media screen and (max-width: ${breakpoints[4]})`,
-    huge: `@media screen and (min-width: ${breakpoints[5]})`,
+    lowerSmall: `@media screen and (max-width: ${breakpoints[1]})`,
+    small: `@media screen and (max-width: ${breakpoints[2]})`,
+    medium: `@media screen and (max-width: ${breakpoints[3]})`,
+    large: `@media screen and (max-width: ${breakpoints[4]})`,
+    extraLarge: `@media screen and (max-width: ${breakpoints[5]})`,
+    huge: `@media screen and (min-width: ${breakpoints[6]})`,
   },
 };

@@ -1,19 +1,52 @@
 import styled from 'styled-components';
 
 export const Grid = styled.div`
-  padding: 12px;
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  padding: ${space[3]}px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: 12px;
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
-  color: ${p => p.theme.colors.defaultWeak};
+  gap: ${space[3]}px;
+  text-shadow: ${shadows.textOrdinary};
+  color: ${colors.defaultWeak};
+  `}
 `;
 
 export const Cell = styled.div`
-  background-color: ${p => p.theme.colors.primary};
-  border-radius: 12px;
-  box-shadow: ${p => p.theme.shadows.ordinary};
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  background-color: ${colors.primary};
+  border-radius: ${radii[3]}px;
+  box-shadow: ${shadows.ordinary};
 
   &: nth-child(1) {
     grid-row: 1 / 4;
@@ -29,4 +62,5 @@ export const Cell = styled.div`
     grid-column: 2 /3;
     grid-row: 4 / 7;
   }
+  `}
 `;

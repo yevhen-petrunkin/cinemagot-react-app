@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { userListBtnSetSource } from 'services/sources/btnSetSource';
 import { messageData } from 'services/sources/messageDataSource';
+import { useMedia } from 'services/media/useMedia';
 import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
@@ -17,6 +18,8 @@ const {
 } = messageData;
 
 function HandleListBtnSet({ movieData }) {
+  const { isTiny, isSmall } = useMedia();
+
   const user = useSelector(selectUser);
   const [userId, setUserId] = useState('');
 
@@ -72,11 +75,12 @@ function HandleListBtnSet({ movieData }) {
         return (
           <Btn
             key={listId}
+            title={text}
             type="button"
             onClick={() => handleAddToUserListBtnClick(listId)}
           >
             <IconComponent />
-            <BtnText>{text}</BtnText>
+            {!isTiny && !isSmall && <BtnText>{text}</BtnText>}
           </Btn>
         );
       })}

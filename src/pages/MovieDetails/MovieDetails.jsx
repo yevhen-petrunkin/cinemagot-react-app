@@ -80,39 +80,48 @@ function MovieDetails() {
             <ContentBox>
               <MovieTable movie={movieData} credits={credits} />
             </ContentBox>
+
             <ContentBox>
               <PosterBox bgImg={poster} />
               <HandleListBtnSet movieData={movieData} />
             </ContentBox>
+
             <ContentBox>
               <Caption>Overview</Caption>
               <Text>{overview}</Text>
-              {companies.length !== 0 && (
-                <>
-                  <Caption>Production Companies</Caption>
-                  <Companies>
-                    {companies.map(
-                      ({ id, name, logo_path, origin_country }) => {
-                        const logo = getPictureAddress(logo_path);
-                        return (
-                          <Company key={id}>
-                            <CompName>{name}</CompName>
-                            <LogoBox>
-                              <img
-                                src={logo}
-                                alt="company-logo"
-                                width="100%"
-                                height="100%"
-                              />
-                            </LogoBox>
-                            <CompCountry>{origin_country}</CompCountry>
-                          </Company>
-                        );
-                      }
-                    )}
-                  </Companies>
-                </>
-              )}
+            </ContentBox>
+
+            {companies.length !== 0 && (
+              <ContentBox>
+                <Caption>Production Companies</Caption>
+                <Companies>
+                  {companies.map(({ id, name, logo_path, origin_country }) => {
+                    const logo = getPictureAddress(logo_path);
+                    return (
+                      <Company key={id}>
+                        <CompName>{name}</CompName>
+                        <LogoBox>
+                          <img
+                            src={logo}
+                            alt="company-logo"
+                            width="100%"
+                            height="100%"
+                          />
+                        </LogoBox>
+                        <CompCountry>{origin_country}</CompCountry>
+                      </Company>
+                    );
+                  })}
+                </Companies>
+              </ContentBox>
+            )}
+
+            <ContentBox>
+              <Caption>Related Videos</Caption>
+              <VideoList movieId={movieId} />
+            </ContentBox>
+
+            <ContentBox>
               <Caption>Explore More</Caption>
               <nav>
                 <List>
@@ -136,10 +145,6 @@ function MovieDetails() {
                   </ListItem>
                 </List>
               </nav>
-            </ContentBox>
-            <ContentBox>
-              <Caption>Related Videos</Caption>
-              <VideoList movieId={movieId} />
             </ContentBox>
           </MovieBox>
         </Container>

@@ -1,33 +1,88 @@
 import styled from 'styled-components';
 
 export const ContentBox = styled.div`
-  padding: 12px;
+  ${({ theme: { space, colors, radii, shadows, mediaQueries } }) => `
+  padding: ${space[3]}px;
   width: 100%;
-  color: ${p => p.theme.colors.defaultWeak};
-  background-color: ${p => p.theme.colors.primary};
-  box-shadow: ${p => p.theme.shadows.ordinary};
-  border-radius: 8px;
+  color: ${colors.defaultWeak};
+  background-color: ${colors.primary};
+  box-shadow: ${shadows.ordinary};
+  border-radius: ${radii[2]}px;
   overflow: hidden;
+
+  ${mediaQueries.tiny} {
+    padding: ${space[1]}px;
+  }
+  `}
 `;
 
 export const Caption = styled.h2`
-  margin: 0;
-  margin-bottom: 20px;
-  font-size: 32px;
-  letter-spacing: ${p => p.theme.letterSpacings[3]};
+  ${({
+    theme: { space, fontSizes, letterSpacings, shadows, mediaQueries },
+  }) => `
+  margin: ${space[0]};
+  margin-bottom: ${space[5]}px;
+  font-size: ${fontSizes[6]}px;
+  letter-spacing: ${letterSpacings[1]}px;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
+  text-shadow: ${shadows.textOrdinary};
+
+  ${mediaQueries.small} {
+    margin-bottom: ${space[3]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    margin: ${space[3]}px ${space[1]}px;
+    font-size: ${fontSizes[3]}px;
+  }
+  `}
 `;
 
 export const List = styled.ul`
-  margin: 0;
-  margin-bottom: 32px;
-  padding: 0;
+  ${({ theme: { space, fontSizes, mediaQueries } }) => `
+  margin: ${space[0]};
+  margin-bottom: ${space[1] * 8}px;
+  padding: ${space[0]};
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: auto;
-  gap: 20px;
-  font-size: 20px;
+  gap: ${space[5]}px;
+  font-size: ${fontSizes[3]}px;
   list-style: none;
+
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+    gap: ${space[4]}px;
+    font-size: ${fontSizes[2]}px;
+  }
+
+  ${mediaQueries.large} {
+    grid-template-columns: repeat(4, 1fr);
+    gap: ${space[3]}px;
+  }
+
+  ${mediaQueries.medium} {
+    grid-template-columns: repeat(3, 1fr);
+    gap: ${space[4]}px;
+  }
+
+  ${mediaQueries.small} {
+    grid-template-columns: repeat(2, 1fr);
+    gap: ${space[5]}px;
+    font-size: ${fontSizes[3]}px;
+  }
+
+  ${mediaQueries.lowerSmall} {
+    font-size: ${fontSizes[2]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    grid-template-columns: repeat(1, 1fr);
+    
+  }
+  `}
 `;

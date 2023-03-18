@@ -108,5 +108,29 @@ export const Default = styled.div`
       shadows,
       mediaQueries,
     },
-  }) => ` `}
+  }) => `
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+ ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;

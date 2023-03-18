@@ -77,13 +77,17 @@ function MovieTable({ movie, credits }) {
           {budgetString && (
             <tr>
               <TabCategory>Budget:</TabCategory>
-              <TabData>{budgetString} USD</TabData>
+              <TabData>
+                {Number(budgetString).toLocaleString('en-EN')} USD
+              </TabData>
             </tr>
           )}
           {revenueString && (
             <tr>
               <TabCategory>Box Office:</TabCategory>
-              <TabData>{revenueString} USD</TabData>
+              <TabData>
+                {Number(revenueString).toLocaleString('en-EN')} USD
+              </TabData>
             </tr>
           )}
           {runtime && (

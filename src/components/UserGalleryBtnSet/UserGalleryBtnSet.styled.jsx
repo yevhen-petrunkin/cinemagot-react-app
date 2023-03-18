@@ -7,27 +7,31 @@ export const BtnSet = styled.div`
 `;
 
 export const Btn = styled.button`
+  ${({ theme: { space, colors, fontSizes, borders } }) => `
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  color: ${p => p.theme.colors.defaultWeak};
-  background-color: ${p => p.theme.colors.accent};
+  gap: ${space[2]}px;
+  font-size: ${fontSizes[4]}px;
+  color: ${colors.defaultWeak};
+  background-color: ${colors.accent};
   border: none;
-  outline: 1px solid ${p => p.theme.colors.secondaryStrong};
+  outline: ${borders.btn};
   cursor: pointer;
   transition: background-color 300ms ease;
 
   &:hover,
   &:focus {
-    background-color: ${p => p.theme.colors.accentWeak};
+    background-color: ${colors.accentWeak};
   }
+  `}
 `;
 
 export const BtnText = styled.span`
-  font-size: 12px;
+  ${({ theme: { fontSizes } }) => `
+  font-size: ${fontSizes[1]}px;
+  `}
 `;

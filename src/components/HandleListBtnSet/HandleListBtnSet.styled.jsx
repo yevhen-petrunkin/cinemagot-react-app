@@ -7,27 +7,65 @@ export const BtnSet = styled.div`
 `;
 
 export const Btn = styled.button`
+  ${({ theme: { space, colors, fontSizes, borders, mediaQueries } }) => `
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  color: ${p => p.theme.colors.defaultWeak};
-  background-color: ${p => p.theme.colors.accent};
+  gap: ${space[2]}px;
+  font-size: ${fontSizes[5]}px;
+  color: ${colors.defaultWeak};
+  background-color: ${colors.accent};
   border: none;
-  outline: 1px solid ${p => p.theme.colors.secondaryStrong};
+  outline:  ${borders.btn};
   cursor: pointer;
   transition: background-color 300ms ease;
 
   &:hover,
   &:focus {
-    background-color: ${p => p.theme.colors.accentWeak};
+    background-color: ${colors.accentWeak};
   }
+
+  ${mediaQueries.extraLarge} {
+    font-size: ${fontSizes[4]}px;
+  }
+
+  ${mediaQueries.large} {
+    font-size: ${fontSizes[5]}px; 
+  }
+
+  ${mediaQueries.medium} {
+    font-size: ${fontSizes[4]}px; 
+  }
+
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[2]}px;
+   
+  }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[3]}px; 
+  }
+  `}
 `;
 
 export const BtnText = styled.span`
-  font-size: 12px;
+  ${({ theme: { fontSizes, mediaQueries } }) => `
+  font-size: ${fontSizes[2]}px;
+
+  ${mediaQueries.extraLarge} {
+   font-size: ${fontSizes[1]}px;
+  }
+
+  ${mediaQueries.large} {
+   font-size: ${fontSizes[2]}px; 
+  }
+
+  ${mediaQueries.medium} {
+   font-size: ${fontSizes[1]}px; 
+  }
+ 
+  `}
 `;

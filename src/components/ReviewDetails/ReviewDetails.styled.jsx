@@ -1,31 +1,59 @@
 import styled from 'styled-components';
 
 export const Review = styled.li`
-  margin-bottom: 20px;
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
-  color: ${p => p.theme.colors.defaultWeak};
-  background-color: ${p => p.theme.colors.primary};
-  border-radius: 12px;
-  box-shadow: ${p => p.theme.shadows.ordinary};
+  ${({ theme: { space, colors, fontSizes, radii, shadows, mediaQueries } }) => `
+  margin-bottom: ${space[5]}px;
+  font-size: ${fontSizes[3]}px;
+  text-shadow: ${shadows.textOrdinary};
+  color: ${colors.defaultWeak};
+  background-color: ${colors.primary};
+  border-radius: ${radii[3]}px;
+  box-shadow: ${shadows.ordinary};
   overflow: hidden;
+
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[2]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[1]}px;
+  }
+  `}
 `;
 
 export const Author = styled.p`
-  margin: 0;
-  padding: 20px;
+  ${({ theme: { space, colors, mediaQueries } }) => `
+  margin: ${space[0]};
+  padding: ${space[5]}px;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  background-color: ${p => p.theme.colors.primaryStrong};
+  gap: ${space[3]}px;
+  background-color: ${colors.primaryStrong};
+
+ ${mediaQueries.medium} {
+   gap: ${space[2]}px; 
+  }
+
+  ${mediaQueries.small} {
+    padding: ${space[4]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    padding: ${space[3]}px;
+  }
+  `}
 `;
 
 export const Message = styled.p`
-  margin: 0;
-  margin-bottom: 12px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
+  ${({ theme: { space, mediaQueries } }) => `
+  margin: ${space[0]};
+  padding: ${space[5]}px;
+  
+  ${mediaQueries.small} {
+    padding: ${space[4]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    padding: ${space[3]}px;
+  }
+  `}
 `;

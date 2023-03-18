@@ -3,32 +3,196 @@ import { Link } from 'react-router-dom';
 import placeholder from 'images/photoholder.jpg';
 
 export const Section = styled.section`
-  padding: 20px 20px;
-  color: ${p => p.theme.colors.defaultWeak};
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  padding: ${space[5]}px ${space[5]}px;
+  color: ${colors.defaultWeak};
+  text-shadow: ${shadows.textOrdinary};
+
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+ ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;
 
 export const Caption = styled.h2`
-  margin: 0;
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  margin: ${space[0]};
+  margin-bottom: ${space[5]}px;
+  font-size: ${fontSizes[4]}px;
+  text-shadow: ${shadows.textOrdinary};
+
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+  ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;
 
 export const List = styled.ul`
-  margin: 0;
-  padding: 0;
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  margin: ${space[0]};
+  padding: ${space[0]};
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: ${space[5]}px;
+
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+  ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;
 
 export const ListItem = styled.div`
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
   aspect-ratio: 3 / 4.8;
-  border-radius: 12px;
-  box-shadow: ${p => p.theme.shadows.ordinary};
+  border-radius: ${radii[3]}px;
+  box-shadow: ${shadows.ordinary};
   overflow: hidden;
+
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+  ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;
 
 export const MovieBox = styled.div`

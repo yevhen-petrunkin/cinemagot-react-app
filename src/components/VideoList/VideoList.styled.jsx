@@ -2,40 +2,57 @@ import styled from 'styled-components';
 import placeholder from 'images/videoholder.jpg';
 
 export const VideoBox = styled.div`
-  margin-bottom: 12px;
+  ${({ theme: { space, borders, radii, mediaQueries } }) => `
+  margin-bottom: ${space[3]}px;
   width: 100%;
   height: 36vw;
   background-image: url(${placeholder});
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  border: ${p => p.theme.borders.video};
-  border-radius: 12px;
+  border: ${borders.video};
+  border-radius: ${radii[3]}px;
   overflow: hidden;
+
+  ${mediaQueries.large} {
+    height: 52vw; 
+  }
+
+  ${mediaQueries.tiny} {
+    border-radius: ${radii[2]}px; 
+  }
+  `}
 `;
 
 export const Video = styled.iframe`
+  ${({ theme: { mediaQueries } }) => `
   width: 101%;
   height: 101%;
   transform: translate(-2px, -2px);
+
+  ${mediaQueries.tiny} {
+    width: 102%;
+    height: 102%; 
+  }
+  `}
 `;
 
 export const List = styled.ul`
-  margin: 0;
-  padding: 0;
+  ${({ theme: { space, fontSizes, shadows, mediaQueries } }) => `
+  margin: ${space[0]};
+  padding: ${space[0]};
   list-style: none;
-  font-size: 20px;
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
-`;
+  font-size: ${fontSizes[3]}px;
+  text-shadow: ${shadows.textOrdinary};
 
-export const VidItem = styled.li`
-  cursor: pointer;
-  transition: color 300ms ease;
-
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accentWeak};
+  ${mediaQueries.small} {
+   font-size: ${fontSizes[2]}px;
   }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[1]}px;
+  }
+  `}
 `;
 
 export const Label = styled.label`
@@ -44,23 +61,65 @@ export const Label = styled.label`
 `;
 
 export const DateSet = styled.div`
-  margin-bottom: 8px;
+  ${({ theme: { space } }) => `
+  margin-bottom: ${space[2]}px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  `}
 `;
 
 export const Date = styled.p`
-  margin: 0;
-  font-size: 16px;
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  margin: ${space[0]};
+  font-size: ${fontSizes[2]}px;
   text-align: right;
+
+  ${mediaQueries.small} {
+   font-size: ${fontSizes[1]}px;
+  }
+  
+  `}
+`;
+
+export const VidItem = styled.li`
+  ${({ theme: { space, colors } }) => `
+  cursor: pointer;
+  transition: color 300ms ease;
+
+  &:hover,
+  &:focus {
+    color: ${colors.accentWeak};
+  }
+
+  &:last-child > ${DateSet} {
+    margin-bottom: ${space[0]};
+  }
+  `}
 `;
 
 export const VideoBtn = styled.button`
-  margin: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: ${p => p.theme.colors.accentWeak};
+  ${({ theme: { space, colors, fontSizes, mediaQueries } }) => `
+  margin: ${space[0]};
+  padding-top: ${space[2]}px;
+  padding-bottom: ${space[2]}px;
+  color: ${colors.accentWeak};
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -68,9 +127,14 @@ export const VideoBtn = styled.button`
 
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.accent};
+    color: ${colors.accent};
     text-decoration: underline;
   }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[1]}px;
+  }
+  `}
 `;
 
 //------Visually Hidden------

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MoviesBox = styled.div`
-  ${({ theme: { space, sizes, mediaQueries } }) => `
+  ${({ theme: { space, mediaQueries } }) => `
     padding-top: ${space[1] * 30}px;
         
   ${mediaQueries.large} {
@@ -22,9 +22,11 @@ export const MoviesBox = styled.div`
 `;
 
 export const Caption = styled.h1`
-  margin: 0;
-  margin-bottom: 20px;
-  font-size: 36px;
-  color: ${p => p.theme.colors.defaultWeak};
-  text-shadow: ${p => p.theme.shadows.textOrdinary};
+  ${({ theme: { space, colors, fontSizes, shadows } }) => `
+  margin: ${space[0]};
+  margin-bottom: ${space[5]}px;
+  font-size: ${fontSizes[1] * 3}px;
+  color: ${colors.defaultWeak};
+  text-shadow: ${shadows.textOrdinary};
+  `}
 `;
