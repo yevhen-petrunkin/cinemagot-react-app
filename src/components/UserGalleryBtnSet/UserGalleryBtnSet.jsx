@@ -1,3 +1,4 @@
+import { BtnSet, Btn, BtnText } from './UserGalleryBtnSet.styled';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,21 +9,40 @@ import {
   getSimilarMovies,
   getPicturesById,
 } from 'redux/redux-operations/tmdbOperations';
-import { db } from '../../firebase';
-import { doc } from '@firebase/firestore';
-import { useMutation } from '@tanstack/react-query';
-import { deleteFromUserList } from 'services/services';
 
 import PicBoard from 'components/PicBoard';
 import PictureGallery from 'components/PictureGallery';
+import { MdOutlineRecommend } from 'react-icons/md';
+import { TiEqualsOutline } from 'react-icons/ti';
+import { AiOutlinePicture } from 'react-icons/ai';
 
 function UserGalleryBtnSet({ movieData }) {
-  const { list, movie, userId } = movieData;
+  const { movie } = movieData;
   const movieId = movie.id;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isPicBoardOpen = useSelector(selectPicBoard);
+
+  const isTouchDevice = () => {
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0
+    );
+  };
+
+  useEffect(() => {
+    if (isTouchDevice()) {
+      const movieBoxes = document.querySelectorAll('.MovieBox');
+      movieBoxes.forEach(movieBox => {
+        movieBox.addEventListener('touchstart', () => {
+          const infoBox = movieBox.querySelector('.InfoBox');
+          infoBox.classList.toggle('show');
+        });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -34,28 +54,8 @@ function UserGalleryBtnSet({ movieData }) {
     }
   }, [isPicBoardOpen]);
 
-  const deleteFromListMutation = useMutation(
-    ({ list, movie }) => {
-      const userListRef = doc(db, 'userLists', userId);
-      return deleteFromUserList(userListRef, list, movie);
-    },
-    {
-      onSuccess: () => {
-        console.log('Movie removed from the list successfully');
-      },
-      onError: () => {
-        console.log('Error removing movie from the list');
-      },
-    }
-  );
-
-  const handleDeleteFromUserListBtnClick = (list, movie) => {
-    const movieObj = { list, movie };
-    deleteFromListMutation.mutate(movieObj);
-  };
-
   const handleUserGalleryBtnClick = evt => {
-    switch (evt.target.id) {
+    switch (evt.currentTarget.id) {
       case 'recommend':
         dispatch(getRecommendedMovies(movieId));
         break;
@@ -74,28 +74,25 @@ function UserGalleryBtnSet({ movieData }) {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => handleDeleteFromUserListBtnClick(list.userList, movie)}
-      >
-        Delete from {list.content}
-      </button>
-      <button type="button" id="recommend" onClick={handleUserGalleryBtnClick}>
-        Recommendations
-      </button>
-      <button type="button" id="similar" onClick={handleUserGalleryBtnClick}>
-        Similar
-      </button>
-      <button type="button" onClick={handlePicBoardBtnClick}>
-        See Pics
-      </button>
+    <BtnSet>
+      <Btn type="button" id="recommend" onClick={handleUserGalleryBtnClick}>
+        <MdOutlineRecommend />
+        <BtnText>Recommended</BtnText>
+      </Btn>
+      <Btn type="button" id="similar" onClick={handleUserGalleryBtnClick}>
+        <TiEqualsOutline />
+        <BtnText>Similar</BtnText>
+      </Btn>
+      <Btn type="button" onClick={handlePicBoardBtnClick}>
+        <AiOutlinePicture />
+        <BtnText>Posters</BtnText>
+      </Btn>
       {isPicBoardOpen && (
         <PicBoard>
           <PictureGallery />
         </PicBoard>
       )}
-    </div>
+    </BtnSet>
   );
 }
 

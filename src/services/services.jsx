@@ -1,6 +1,7 @@
 import {
   doc,
   setDoc,
+  getDoc,
   updateDoc,
   arrayUnion,
   arrayRemove,
@@ -88,9 +89,18 @@ export function createUserLists(sourceArr, id) {
 }
 
 export async function updateUserList(userListRef, list, movieObj) {
+  const snapshot = await getDoc(userListRef);
+  const existingList = (await snapshot.data()[list]) || [];
+  const movieExists = await existingList.some(obj => obj.id === movieObj.id);
+
+  if (movieExists) {
+    return;
+  }
+
   await updateDoc(userListRef, {
     [list]: arrayUnion(movieObj),
   });
+  return movieObj;
 }
 
 export async function deleteFromUserList(userListRef, list, movieObj) {

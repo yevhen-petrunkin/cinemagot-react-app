@@ -4,6 +4,7 @@ import {
   UserBox,
   UserCaption,
   UserImg,
+  Img,
   UserList,
   UserItem,
   UserBtnSet,
@@ -12,6 +13,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser, selectExtraUser } from 'redux/selectors';
+import { FreeContainer } from 'components/Container';
 import DashMenu from 'components/DashMenu';
 import Button from 'components/Button';
 import LoaderComp from 'components/Loader';
@@ -23,51 +25,50 @@ function Dashboard() {
 
   return (
     <section>
-      <DashContainer>
-        <DashBox>
-          <UserBox>
-            <UserCaption>My CineMansion</UserCaption>
-            <UserImg>
-              <img src={magot} alt="magot" width="100%" />
-            </UserImg>
-            <UserList>
-              {userData && <UserItem>{userData.userName}</UserItem>}
-              {userExtraData && (
-                <UserItem>
-                  from <span>{userExtraData.country}</span>
-                </UserItem>
-              )}
-            </UserList>
-            <UserBtnSet>
-              <Button
-                id="avatar"
-                type="button"
-                text="Avatar"
-                fontSize="16"
-                onClick={() => {
-                  return;
-                }}
-              />
-              <Button
-                id="theme"
-                type="button"
-                text="Theme"
-                fontSize="16"
-                onClick={() => {
-                  return;
-                }}
-              />
-            </UserBtnSet>
-          </UserBox>
-          <DashMenu />
-        </DashBox>
-
-        <div>
+      <FreeContainer>
+        <DashContainer>
+          <DashBox>
+            <UserBox>
+              <UserCaption>My CineMansion</UserCaption>
+              <UserImg>
+                <Img src={magot} alt="magot" />
+              </UserImg>
+              <UserList>
+                {userData && <UserItem>{userData.userName}</UserItem>}
+                {userExtraData && (
+                  <UserItem>
+                    from <span>{userExtraData.country}</span>
+                  </UserItem>
+                )}
+              </UserList>
+              <UserBtnSet>
+                <Button
+                  id="avatar"
+                  type="button"
+                  text="Avatar"
+                  fontSize="16"
+                  onClick={() => {
+                    return;
+                  }}
+                />
+                <Button
+                  id="theme"
+                  type="button"
+                  text="Theme"
+                  fontSize="16"
+                  onClick={() => {
+                    return;
+                  }}
+                />
+              </UserBtnSet>
+            </UserBox>
+            <DashMenu />
+          </DashBox>
           <Suspense fallback={<LoaderComp />}>
             <Outlet />
           </Suspense>
-        </div>
-      </DashContainer>
+        </DashContainer>
+      </FreeContainer>
     </section>
   );
 }

@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  padding: 20px;
   width: 100%;
   height: 84vh;
   overflow-y: auto;
+`;
+
+export const Caption = styled.h2`
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const List = styled.ul`
@@ -13,28 +20,36 @@ export const List = styled.ul`
   list-style: none;
 `;
 
+export const PosterBox = styled.div`
+  width: 100%;
+  height: 32vw;
+`;
+
 export const Poster = styled.img`
-  width: 260px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   box-shadow: ${p => p.theme.shadows.ordinary};
 `;
 
-export const NewsArticle = styled.article`
+export const Title = styled.h3`
+  margin: 12px 0;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1.1px;
+`;
+
+export const Slogan = styled.li`
+  margin: 12px 0;
+  color: ${p => p.theme.colors.accentWeak};
+`;
+
+export const Info = styled.li`
   margin-bottom: 8px;
-  padding: 12px;
-  width: 260px;
-  background-color: ${p => p.theme.colors.defaultWeak};
-  border-radius: ${p => p.theme.radii[2]}px;
-  box-shadow: ${p => p.theme.shadows.ordinary};
-  overflow: hidden;
 `;
 
-export const NewsLink = styled.a`
-  text-decoration: none;
-  color: ${p => p.theme.colors.secondaryStrong};
-`;
-
-export const NewsImg = styled.img`
-  width: 100%;
+export const Point = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
 `;

@@ -9,8 +9,7 @@ export const MovieBox = styled.div`
   border-radius: ${radii[3]}px;
   box-shadow: ${shadows.ordinary};
   overflow: hidden;
-  transition: transform 750ms ease, width 750ms ease;
-  
+    
   &:hover,
   &:focus, &.show {
     & > ${ImgBox} {
@@ -54,7 +53,8 @@ export const InfoBox = styled.div`
   padding-top: ${space[5]}px;
   width: 100%;
   height: 100%;
-  transition: transform 750ms ease;
+  transition: transform 750ms ease 500ms;
+  will-change: transform;
   color: ${colors.defaultWeak};
   background-color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
@@ -70,7 +70,7 @@ export const MovieName = styled.h3`
   font-size: ${fontSizes[3]}px;
   text-align: left;
   box-shadow: ${shadows.ordinary};
-  will-change: transform;
+ 
 
   &::after {
     content: '';

@@ -6,7 +6,6 @@ export const List = styled.ul`
   margin: ${space[0]};
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   align-content: center;
   justify-content: center;
   gap: ${space[5]}px;

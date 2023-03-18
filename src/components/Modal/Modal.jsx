@@ -1,8 +1,10 @@
 import { Backdrop, Content } from './Modal.styled';
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { closeModal } from 'redux/redux-slices/modalSlice';
-import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+
+import CloseButton from 'components/CloseButton';
 
 function Modal({ children }) {
   const dispatch = useDispatch();
@@ -22,9 +24,12 @@ function Modal({ children }) {
   return createPortal(
     <Backdrop>
       <Content>
-        <button onClick={() => dispatch(closeModal())} type="button">
-          Close
-        </button>
+        <CloseButton
+          title="Close"
+          top={8}
+          right={8}
+          onClick={() => dispatch(closeModal())}
+        />
         {children}
       </Content>
     </Backdrop>,

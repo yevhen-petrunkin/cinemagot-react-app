@@ -10,7 +10,7 @@ export function MeanBudgetWidg() {
   return (
     <Box>
       <Caption>Average Favorites Budget</Caption>
-      <Info>{meanBudget} USD</Info>
+      <Info>{Number(meanBudget).toLocaleString('en-EN')} USD</Info>
     </Box>
   );
 }

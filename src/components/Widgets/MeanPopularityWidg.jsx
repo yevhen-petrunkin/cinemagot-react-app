@@ -9,7 +9,7 @@ export function MeanPopularityWidg() {
 
   return (
     <Box>
-      <Caption>Average Favorites Popularity</Caption>
+      <Caption>Average Favorites Hype</Caption>
       <Info>{meanPop}</Info>
     </Box>
   );

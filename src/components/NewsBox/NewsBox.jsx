@@ -1,34 +1,36 @@
 import {
   Box,
+  Caption,
   List,
+  PosterBox,
   Poster,
-  NewsArticle,
-  NewsLink,
-  NewsImg,
+  Title,
+  Slogan,
+  Info,
+  Point,
 } from './NewsBox.styled';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchLatestMovie, fetchNewsData } from 'services/services';
-import {
-  normalizeMovieData,
-  stringifyData,
-  makeNewsApiQueryFromString,
-  normalizeDateString,
-} from 'services/normalize';
+import { fetchLatestMovie } from 'services/services';
 import { defaultMovieDataObject } from 'services/sources/defauldValueObjectSource';
-import { GalleryPlaceholder } from 'components/Placeholder';
+import { normalizeMovieData, stringifyData } from 'services/normalize';
+
+import placeholder from 'images/photoholder.jpg';
 
 function NewsBox() {
-  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
-  const [movie, setMovie] = useState(defaultMovieDataObject);
-  const [news, setNews] = useState([]);
-  const [query, setQuery] = useState('film+movie');
+  const [movieData, setMovieData] = useState(defaultMovieDataObject);
 
   const {
-    data: movieData,
-    isLoading,
-    isError,
+    data: movie,
+    // isLoading,
+    // isError,
   } = useQuery(['movie'], () => fetchLatestMovie().then(normalizeMovieData));
+
+  useEffect(() => {
+    if (movie) {
+      setMovieData(movie);
+    }
+  }, [movie]);
 
   const {
     poster,
@@ -40,86 +42,60 @@ function NewsBox() {
     budget,
     runtime,
     date,
-  } = movie;
+  } = movieData;
 
   const genresString = stringifyData(genres);
 
-  const {
-    data: newsData,
-    isLoading: isNewsLoading,
-    isError: isNewsError,
-  } = useQuery(['news', query], () => fetchNewsData(query));
-
-  useEffect(() => {
-    if (movieData && newsData) {
-      setMovie(movieData);
-      setNews(newsData);
-    }
-  }, [movieData, newsData]);
-
-  const queryString = makeNewsApiQueryFromString(title);
-
-  useEffect(() => {
-    setQuery(queryString);
-  }, [queryString]);
-
   return (
-    <Box>
-      <section>
-        <h2>Latest Movie</h2>
-        <div>
-          {(!isPosterLoaded || isError) && <GalleryPlaceholder />}
-          {poster && (
-            <Poster
-              src={poster}
-              alt={title}
-              onLoad={() => setIsPosterLoaded(true)}
-            />
-          )}
-          {isLoading && <p>Loading Movie...</p>}
-          {isError && <p>Oops... Something went wrong!</p>}
-          {movieData && (
-            <>
-              <h3>{title}</h3>
-              <List>
-                <li>Original title: {origTitle}</li>
-                <li>Slogan: {slogan}</li>
-                <li>Genres: {genresString}</li>
-                <li>Release: {date}</li>
-                <li>Overview: {overview}</li>
-                <li>Budget: {budget}</li>
-                <li>Runtime: {runtime}</li>
-              </List>
-            </>
-          )}
-        </div>
-      </section>
-      <section>
-        <h2>Latest News</h2>
-        <div>
-          {isNewsLoading && <p>Loading News...</p>}
-          {isNewsError && <p>Oops... Something went wrong!</p>}
-          {news.map(
-            ({ author, title, content, publishedAt, url, urlToImage }) => {
-              const date = normalizeDateString(publishedAt);
-              return (
-                <NewsArticle key={url}>
-                  <NewsLink href={url}>
-                    <h2>{title}</h2>
-                    <NewsImg src={urlToImage} alt="title" />
-                    <p>{content}</p>
-                    <p>
-                      <span>{author}</span>
-                      <span>{date}</span>
-                    </p>
-                  </NewsLink>
-                </NewsArticle>
-              );
-            }
-          )}
-        </div>
-      </section>
-    </Box>
+    <section>
+      <Box>
+        <Caption>Latest Movie</Caption>
+
+        <PosterBox>
+          <Poster src={poster || placeholder} alt={title} />
+        </PosterBox>
+
+        {movieData && (
+          <>
+            <Title>{title}</Title>
+            <List>
+              {slogan && <Slogan>"{slogan}"</Slogan>}
+              {origTitle && (
+                <Info>
+                  <Point>Original title:</Point> {origTitle}
+                </Info>
+              )}
+              {genresString && (
+                <Info>
+                  <Point>Genres:</Point> {genresString}
+                </Info>
+              )}
+              {date && (
+                <Info>
+                  <Point>Release:</Point> {date}
+                </Info>
+              )}
+              {overview && (
+                <Info>
+                  <Point>Overview:</Point> {overview}
+                </Info>
+              )}
+              {budget.toString() && (
+                <Info>
+                  <Point>Budget:</Point>{' '}
+                  {Number(budget).toLocaleString('en-EN')} USD
+                </Info>
+              )}
+              {runtime.toString() && (
+                <Info>
+                  <Point>Runtime:</Point> {runtime} min
+                </Info>
+              )}
+            </List>
+          </>
+        )}
+      </Box>
+    </section>
   );
 }
 

@@ -19,7 +19,7 @@ const initialState = {
   rating: '',
   index: 0,
   isMousewheel: false,
-  isOpenGallery: true,
+  isOpenGallery: false,
   openGalleryRef: null,
   page: 1,
   totalPageNum: 1,

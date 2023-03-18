@@ -1,8 +1,9 @@
-import { Backdrop, Content, ContentBox } from './PicBoard.styled';
+import { Backdrop, Content, ContentBox, CloseBtn } from './PicBoard.styled';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { closePicBoard, clearPictures } from 'redux/redux-slices/modalSlice';
+import { TfiClose } from 'react-icons/tfi';
 
 function PicBoard({ children }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function PicBoard({ children }) {
     window.addEventListener('keydown', handleKeydown);
   }, [dispatch]);
 
-  const handleClick = () => {
+  const handleCloseBtnClick = () => {
     dispatch(closePicBoard());
     dispatch(clearPictures());
   };
@@ -28,9 +29,15 @@ function PicBoard({ children }) {
     <Backdrop>
       <Content>
         <ContentBox>
-          <button onClick={handleClick} type="button">
-            Close
-          </button>
+          <CloseBtn
+            type="button"
+            title="Close"
+            top={32}
+            right={40}
+            onClick={handleCloseBtnClick}
+          >
+            <TfiClose style={{ width: '100%', height: '100%' }} />
+          </CloseBtn>
           {children}
         </ContentBox>
       </Content>

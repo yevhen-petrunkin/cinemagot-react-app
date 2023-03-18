@@ -1,4 +1,4 @@
-import { MoviesBox } from './Movies.styled';
+import { MoviesBox, Caption } from './Movies.styled';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
@@ -25,7 +25,7 @@ function Movies() {
         <MoviesBox>
           {isLoading && <span>Loading...</span>}
           {isError && <span>Oops... Something went wrong!</span>}
-          <h1>{caption}</h1>
+          <Caption>{caption}</Caption>
           <HomeGallery movies={movies} location={location} />
         </MoviesBox>
       </Container>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchReviewsById } from 'services';
 import { normalizeReviews } from 'services';
 import { List } from './Reviews.styled';
+import Container from 'components/Container';
 import ReviewDetails from 'components/ReviewDetails';
 import NotFoundMessage from 'components/NotFoundMessage';
 import LoaderComp from 'components/Loader';
@@ -28,16 +29,18 @@ function Reviews() {
   }
 
   return (
-    <List>
-      {reviews.length ? (
-        reviews.map(review => {
-          const { id } = review;
-          return <ReviewDetails key={id} data={review} />;
-        })
-      ) : (
-        <NotFoundMessage />
-      )}
-    </List>
+    <Container>
+      <List>
+        {reviews.length ? (
+          reviews.map(review => {
+            const { id } = review;
+            return <ReviewDetails key={id} data={review} />;
+          })
+        ) : (
+          <NotFoundMessage />
+        )}
+      </List>
+    </Container>
   );
 }
 

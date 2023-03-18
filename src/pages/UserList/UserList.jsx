@@ -1,10 +1,16 @@
 import {
-  ListBox,
+  Section,
+  Caption,
   List,
+  ListItem,
   StyledLink,
-  MovieImg,
+  PosterBox,
   MovieBox,
   MovieName,
+  InfoBox,
+  RateBox,
+  Date,
+  Info,
 } from './UserList.styled';
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
@@ -12,23 +18,34 @@ import { useSelector } from 'react-redux';
 import {
   selectUserListObj,
   selectUser,
-  selectListError,
+  // selectListError,
   selectListLoading,
 } from 'redux/selectors';
+import { db } from '../../firebase';
+import { doc } from '@firebase/firestore';
+import { useMutation } from '@tanstack/react-query';
+import { deleteFromUserList } from 'services/services';
 import { dashMenuSource } from 'services/sources/dashMenuSource';
-import { GalleryPlaceholder } from 'components/Placeholder';
-import UserGalleryBtnSet from 'components/UserGalleryBtnSet/UserGalleryBtnSet';
+import { messageData } from 'services/sources/messageDataSource';
+import UserGalleryBtnSet from 'components/UserGalleryBtnSet';
+import CloseButton from 'components/CloseButton';
+import { StarWidg, HeartWidg } from 'components/Widgets';
+
+const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
+  messageData;
 
 function UserList() {
   const location = useLocation();
+
   const { listId } = useParams();
+
   const userListObj = useSelector(selectUserListObj);
   const isLoading = useSelector(selectListLoading);
-  const isError = useSelector(selectListError);
+  // const isError = useSelector(selectListError);
   const user = useSelector(selectUser);
+
   const [userId, setUserId] = useState('');
   const [list, setList] = useState({});
-  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
 
   useEffect(() => {
     switch (listId) {
@@ -44,6 +61,7 @@ function UserList() {
         setList(prev => ({
           ...prev,
           userList: dashMenuSource[2].listRef,
+          caption: dashMenuSource[2].caption,
           content: dashMenuSource[2].content,
         }));
         break;
@@ -51,6 +69,7 @@ function UserList() {
         setList(prev => ({
           ...prev,
           userList: dashMenuSource[3].listRef,
+          caption: dashMenuSource[3].caption,
           content: dashMenuSource[3].content,
         }));
         break;
@@ -65,43 +84,82 @@ function UserList() {
     }
   }, [user]);
 
+  const deleteFromListMutation = useMutation(
+    ({ list, movie }) => {
+      const userListRef = doc(db, 'userLists', userId);
+      return deleteFromUserList(userListRef, list, movie);
+    },
+    {
+      onSuccess: () => {
+        console.log(movieRemovedFromListMessage);
+      },
+      onError: () => {
+        console.log(errorRemovingMovieFromListMessage);
+      },
+    }
+  );
+
+  const handleDeleteFromUserListBtnClick = movieObj => {
+    deleteFromListMutation.mutate(movieObj);
+  };
+
   return (
-    <section>
-      <ListBox>
-        {isLoading || !userListObj || !list.userList ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <h2>{list.caption}</h2>
-            <List>
-              {userListObj[list.userList].map(movie => {
-                const { id, title, poster } = movie;
-                let movieId = '/movies/' + id.toString();
-                return (
-                  <li key={id}>
-                    <StyledLink to={movieId} state={{ from: location }}>
-                      <MovieBox>
-                        <MovieName>{title}</MovieName>
-                        {!isPosterLoaded && <GalleryPlaceholder />}
-                        {poster && (
-                          <MovieImg
-                            src={poster}
-                            alt="movieName"
-                            onLoad={() => setIsPosterLoaded(true)}
-                          />
-                        )}
-                      </MovieBox>
-                    </StyledLink>
-                    <UserGalleryBtnSet movieData={{ list, movie, userId }} />
-                  </li>
-                );
-              })}
-            </List>
-          </>
-        )}
-        {isError && <p>Oops... Something went wrong!</p>}
-      </ListBox>
-    </section>
+    <Section>
+      {isLoading || !userListObj || !list.userList ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <Caption>{list.caption}</Caption>
+          <List>
+            {userListObj[list.userList].map(movie => {
+              const { id, title, poster, overview, popularity, score, date } =
+                movie;
+              let movieId = '/movies/' + id.toString();
+              return (
+                <ListItem key={id}>
+                  <MovieBox>
+                    <PosterBox bgImg={poster} />
+                    <InfoBox>
+                      <MovieName>{title}</MovieName>
+                      <Info>{overview}</Info>
+
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <RateBox>
+                          <StarWidg number={popularity} />
+                          <HeartWidg number={score} />
+                        </RateBox>
+                        <Date>{date}</Date>
+                      </div>
+                      <StyledLink to={movieId} state={{ from: location }}>
+                        See More
+                      </StyledLink>
+                    </InfoBox>
+                    <CloseButton
+                      title="Delete from list"
+                      top={8}
+                      right={8}
+                      onClick={() =>
+                        handleDeleteFromUserListBtnClick({
+                          list: list.userList,
+                          movie,
+                        })
+                      }
+                    />
+                  </MovieBox>
+                  <UserGalleryBtnSet movieData={{ list, movie, userId }} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </>
+      )}
+    </Section>
   );
 }
 

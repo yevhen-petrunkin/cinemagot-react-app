@@ -7,7 +7,8 @@ import { useMedia } from 'services/media/useMedia';
 import Button from 'components/Button';
 import IconButton from 'components/IconButton';
 
-import { SlUser, SlLogout } from 'react-icons/sl';
+import { FaUserCircle } from 'react-icons/fa';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 const UserMenu = () => {
   const isUserAuth = useSelector(selectUser);
@@ -37,7 +38,7 @@ const UserMenu = () => {
       <MenuBox>
         <UserBox>
           {!isLowerSmall && isUserAuth && (
-            <SlUser style={{ width: '100%', height: '100%' }} />
+            <FaUserCircle style={{ width: '100%', height: '100%' }} />
           )}
           {(isHigher || isTiny) && isUserAuth && (
             <span>{isUserAuth.userName}</span>
@@ -61,7 +62,7 @@ const UserMenu = () => {
             bgcolor="#4d4352"
             onClick={handleLogOut}
           >
-            <SlLogout style={{ width: '100%', height: '100%' }} />
+            <RiLogoutBoxRLine style={{ width: '100%', height: '100%' }} />
           </IconButton>
         )}
       </MenuBox>

@@ -6,7 +6,7 @@ export function countTotalMoviesInOneList(obj, list) {
     return 0;
   }
 
-  return obj[list].length;
+  return obj[list].length || 0;
 }
 
 export function countAllMoviesInUserLists(obj) {
@@ -72,9 +72,12 @@ export function countMeanBudget(obj) {
     obj,
     userListBtnSetSource[0].listId
   );
-  const meanBudget =
-    obj.favList.reduce((acc, { budget }) => (acc += Number(budget)), 0) /
-    favTotal;
+  const commonBudget = obj.favList.reduce(
+    (acc, { budget }) => (acc += Number(budget)),
+    0
+  );
+
+  const meanBudget = favTotal ? commonBudget / favTotal : 0;
 
   return meanBudget.toFixed(0);
 }
@@ -87,11 +90,12 @@ export function countMeanPopularity(obj) {
     obj,
     userListBtnSetSource[0].listId
   );
-  const meanPop =
-    obj.favList.reduce(
-      (acc, { popularity }) => (acc += Number(popularity)),
-      0
-    ) / favTotal;
+  const commonPop = obj.favList.reduce(
+    (acc, { popularity }) => (acc += Number(popularity)),
+    0
+  );
+
+  const meanPop = favTotal ? commonPop / favTotal : 0;
 
   return meanPop.toFixed(2);
 }
@@ -104,9 +108,12 @@ export function countMeanScore(obj) {
     obj,
     userListBtnSetSource[0].listId
   );
-  const meanScore =
-    obj.favList.reduce((acc, { score }) => (acc += Number(score)), 0) /
-    favTotal;
+  const commonScore = obj.favList.reduce(
+    (acc, { score }) => (acc += Number(score)),
+    0
+  );
+
+  const meanScore = favTotal ? commonScore / favTotal : 0;
 
   return meanScore.toFixed(2);
 }

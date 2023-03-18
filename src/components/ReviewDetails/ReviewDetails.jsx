@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
-import { Review, Author } from './ReviewDetails.styled';
+import { Review, Author, Message } from './ReviewDetails.styled';
+
+import { FaUserCircle } from 'react-icons/fa';
 
 function ReviewDetails({ data }) {
   const { author, content } = data;
 
   return (
     <Review>
-      <Author>Author: {author}</Author>
-      <p>{content}</p>
+      <Author>
+        <FaUserCircle />
+        {author}
+      </Author>
+      <Message>{content}</Message>
     </Review>
   );
 }

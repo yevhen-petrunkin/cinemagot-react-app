@@ -3,12 +3,18 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { userListBtnSetSource } from 'services/sources/btnSetSource';
+import { messageData } from 'services/sources/messageDataSource';
 import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
 import { updateUserList } from 'services/services';
-
 import { RxBookmark, RxCheckCircled, RxStar } from 'react-icons/rx';
+
+const {
+  alreadyOnTheListMessage,
+  movieAddedToListMessage,
+  errorAddingMovieToListMessage,
+} = messageData;
 
 function HandleListBtnSet({ movieData }) {
   const user = useSelector(selectUser);
@@ -26,11 +32,16 @@ function HandleListBtnSet({ movieData }) {
       return updateUserList(userListRef, list, movieData);
     },
     {
-      onSuccess: () => {
-        console.log('Movie added to the list successfully');
+      onSuccess: data => {
+        const movieAdded = data !== undefined;
+        if (!movieAdded) {
+          console.log(alreadyOnTheListMessage);
+        } else {
+          console.log(movieAddedToListMessage);
+        }
       },
       onError: () => {
-        console.log('Error adding movie to the list');
+        console.log(errorAddingMovieToListMessage);
       },
     }
   );

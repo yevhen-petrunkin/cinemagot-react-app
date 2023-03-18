@@ -11,7 +11,7 @@ export const homePageMenuSource = [
   },
   {
     id: 'popular',
-    label: 'Top Rated Current Movies',
+    label: 'Greatest Hype Now',
     value: 'popular',
   },
   {

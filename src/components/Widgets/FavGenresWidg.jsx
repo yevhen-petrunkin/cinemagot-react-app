@@ -7,7 +7,7 @@ import { countFavoriteGenres } from 'services/widgetFunc';
 import { mainTheme } from 'services';
 
 Chart.register(...registerables);
-Chart.defaults.color = mainTheme.colors.default;
+Chart.defaults.color = mainTheme.colors.defaultWeak;
 
 export function FavGenresWidg() {
   const listData = useSelector(selectUserListObj);

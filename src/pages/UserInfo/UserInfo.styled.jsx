@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const Grid = styled.div`
   padding: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 12px;
-  height: 87vh;
+  text-shadow: ${p => p.theme.shadows.textOrdinary};
   color: ${p => p.theme.colors.defaultWeak};
 `;
 
@@ -20,7 +20,6 @@ export const Cell = styled.div`
   }
 
   &: nth-child(3) {
-    padding: 8px;
     grid-column: 3 /4;
     grid-row: 1 / 7;
     overflow: hidden;

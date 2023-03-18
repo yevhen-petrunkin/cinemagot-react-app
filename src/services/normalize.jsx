@@ -140,15 +140,6 @@ export function stringifyNewsApiQuery(array) {
   return array.join('+').toLowerCase();
 }
 
-export function makeNewsApiQueryFromString(string) {
-  if (!string) {
-    return;
-  }
-  const array = string.split(' ');
-  const stringifiedQuery = array.join('+').toLowerCase();
-  return 'film+movie+' + stringifiedQuery;
-}
-
 export function normalizeDate(date) {
   if (!date) {
     return '';

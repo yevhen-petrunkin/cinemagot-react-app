@@ -1,17 +1,22 @@
 import styled from 'styled-components';
+import placeholder from 'images/videoholder.jpg';
 
 export const VideoBox = styled.div`
   margin-bottom: 12px;
   width: 100%;
   height: 36vw;
+  background-image: url(${placeholder});
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   border: ${p => p.theme.borders.video};
   border-radius: 12px;
   overflow: hidden;
 `;
 
 export const Video = styled.iframe`
-  width: 103%;
-  height: 103%;
+  width: 101%;
+  height: 101%;
   transform: translate(-2px, -2px);
 `;
 
