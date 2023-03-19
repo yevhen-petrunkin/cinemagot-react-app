@@ -11,7 +11,7 @@ function IconButton({
 }) {
   return (
     <IconBtn
-      type={type}
+      type={type || 'button'}
       title={title || 'Icon Button'}
       width={width}
       height={height}

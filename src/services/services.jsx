@@ -19,6 +19,9 @@ const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 const NEWSAPI_BASE = 'https://newsapi.org/v2';
 const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
 
+const BING_BASE = 'https://bing-news-search1.p.rapidapi.com/news';
+const BING_KEY = 'b81ea506bamsha8db9f041608be3p1db9e4jsn27df579a154b';
+
 export async function fetchVideosById(id) {
   const response = await axios.get(
     `${TMDB_BASE}/movie/${id}/videos?api_key=${TMDB_KEY}`
@@ -26,12 +29,24 @@ export async function fetchVideosById(id) {
   return response.data;
 }
 
-export async function fetchNewsData(queryString) {
-  const response = await axios.get(
-    `${NEWSAPI_BASE}/everything?q=${queryString}&sortBy
-=publishedAt&apiKey=${NEWSAPI_KEY}`
-  );
-  return response.data.articles;
+export async function fetchNewsData() {
+  const options = {
+    method: 'GET',
+    url: BING_BASE,
+    params: {
+      category: 'Entertainment',
+      mkt: 'en-US',
+      safeSearch: 'Off',
+      textFormat: 'Raw',
+    },
+    headers: {
+      'X-BingApis-SDK': 'true',
+      'X-RapidAPI-Key': BING_KEY,
+      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
+    },
+  };
+  const response = await axios.request(options);
+  return response.data.value;
 }
 
 export async function fetchMovieById(id) {

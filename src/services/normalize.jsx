@@ -133,13 +133,6 @@ export function stringifyData(array) {
   return array.map(item => item.name).join(', ');
 }
 
-export function stringifyNewsApiQuery(array) {
-  if (!array) {
-    return '';
-  }
-  return array.join('+').toLowerCase();
-}
-
 export function normalizeDate(date) {
   if (!date) {
     return '';

@@ -121,7 +121,7 @@ export const Default = styled.div`
     
   }
 
- ${mediaQueries.medium} {
+  ${mediaQueries.medium} {
     
   }
 

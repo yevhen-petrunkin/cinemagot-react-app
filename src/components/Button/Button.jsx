@@ -1,8 +1,14 @@
 import { Btn } from './Button.styled';
 
-function Button({ id, type, text, fontSize, onClick }) {
+function Button({ id, title, type, text, fontSize, onClick }) {
   return (
-    <Btn id={id} type={type} fontSize={fontSize} onClick={onClick}>
+    <Btn
+      id={id}
+      title={title || 'Button'}
+      type={type || 'button'}
+      fontSize={fontSize}
+      onClick={onClick}
+    >
       {text}
     </Btn>
   );

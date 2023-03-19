@@ -4,13 +4,14 @@ import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
 import { newsApiQueryString } from 'services/sources/newsApiSearchSource';
 import Container from 'components/Container';
+import placeholder from 'images/videoholder.jpg';
 
 function News() {
   const {
     data: news,
     isLoading,
     isError,
-  } = useQuery(['news'], () => fetchNewsData(newsApiQueryString));
+  } = useQuery(['news'], () => fetchNewsData());
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -25,24 +26,29 @@ function News() {
       <Container>
         <h1>Film Industry News</h1>
         <NewsBox>
-          {news.map(
-            ({ author, title, content, publishedAt, url, urlToImage }) => {
-              const date = normalizeDateString(publishedAt);
-              return (
-                <NewsArticle key={url}>
-                  <NewsLink href={url}>
-                    <h2>{title}</h2>
-                    <img src={urlToImage} alt="title" width="100%" />
-                    <p>{content}</p>
-                    <p>
-                      <span>{author}</span>
-                      <span>{date}</span>
-                    </p>
-                  </NewsLink>
-                </NewsArticle>
-              );
+          {news.map(({ name, description, datePublished, url, image }) => {
+            const date = normalizeDateString(datePublished);
+            let urlToImage = null;
+            if (image) {
+              urlToImage = image.thumbnail.contentUrl;
             }
-          )}
+            return (
+              <NewsArticle key={url}>
+                <NewsLink href={url}>
+                  <h2>{name}</h2>
+                  <img
+                    src={urlToImage || placeholder}
+                    alt="title"
+                    width="100%"
+                  />
+                  <p>{description}</p>
+                  <p>
+                    <span>{date}</span>
+                  </p>
+                </NewsLink>
+              </NewsArticle>
+            );
+          })}
         </NewsBox>
       </Container>
     </section>

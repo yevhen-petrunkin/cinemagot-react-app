@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-  ${({ theme: { space } }) => `
+  ${({ theme: { space, mediaQueries } }) => `
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,30 +9,97 @@ export const Box = styled.div`
   gap: ${space[3]}px;
   height: 100%;
 
+
+  ${mediaQueries.large} {
+    padding: 8px; 
+  }
+
+  ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+
   `}
 `;
 
 export const ChartBox = styled.div`
-  ${({ theme: { sizes } }) => `
-  max-width: ${sizes[1] * 75}px;
-  max-height: ${sizes[1] * 75}px;
+  ${({ theme: { sizes, mediaQueries } }) => `
+    max-width: ${sizes[1] * 100}px;
+    max-height: ${sizes[1] * 100}px;
+
+  ${mediaQueries.medium} {
+    max-width: ${sizes[1] * 54}px;
+    max-height: ${sizes[1] * 54}px;  
+  }
+
+  ${mediaQueries.small} {
+    max-width: ${sizes[1] * 100}px;
+    max-height: ${sizes[1] * 100}px; 
+  }
+
+  ${mediaQueries.lowerSmall} {
+    max-width: ${sizes[1] * 65}px;
+    max-height: ${sizes[1] * 65}px;   
+  }
+
+  ${mediaQueries.tiny} {
+    max-width: ${sizes[1] * 36}px;
+    max-height: ${sizes[1] * 36}px; 
+  }
 
   `}
 `;
 
 export const Caption = styled.h2`
-  ${({ theme: { space, fontSizes } }) => `
+  ${({ theme: { space, fontSizes, mediaQueries } }) => `
   margin: ${space[0]};
   font-size: ${fontSizes[3]}px;
 
+  ${mediaQueries.medium} {
+    font-size: ${fontSizes[2]}px;
+  }
+
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[1]}px;
+  }
+
+  ${mediaQueries.lowerSmall} {
+    font-size: ${fontSizes[1]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
   `}
 `;
 
 export const Info = styled.p`
-  ${({ theme: { space, fontSizes } }) => `
+  ${({ theme: { space, fontSizes, mediaQueries } }) => `
   margin: ${space[0]};
   font-size: ${fontSizes[6]}px;
   
+  ${mediaQueries.medium} {
+    font-size: ${fontSizes[4]}px;
+  }
+
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[3]}px;
+  }
+
+  ${mediaQueries.lowerSmall} {
+    font-size: ${fontSizes[3]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[2]}px;
+  }
   `}
 `;
 
