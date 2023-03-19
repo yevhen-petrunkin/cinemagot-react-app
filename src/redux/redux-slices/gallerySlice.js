@@ -23,6 +23,8 @@ const initialState = {
   openGalleryRef: null,
   page: 1,
   totalPageNum: 1,
+  query: '',
+  movieId: '',
 };
 
 export const gallerySlice = createSlice({
@@ -80,6 +82,8 @@ export const gallerySlice = createSlice({
       })
       .addCase(getMoviesByKeyword.fulfilled, (state, action) => {
         state.loading = false;
+        state.query = action.payload.query;
+        state.galleryType = action.payload.galleryType;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
         state.error = null;
@@ -109,6 +113,8 @@ export const gallerySlice = createSlice({
       })
       .addCase(getRecommendedMovies.fulfilled, (state, action) => {
         state.loading = false;
+        state.movieId = action.payload.id;
+        state.galleryType = action.payload.galleryType;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
         state.error = null;
@@ -123,6 +129,8 @@ export const gallerySlice = createSlice({
       })
       .addCase(getSimilarMovies.fulfilled, (state, action) => {
         state.loading = false;
+        state.movieId = action.payload.id;
+        state.galleryType = action.payload.galleryType;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
         state.error = null;

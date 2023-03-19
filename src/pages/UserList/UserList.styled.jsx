@@ -3,194 +3,71 @@ import { Link } from 'react-router-dom';
 import placeholder from 'images/photoholder.jpg';
 
 export const Section = styled.section`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, colors, shadows } }) => `
   padding: ${space[5]}px ${space[5]}px;
   color: ${colors.defaultWeak};
   text-shadow: ${shadows.textOrdinary};
-
-  ${mediaQueries.huge} {
     
-  }
-
-  ${mediaQueries.extraLarge} {
-   
-  }
-
-  ${mediaQueries.large} {
-    
-  }
-
- ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
-  }
-
-  ${mediaQueries.tiny} {
-    
-  }
   `}
 `;
 
 export const Caption = styled.h2`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, fontSizes, shadows, mediaQueries } }) => `
   margin: ${space[0]};
   margin-bottom: ${space[5]}px;
   font-size: ${fontSizes[4]}px;
   text-shadow: ${shadows.textOrdinary};
-
-  ${mediaQueries.huge} {
-    
-  }
-
-  ${mediaQueries.extraLarge} {
-   
-  }
-
-  ${mediaQueries.large} {
-    
-  }
-
-  ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
+ 
+  ${mediaQueries.lowerSmall} {
+    text-align: center;
   }
 
   ${mediaQueries.tiny} {
-    
+    margin-bottom: ${space[3]}px;
+    font-size: ${fontSizes[2]}px;
   }
   `}
 `;
 
 export const List = styled.ul`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, mediaQueries } }) => `
   margin: ${space[0]};
   padding: ${space[0]};
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: ${space[5]}px;
-
-  ${mediaQueries.huge} {
-    
-  }
-
+  
   ${mediaQueries.extraLarge} {
-   
+    gap: ${space[4]}px;
   }
 
   ${mediaQueries.large} {
-    
+    grid-template-columns: repeat(3, 1fr);
   }
 
   ${mediaQueries.medium} {
-    
+    grid-template-columns: repeat(2, 1fr);
+    gap: ${space[3]}px;
   }
 
-  ${mediaQueries.small} {
-   
-  }
-
-  ${mediaQueries.tiny} {
+  ${mediaQueries.lowerSmall} {
+    grid-template-columns: repeat(1, 1fr);
     
   }
+  
   `}
 `;
 
 export const ListItem = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { radii, shadows, mediaQueries } }) => `
   aspect-ratio: 3 / 4.8;
   border-radius: ${radii[3]}px;
   box-shadow: ${shadows.ordinary};
   overflow: hidden;
-
-  ${mediaQueries.huge} {
-    
-  }
-
-  ${mediaQueries.extraLarge} {
-   
-  }
-
-  ${mediaQueries.large} {
-    
-  }
-
-  ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
-  }
-
+ 
   ${mediaQueries.tiny} {
-    
+    border-radius: ${radii[2]}px;
   }
   `}
 `;
@@ -221,23 +98,7 @@ export const MovieBox = styled.div`
 `;
 
 export const PosterBox = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-    bgImg,
-  }) => `
+  ${({ theme: { colors }, bgImg }) => `
   width: 100%;
   height: 100%;
   background-image: url('${bgImg ? bgImg : placeholder}');
@@ -425,4 +286,35 @@ export const StyledLink = styled(Link)`
      font-size: ${fontSizes[3]}px;
   }
   `}
+`;
+
+export const UpButton = styled.button`
+  ${({
+    theme: { space, colors, borders, radii, shadows },
+    width,
+    height,
+    bgcolor,
+  }) => `
+  margin: ${space[1] * 10}px auto;
+  padding: ${space[2]}px;
+  display: block;
+  width: ${width}px;
+  height: ${height}px;
+  color: ${colors.defaultWeak};
+  background-color: ${bgcolor};
+  border: ${borders.btn};
+  border-radius: ${radii[1]}px;
+  box-shadow: ${shadows.ordinary};
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 300ms ease, border 300ms ease;
+
+  &:hover,
+  &:focus {
+    border: ${borders.btnHover};
+  }
+
+  &:active {
+    color: ${colors.accentWeak};
+  } `}
 `;

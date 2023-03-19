@@ -7,7 +7,7 @@ export const BtnSet = styled.div`
 `;
 
 export const Btn = styled.button`
-  ${({ theme: { space, colors, fontSizes, borders } }) => `
+  ${({ theme: { space, colors, fontSizes, borders, mediaQueries } }) => `
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,11 +27,39 @@ export const Btn = styled.button`
   &:focus {
     background-color: ${colors.accentWeak};
   }
+
+  ${mediaQueries.extraLarge} {
+    gap: ${space[1]}px;
+  }
+
+  ${mediaQueries.small} {
+   font-size: ${fontSizes[3]}px;
+  }
+
+  ${mediaQueries.lowerSmall} {
+   font-size: ${fontSizes[5]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[2]}px;
+  }
   `}
 `;
 
 export const BtnText = styled.span`
-  ${({ theme: { fontSizes } }) => `
+  ${({ theme: { fontSizes, mediaQueries } }) => `
   font-size: ${fontSizes[1]}px;
+
+  ${mediaQueries.small} {
+    font-size: ${fontSizes[0]}px;
+  }
+
+  ${mediaQueries.lowerSmall} {
+    font-size: ${fontSizes[1]}px;
+  }
+
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[0]}px;
+  }
   `}
 `;

@@ -11,19 +11,7 @@ export const Box = styled.div`
 
 
   ${mediaQueries.large} {
-    padding: 8px; 
-  }
-
-  ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
-  }
-
-  ${mediaQueries.tiny} {
-    
+    padding: ${space[2]}px; 
   }
 
   `}
@@ -73,10 +61,7 @@ export const Caption = styled.h2`
   ${mediaQueries.lowerSmall} {
     font-size: ${fontSizes[1]}px;
   }
-
-  ${mediaQueries.tiny} {
-    
-  }
+  
   `}
 `;
 

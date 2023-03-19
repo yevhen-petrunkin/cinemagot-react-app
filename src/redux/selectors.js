@@ -27,6 +27,8 @@ export const selectOpenGallery = state => state.gallery.isOpenGallery;
 export const selectOpenGalleryRef = state => state.gallery.isOpenGalleryRef;
 export const selectPage = state => state.gallery.page;
 export const selectTotalPageNum = state => state.gallery.totalPageNum;
+export const selectQuery = state => state.gallery.query;
+export const selectMovieId = state => state.gallery.movieId;
 
 export const selectUserListObj = state => state.userList.userListObj;
 export const selectListLoading = state => state.userList.loading;

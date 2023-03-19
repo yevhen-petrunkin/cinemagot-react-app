@@ -22,7 +22,8 @@ function SearchForm() {
       return;
     }
     setQuery(query.trim().toLowerCase());
-    dispatch(getMoviesByKeyword(query));
+    const queryData = { query, page: 1, galleryType: 'search' };
+    dispatch(getMoviesByKeyword(queryData));
     setQuery('');
     navigate('/movies');
   };

@@ -1,17 +1,37 @@
 import styled from 'styled-components';
 
 export const Gallery = styled.ul`
-  margin: 0;
-  padding: 0;
+  ${({ theme: { space } }) => `
+  margin: ${space[0]};
+  padding: ${space[0]};
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(${space[1] * 50}px, 1fr));
+  gap: ${space[5]}px;
+  
+  `}
 `;
 
 export const Picture = styled.li`
-  border-radius: 8px;
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  border-radius: ${radii[2]}px;
   overflow: hidden;
+  `}
 `;
 
 export const Img = styled.img`

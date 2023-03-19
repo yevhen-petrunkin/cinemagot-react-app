@@ -13,7 +13,7 @@ export const MovieBox = styled.div`
   &:hover,
   &:focus, &.show {
     & > ${ImgBox} {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
 
     & > ${InfoBox} {

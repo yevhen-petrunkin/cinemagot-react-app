@@ -71,22 +71,7 @@ export const DateSet = styled.div`
 `;
 
 export const Date = styled.p`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, fontSizes, mediaQueries } }) => `
   margin: ${space[0]};
   font-size: ${fontSizes[2]}px;
   text-align: right;

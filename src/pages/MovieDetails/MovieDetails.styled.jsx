@@ -138,7 +138,7 @@ export const ContentBox = styled.div`
   }
 
   ${mediaQueries.tiny} {
-   &:nth-child(1) {
+  &:nth-child(1) {
     padding: ${space[1]}px;
     margin-bottom: ${space[4]}px;
   } 

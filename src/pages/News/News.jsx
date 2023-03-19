@@ -1,4 +1,13 @@
-import { NewsBox, NewsArticle, NewsLink } from './News.styled';
+import {
+  NewsSection,
+  Caption,
+  NewsBox,
+  NewsArticle,
+  NewsCaption,
+  NewsLink,
+  NewsBody,
+  NewsDate,
+} from './News.styled';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
@@ -21,9 +30,9 @@ function News() {
   }
 
   return (
-    <section>
+    <NewsSection>
       <Container>
-        <h1>Film Industry News</h1>
+        <Caption>News From Entertainment Industry</Caption>
         <NewsBox>
           {news.map(({ name, description, datePublished, url, image }) => {
             const date = normalizeDateString(datePublished);
@@ -34,23 +43,21 @@ function News() {
             return (
               <NewsArticle key={url}>
                 <NewsLink href={url}>
-                  <h2>{name}</h2>
+                  <NewsCaption>{name}</NewsCaption>
                   <img
                     src={urlToImage || placeholder}
                     alt="title"
                     width="100%"
                   />
-                  <p>{description}</p>
-                  <p>
-                    <span>{date}</span>
-                  </p>
+                  <NewsBody>{description}... (Click to read)</NewsBody>
+                  <NewsDate>{date}</NewsDate>
                 </NewsLink>
               </NewsArticle>
             );
           })}
         </NewsBox>
       </Container>
-    </section>
+    </NewsSection>
   );
 }
 

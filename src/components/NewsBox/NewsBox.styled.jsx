@@ -62,22 +62,7 @@ export const List = styled.ul`
 `;
 
 export const PosterBox = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, mediaQueries } }) => `
   width: 100%;
   height: 32vw;
 

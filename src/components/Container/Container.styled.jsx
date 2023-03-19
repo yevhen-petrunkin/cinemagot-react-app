@@ -91,12 +91,12 @@ export const HeroWrapper = styled.div`
     padding-top: ${space[1] * 18}px;
     max-width: 720px;
     height: ${(68 * 720) / 100}px;
-
   }
 
   ${mediaQueries.tiny} {
     padding-top: ${space[1] * 16}px;
     max-width: 425px;
     height: ${(68 * 425) / 100}px;
-  }`}
+  }
+  `}
 `;

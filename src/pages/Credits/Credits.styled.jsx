@@ -51,10 +51,6 @@ export const List = styled.ul`
   font-size: ${fontSizes[3]}px;
   list-style: none;
 
-  ${mediaQueries.huge} {
-    
-  }
-
   ${mediaQueries.extraLarge} {
     gap: ${space[4]}px;
     font-size: ${fontSizes[2]}px;
@@ -82,7 +78,6 @@ export const List = styled.ul`
 
   ${mediaQueries.tiny} {
     grid-template-columns: repeat(1, 1fr);
-    
   }
   `}
 `;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const DashContainer = styled.div`
-  ${({ theme: { space, sizes, mediaQueries } }) => `
+  ${({ theme: { space, mediaQueries } }) => `
   margin: ${space[0]}px auto;
   padding-top: ${space[1] * 30}px;
   display: grid;
-  grid-template-columns: minmax(232px, 232px) 1fr;
+  grid-template-columns: minmax(${space[1] * 58}px, ${space[1] * 58}px) 1fr;
     
   ${mediaQueries.large} {
     padding-top: ${space[1] * 28}px;
@@ -20,34 +20,21 @@ export const DashContainer = styled.div`
     }
 
   ${mediaQueries.lowerSmall} {
-    grid-template-columns: minmax(160px, 160px) 1fr;
+    grid-template-columns: minmax(${space[1] * 40}px, ${space[1] * 40}px) 1fr;
   }
 
   ${mediaQueries.tiny} {
     padding-top: ${space[1] * 16}px;
-    grid-template-columns: minmax(120px, 120px) 1fr;
+    grid-template-columns: minmax(${space[1] * 30}px, ${space[1] * 30}px) 1fr;
     }`}
 `;
 
 export const DashBox = styled.section`
   ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
+    theme: { colors, fontSizes, letterSpacings, shadows, mediaQueries },
   }) => `
   min-height: 87vh;
-  font-size: 20px;
+  font-size: ${fontSizes[3]}px;
   text-align: center;
   text-shadow: ${shadows.textOrdinary};
   color: ${colors.defaultWeak};
@@ -55,122 +42,86 @@ export const DashBox = styled.section`
   box-shadow: ${shadows.elevated};
 
   ${mediaQueries.lowerSmall} {
-    font-size: 16px;
+    font-size: ${fontSizes[2]}px;
   }
 
   ${mediaQueries.tiny} {
-    font-size: 12px;
+    font-size: ${fontSizes[1]}px;
     letter-spacing: ${letterSpacings[1]}px;
   }
   `}
 `;
 
 export const UserBox = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
-  padding: 20px;
+  ${({ theme: { space, mediaQueries } }) => `
+  padding: ${space[5]}px;
 
   ${mediaQueries.lowerSmall} {
-    padding: 8px;
+    padding: ${space[2]}px;
   }
 
   ${mediaQueries.tiny} {
-    padding: 4px;
+    padding: ${space[1]}px;
   }
   `}
 `;
 
 export const UserCaption = styled.h1`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
-  margin-bottom: 20px;
-  font-size: 24px;
+  ${({ theme: { space, fontSizes, mediaQueries } }) => `
+  margin-bottom: ${space[5]}px;
+  font-size: ${fontSizes[4]}px;
 
   ${mediaQueries.lowerSmall} {
-    margin-bottom: 12px;
-    font-size: 16px;
-
+    margin-bottom: ${space[3]}px;
+    font-size: ${fontSizes[2]}px;
   }
 
   ${mediaQueries.tiny} {
-    font-size: 12px;
+    font-size: ${fontSizes[1]}px;
   }
   `}
 `;
 
 export const UserImg = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
-  margin-bottom: 20px;
+  ${({ theme: { space, mediaQueries } }) => `
+  margin-bottom: ${space[5]}px;
   border-radius: 50%;
   overflow: hidden;
 
   ${mediaQueries.lowerSmall} {
-    margin-bottom: 12px;
-    
+    margin-bottom: ${space[3]}px;
   }
-
-  ${mediaQueries.tiny} {
-    
-  }
+  
   `}
 `;
 
 export const Img = styled.img`
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
 `;
 
 export const UserList = styled.ul`
-  margin: 0;
-  padding: 0;
+  ${({ theme: { space } }) => `
+  margin: ${space[0]};
+  padding: ${space[0]};
   list-style: none;
+  
+  `}
 `;
 
 export const UserItem = styled.li`
+  ${({ theme: { space, mediaQueries } }) => `
+  margin-bottom: ${space[1] * 6}px;
+
+  ${mediaQueries.lowerSmall} {
+    margin-bottom: ${space[3]}px;
+  }
+  
+  `}
+`;
+
+export const UserBtnSet = styled.div`
   ${({
     theme: {
       space,
@@ -187,21 +138,9 @@ export const UserItem = styled.li`
       mediaQueries,
     },
   }) => `
-  margin-bottom: 24px;
-
-  ${mediaQueries.lowerSmall} {
-    margin-bottom: 12px;
-  }
-
-  ${mediaQueries.tiny} {
-    
-  }
-  `}
-`;
-
-export const UserBtnSet = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: ${space[3]}px;
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: ${space[3]}px;
+  `}
 `;

@@ -55,15 +55,15 @@ export const getMoviesByParams = createAsyncThunk(
 
 export const getMoviesByKeyword = createAsyncThunk(
   'movies/getMoviesByKeyword',
-  async (query, thunkAPI) => {
+  async ({ query, page, galleryType }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `${TMDB_BASE}/search/movie?api_key=${TMDB_KEY}&query=${query}`
+        `${TMDB_BASE}/search/movie?api_key=${TMDB_KEY}&query=${query}&page=${page}`
       );
       const galleryCaption = 'Look What We Found!';
       const gallery = response.data.results;
       const normalizedGallery = await normalizeGallery(gallery);
-      return { normalizedGallery, galleryCaption };
+      return { normalizedGallery, galleryCaption, galleryType, query };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -72,15 +72,15 @@ export const getMoviesByKeyword = createAsyncThunk(
 
 export const getRecommendedMovies = createAsyncThunk(
   'movies/getRecommendedMovies',
-  async (id, thunkAPI) => {
+  async ({ id, page, galleryType }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `${TMDB_BASE}/movie/${id}/recommendations?api_key=${TMDB_KEY}`
+        `${TMDB_BASE}/movie/${id}/recommendations?api_key=${TMDB_KEY}&page=${page}`
       );
       const galleryCaption = 'Recommended Movies';
       const gallery = response.data.results;
       const normalizedGallery = await normalizeGallery(gallery);
-      return { normalizedGallery, galleryCaption };
+      return { normalizedGallery, galleryCaption, galleryType, id };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -89,15 +89,15 @@ export const getRecommendedMovies = createAsyncThunk(
 
 export const getSimilarMovies = createAsyncThunk(
   'movies/getSimilarMovies',
-  async (id, thunkAPI) => {
+  async ({ id, page, galleryType }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `${TMDB_BASE}/movie/${id}/similar?api_key=${TMDB_KEY}`
+        `${TMDB_BASE}/movie/${id}/similar?api_key=${TMDB_KEY}&page=${page}`
       );
       const galleryCaption = 'Similar Movies';
       const gallery = response.data.results;
       const normalizedGallery = await normalizeGallery(gallery);
-      return { normalizedGallery, galleryCaption };
+      return { normalizedGallery, galleryCaption, galleryType, id };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

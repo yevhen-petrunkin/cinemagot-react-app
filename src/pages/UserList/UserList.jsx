@@ -11,8 +11,9 @@ import {
   RateBox,
   Date,
   Info,
+  UpButton,
 } from './UserList.styled';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
@@ -30,6 +31,7 @@ import { messageData } from 'services/sources/messageDataSource';
 import UserGalleryBtnSet from 'components/UserGalleryBtnSet';
 import CloseButton from 'components/CloseButton';
 import { StarWidg, HeartWidg } from 'components/Widgets';
+import { TfiAngleUp } from 'react-icons/tfi';
 
 const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
   messageData;
@@ -38,6 +40,8 @@ function UserList() {
   const location = useLocation();
 
   const { listId } = useParams();
+
+  const listRef = useRef(null);
 
   const userListObj = useSelector(selectUserListObj);
   const isLoading = useSelector(selectListLoading);
@@ -103,6 +107,10 @@ function UserList() {
     deleteFromListMutation.mutate(movieObj);
   };
 
+  const scrollToBeginning = () => {
+    listRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Section>
       {isLoading || !userListObj || !list.userList ? (
@@ -110,7 +118,7 @@ function UserList() {
       ) : (
         <>
           <Caption>{list.caption}</Caption>
-          <List>
+          <List ref={listRef}>
             {userListObj[list.userList].map(movie => {
               const { id, title, poster, overview, popularity, score, date } =
                 movie;
@@ -157,6 +165,17 @@ function UserList() {
               );
             })}
           </List>
+          {userListObj[list.userList].length > 4 && (
+            <UpButton
+              type="button"
+              width={36}
+              height={36}
+              bgcolor="#d24717"
+              onClick={scrollToBeginning}
+            >
+              <TfiAngleUp style={{ width: '100%', height: '100%' }} />
+            </UpButton>
+          )}
         </>
       )}
     </Section>

@@ -55,12 +55,15 @@ function UserGalleryBtnSet({ movieData }) {
   }, [isPicBoardOpen]);
 
   const handleUserGalleryBtnClick = evt => {
+    let queryData = null;
     switch (evt.currentTarget.id) {
       case 'recommend':
-        dispatch(getRecommendedMovies(movieId));
+        queryData = { id: movieId, page: 1, galleryType: 'recommend' };
+        dispatch(getRecommendedMovies(queryData));
         break;
       case 'similar':
-        dispatch(getSimilarMovies(movieId));
+        queryData = { id: movieId, page: 1, galleryType: 'similar' };
+        dispatch(getSimilarMovies(queryData));
         break;
       default:
         return;
