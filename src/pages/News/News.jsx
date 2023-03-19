@@ -2,7 +2,6 @@ import { NewsBox, NewsArticle, NewsLink } from './News.styled';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
-import { newsApiQueryString } from 'services/sources/newsApiSearchSource';
 import Container from 'components/Container';
 import placeholder from 'images/videoholder.jpg';
 

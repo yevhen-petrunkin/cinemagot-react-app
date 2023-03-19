@@ -16,9 +16,6 @@ const VIDEO_BASE = 'https://www.youtube.com/embed';
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';
 
-const NEWSAPI_BASE = 'https://newsapi.org/v2';
-const NEWSAPI_KEY = '8078f542b2544c62bfccf1d972ea985e';
-
 const BING_BASE = 'https://bing-news-search1.p.rapidapi.com/news';
 const BING_KEY = 'b81ea506bamsha8db9f041608be3p1db9e4jsn27df579a154b';
 
