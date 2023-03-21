@@ -21,7 +21,7 @@ export const MovieBox = styled.div`
     }
     & > ${InfoBox} > ${MovieName} {
       &::after {
-        width: 90%;
+        width: 100%;
       }
     }
   }
@@ -64,6 +64,7 @@ export const InfoBox = styled.div`
 
 export const MovieName = styled.h3`
   ${({ theme: { space, fontSizes, sizes, colors, shadows, mediaQueries } }) => `
+  position: relative;
   margin: ${space[0]};
   margin-bottom: ${space[5]}px;
   width: 90%;
@@ -71,7 +72,6 @@ export const MovieName = styled.h3`
   text-align: left;
   box-shadow: ${shadows.ordinary};
  
-
   &::after {
     content: '';
     position: absolute;
@@ -79,7 +79,7 @@ export const MovieName = styled.h3`
     bottom: -${space[1]}px;
     width: ${sizes[0]};
     height: ${sizes[1]}px;
-    transition: width 750ms ease;
+    transition: width 750ms ease 750ms;
     background-color: ${colors.accent};
   }
 

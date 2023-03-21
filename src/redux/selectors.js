@@ -12,6 +12,7 @@ export const selectBurger = state => state.modal.isBurgerOpen;
 export const selectPicturesLoading = state => state.modal.loading;
 export const selectPicturesError = state => state.modal.error;
 export const selectPictures = state => state.modal.pictures;
+export const selectPhotopicker = state => state.modal.isPhotopickerOpen;
 
 export const selectGallery = state => state.gallery.gallery;
 export const selectGalleryCaption = state => state.gallery.caption;
@@ -33,3 +34,5 @@ export const selectMovieId = state => state.gallery.movieId;
 export const selectUserListObj = state => state.userList.userListObj;
 export const selectListLoading = state => state.userList.loading;
 export const selectListError = state => state.userList.error;
+
+export const selectTheme = state => state.theme;

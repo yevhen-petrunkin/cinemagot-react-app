@@ -23,8 +23,8 @@ export const Caption = styled.h2`
   }
 
   ${mediaQueries.tiny} {
-    margin-bottom: ${space[3]}px;
-    font-size: ${fontSizes[2]}px;
+    margin-bottom: ${space[2]}px;
+    font-size: ${fontSizes[1]}px;
   }
   `}
 `;
@@ -73,7 +73,7 @@ export const ListItem = styled.div`
 `;
 
 export const MovieBox = styled.div`
-  ${({ theme: { colors, radii, shadows } }) => `
+  ${({ theme: { colors } }) => `
   position: relative;
   height: 85%;
   color: ${colors.defaultWeak};
@@ -90,7 +90,7 @@ export const MovieBox = styled.div`
     }
     & > ${InfoBox} > ${MovieName} {
       &::after {
-        width: 90%;
+        width: 100%;
       }
     }
   }
@@ -130,6 +130,7 @@ export const InfoBox = styled.div`
 
 export const MovieName = styled.h3`
   ${({ theme: { space, fontSizes, sizes, colors, shadows, mediaQueries } }) => `
+  position: relative;
   margin: ${space[0]};
   margin-bottom: ${space[5]}px;
   width: 90%;
@@ -145,7 +146,7 @@ export const MovieName = styled.h3`
     bottom: -${space[1]}px;
     width: ${sizes[0]};
     height: ${sizes[1]}px;
-    transition: width 750ms ease;
+    transition: width 750ms ease 750ms;
     background-color: ${colors.accent};
   }
 
@@ -177,7 +178,7 @@ export const MovieName = styled.h3`
   ${mediaQueries.tiny} {
     padding: ${space[2]}px ${space[0]};
     width: 90%;
-    font-size: ${fontSizes[3]}px;
+    font-size: ${fontSizes[2]}px;
   }
   `}
 `;
@@ -212,7 +213,7 @@ export const Info = styled.p`
   }
 
   ${mediaQueries.tiny} {
-    font-size: ${fontSizes[2]}px;
+    font-size: ${fontSizes[1]}px;
   }
   
   `}
@@ -236,7 +237,7 @@ export const Date = styled.p`
   }
 
   ${mediaQueries.tiny} {
-    font-size: ${fontSizes[2]}px;
+    font-size: ${fontSizes[1]}px;
   }
   `}
 `;
@@ -283,7 +284,7 @@ export const StyledLink = styled(Link)`
   }
 
   ${mediaQueries.tiny} {
-     font-size: ${fontSizes[3]}px;
+     font-size: ${fontSizes[2]}px;
   }
   `}
 `;

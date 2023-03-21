@@ -1,4 +1,5 @@
 import { MoviesBox, Caption, UpButton } from './Movies.styled';
+import { useTheme } from 'styled-components';
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -15,6 +16,8 @@ import { PaginationAbr } from 'components/Pagination';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function Movies() {
+  const { colors } = useTheme();
+
   const location = useLocation();
   location.state = { page: 'movies' };
   const movies = useSelector(selectGallery);
@@ -44,7 +47,7 @@ function Movies() {
                 type="button"
                 width={36}
                 height={36}
-                bgcolor="#d24717"
+                bgcolor={colors.accent}
                 onClick={scrollToBeginning}
               >
                 <TfiAngleUp style={{ width: '100%', height: '100%' }} />

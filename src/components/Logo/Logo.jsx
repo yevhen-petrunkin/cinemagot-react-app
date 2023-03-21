@@ -1,4 +1,4 @@
-import { LogoBox, ImgBox, LogoText } from './Logo.styled';
+import { LogoBox, ImgBox, Img, LogoText } from './Logo.styled';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { useMedia } from 'services/media/useMedia';
@@ -12,7 +12,7 @@ function Logo() {
   return (
     <LogoBox>
       <ImgBox>
-        <img src={logo} alt="logo" width="100%" />
+        <Img src={logo} alt="logo" />
       </ImgBox>
       {(!isUserAuth || isTiny) && <LogoText>Cinemagot</LogoText>}
     </LogoBox>

@@ -14,6 +14,7 @@ import {
   AdditLink,
   UpButton,
 } from './MovieDetails.styled';
+import { useTheme } from 'styled-components';
 import { Suspense, useState, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -33,6 +34,8 @@ import LoaderComp from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function MovieDetails() {
+  const { colors } = useTheme();
+
   const [showUpBtn, setShowUpBtn] = useState(false);
 
   const { movieId } = useParams();
@@ -159,7 +162,7 @@ function MovieDetails() {
             type="button"
             width={36}
             height={36}
-            bgcolor="#d24717"
+            bgcolor={colors.accent}
             onClick={scrollToAdditInfo}
           >
             <TfiAngleUp style={{ width: '100%', height: '100%' }} />

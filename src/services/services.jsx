@@ -1,3 +1,4 @@
+import { getAuth, updateProfile } from 'firebase/auth';
 import {
   doc,
   setDoc,
@@ -9,6 +10,8 @@ import {
 import { db } from '../firebase';
 import axios from 'axios';
 import { homePageGalleryQuerySource } from './sources/homePageGalleryQuerySource';
+
+const auth = getAuth();
 
 const PICTURE_BASE = 'https://image.tmdb.org/t/p/w500';
 const VIDEO_BASE = 'https://www.youtube.com/embed';
@@ -24,6 +27,12 @@ export async function fetchVideosById(id) {
     `${TMDB_BASE}/movie/${id}/videos?api_key=${TMDB_KEY}`
   );
   return response.data;
+}
+
+export async function updateUserPhoto(url) {
+  updateProfile(auth.currentUser, {
+    photoURL: url,
+  });
 }
 
 export async function fetchNewsData() {

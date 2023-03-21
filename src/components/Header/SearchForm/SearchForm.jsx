@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import { Form, Input } from './SearchForm.styled';
+import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,8 @@ import { TfiSearch } from 'react-icons/tfi';
 function SearchForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { colors } = useTheme();
+
   const { isMedium, isLower, isHigher } = useMedia();
 
   const [query, setQuery] = useState('');
@@ -52,7 +55,7 @@ function SearchForm() {
           type="submit"
           width={36}
           height={36}
-          bgcolor="#4d4352"
+          bgcolor={colors.secondaryStrong}
           onClick={() => {
             return;
           }}

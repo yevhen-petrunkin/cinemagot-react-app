@@ -1,4 +1,5 @@
 import { GalleryBox, OpenSection, UpButton } from './Home.styled';
+import { useTheme } from 'styled-components';
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +36,8 @@ function Home() {
   const openGallery = useSelector(selectOpenGallery);
   const openGalleryRef = useSelector(selectOpenGalleryRef);
   const galleryType = useSelector(selectGalleryType);
+
+  const { colors } = useTheme();
 
   const openRef = useRef(openGalleryRef);
   const scrollUpRef = useRef(null);
@@ -95,7 +98,7 @@ function Home() {
               type="button"
               width={36}
               height={36}
-              bgcolor="#d24717"
+              bgcolor={colors.accent}
               onClick={scrollUpToGallery}
             >
               <TfiAngleUp style={{ width: '100%', height: '100%' }} />

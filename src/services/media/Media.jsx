@@ -11,7 +11,7 @@ const Media = ({ children }) => {
   const isHuge = useMediaQuery({ minWidth: 1440 });
 
   const isLower = useMediaQuery({ maxWidth: 767 });
-  const isHigherMedium = useMediaQuery({ minWidth: 767, maxWidth: 1199 });
+  const isHigherMedium = useMediaQuery({ minWidth: 768, maxWidth: 1199 });
   const isHigher = useMediaQuery({ minWidth: 992 });
 
   return (

@@ -8,12 +8,8 @@ export const Box = styled.div`
   overflow-y: auto;
 
   ${mediaQueries.large} {
-    height: auto;
+    height: 100%;
     overflow-y: visible;
-  }
-
-  ${mediaQueries.medium} {
-    
   }
 
   ${mediaQueries.lowerSmall} {
@@ -52,6 +48,21 @@ export const Caption = styled.h2`
   `}
 `;
 
+export const MovieBox = styled.div`
+  ${({ theme: { space, mediaQueries } }) => `
+  
+  ${mediaQueries.large} {
+    display: flex;
+    gap: ${space[5]}px;
+  }
+
+  ${mediaQueries.small} {
+   display: block;
+  }
+
+  `}
+`;
+
 export const List = styled.ul`
   ${({ theme: { space } }) => `
   margin: ${space[0]};
@@ -68,19 +79,14 @@ export const PosterBox = styled.div`
 
   ${mediaQueries.large} {
     margin: ${space[0]} auto;
-    height: 90vw;
-  }
-
-  ${mediaQueries.medium} {
-    
+    flex: 1;
+    height: 46vw;
   }
 
   ${mediaQueries.small} {
     height: 80vw;
   }
-
-   
-
+ 
   ${mediaQueries.tiny} {
     height: 78vw;
   }
@@ -93,6 +99,23 @@ export const Poster = styled.img`
   height: 100%;
   border-radius: ${radii[2]}px;
   box-shadow: ${shadows.ordinary};
+  opacity: 0.8;
+  `}
+`;
+
+export const InfoBox = styled.div`
+  ${({ theme: { space, mediaQueries } }) => `
+  
+  ${mediaQueries.large} {
+    margin: ${space[0]} auto;
+    flex: 1;
+    height: 36vw;
+  }
+
+  ${mediaQueries.small} {
+    height: 100%;
+  }
+ 
   `}
 `;
 
@@ -103,8 +126,13 @@ export const Title = styled.h3`
   text-align: center;
   letter-spacing: ${letterSpacings[0]}px;
 
+  ${mediaQueries.large} {
+    text-align: left;
+  }
+  
   ${mediaQueries.small} {
     font-size: ${fontSizes[2]}px;
+    text-align: center;
   }
 
   ${mediaQueries.lowerSmall} {
@@ -120,10 +148,16 @@ export const Title = styled.h3`
 export const Slogan = styled.li`
   ${({ theme: { space, fontSizes, colors, mediaQueries } }) => `
   margin: ${space[3]}px ${space[0]};
+  text-align: center;
   color: ${colors.accentWeak};
+
+  ${mediaQueries.large} {
+    text-align: left;
+  }
 
   ${mediaQueries.small} {
     font-size: ${fontSizes[2]}px;
+    text-align: center;
   }
 
   ${mediaQueries.lowerSmall} {
@@ -159,7 +193,6 @@ export const Point = styled.span`
   ${mediaQueries.small} {
     font-size: ${fontSizes[1]}px;
   }
-
   
   `}
 `;

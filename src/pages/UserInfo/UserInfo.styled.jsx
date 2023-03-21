@@ -1,22 +1,7 @@
 import styled from 'styled-components';
 
 export const Grid = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, colors, shadows, mediaQueries } }) => `
   padding: ${space[3]}px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -29,15 +14,7 @@ export const Grid = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
   }
-
-  ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
-  }
-
+ 
   ${mediaQueries.lowerSmall} {
     grid-template-columns: repeat(1, 1fr);
     grid-auto-flow: column;
@@ -46,22 +23,7 @@ export const Grid = styled.div`
 `;
 
 export const Cell = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space, colors, radii, shadows, mediaQueries } }) => `
   background-color: ${colors.primary};
   border-radius: ${radii[3]}px;
   box-shadow: ${shadows.ordinary};
@@ -82,21 +44,17 @@ export const Cell = styled.div`
   }
 
   ${mediaQueries.large} {
-  padding: 8px;
+  padding: ${space[2]}px;
 
-    &: nth-child(3) {
+  &: nth-child(3) {
     grid-column: 1 /3;
     grid-row: 7 / 8;
     overflow: hidden;
   }
   }
-
-  ${mediaQueries.medium} {
-    
-  }
-
+ 
   ${mediaQueries.small} {
-   &: nth-child(1) {
+  &: nth-child(1) {
     grid-column: 1 / 3;  
     grid-row: 1 / 2;
   }

@@ -15,7 +15,7 @@ export const ImgBox = styled.div`
   ${({ theme: { sizes, radii, mediaQueries } }) => `
   width: ${sizes[1] * 25}px;
   height: ${sizes[1] * 25}px;
-  border-radius: ${radii[2]}px;
+  border-radius: ${radii[3]}px;
   overflow: hidden;
 
    ${mediaQueries.large} {
@@ -27,6 +27,12 @@ export const ImgBox = styled.div`
     width: ${sizes[1] * 10}px;
     height: ${sizes[1] * 10}px;
   } `}
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
 `;
 
 export const LogoText = styled.span`

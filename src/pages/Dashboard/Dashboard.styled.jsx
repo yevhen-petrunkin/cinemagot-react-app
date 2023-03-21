@@ -99,6 +99,7 @@ export const Img = styled.img`
   display: block;
   width: 100%;
   height: 100%;
+  opacity: 0.8;
 `;
 
 export const UserList = styled.ul`
@@ -122,22 +123,7 @@ export const UserItem = styled.li`
 `;
 
 export const UserBtnSet = styled.div`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { space } }) => `
   margin-bottom: ${space[3]}px;
   display: flex;
   justify-content: center;

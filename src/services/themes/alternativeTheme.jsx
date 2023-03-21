@@ -1,7 +1,7 @@
-import { colorThemeDefault } from './colorThemeDefault';
+import { colorThemeAlternative } from './colorThemeAlternative';
 import { createGlobalStyle } from 'styled-components';
 
-const colors = colorThemeDefault;
+const colors = colorThemeAlternative;
 
 const breakpoints = [
   '479px',
@@ -13,7 +13,7 @@ const breakpoints = [
   '1440px',
 ];
 
-export const mainTheme = {
+export const alternativeTheme = {
   space: [0, 4, 8, 12, 16, 20],
   colors,
   fontSizes: [8, 12, 16, 20, 24, 28, 32],
@@ -59,7 +59,7 @@ export const mainTheme = {
   },
 };
 
-export const MainGlobalStyles = createGlobalStyle`
+export const AlternativeGlobalStyles = createGlobalStyle`
     body {
       background-color: ${colors.primaryWeak};
     }

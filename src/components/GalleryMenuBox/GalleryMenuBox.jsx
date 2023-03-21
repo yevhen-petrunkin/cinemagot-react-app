@@ -7,6 +7,7 @@ import {
   Label,
   Input,
 } from './GalleryMenuBox.styled';
+import { useTheme } from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -62,6 +63,8 @@ function GalleryMenuBox() {
   const openGallery = useSelector(selectOpenGallery);
   const page = useSelector(selectPage);
   const isUserAuth = useSelector(selectUser);
+
+  const { colors } = useTheme();
   const dispatch = useDispatch();
 
   const openGalleryRef = useRef(null);
@@ -147,7 +150,7 @@ function GalleryMenuBox() {
             type="button"
             width={36}
             height={36}
-            bgcolor="#930100"
+            bgcolor={colors.alert}
             onClick={handleToggleMousewheel}
           >
             <TfiControlPause style={{ width: '100%', height: '100%' }} />
@@ -158,7 +161,7 @@ function GalleryMenuBox() {
             type="button"
             width={36}
             height={36}
-            bgcolor="#d24717"
+            bgcolor={colors.accent}
             onClick={handleToggleMousewheel}
           >
             <TfiControlForward style={{ width: '100%', height: '100%' }} />
@@ -171,7 +174,7 @@ function GalleryMenuBox() {
             type="button"
             width={36}
             height={36}
-            bgcolor="#930100"
+            bgcolor={colors.alert}
             onClick={scrollDownToOpenGallery}
           >
             <TfiAngleUp style={{ width: '100%', height: '100%' }} />
@@ -182,7 +185,7 @@ function GalleryMenuBox() {
             type="button"
             width={36}
             height={36}
-            bgcolor="#d24717"
+            bgcolor={colors.accent}
             onClick={scrollDownToOpenGallery}
           >
             <TfiAngleDown style={{ width: '100%', height: '100%' }} />

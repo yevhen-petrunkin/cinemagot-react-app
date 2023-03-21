@@ -1,9 +1,11 @@
 import {
   Box,
   Caption,
+  MovieBox,
   List,
   PosterBox,
   Poster,
+  InfoBox,
   Title,
   Slogan,
   Info,
@@ -51,49 +53,50 @@ function NewsBox() {
       <Box>
         <Caption>Latest Movie</Caption>
 
-        <PosterBox>
-          <Poster src={poster || placeholder} alt={title} />
-        </PosterBox>
-
-        {movieData && (
-          <>
-            <Title>{title}</Title>
-            <List>
-              {slogan && <Slogan>"{slogan}"</Slogan>}
-              {origTitle && (
-                <Info>
-                  <Point>Original title:</Point> {origTitle}
-                </Info>
-              )}
-              {genresString && (
-                <Info>
-                  <Point>Genres:</Point> {genresString}
-                </Info>
-              )}
-              {date && (
-                <Info>
-                  <Point>Release:</Point> {date}
-                </Info>
-              )}
-              {overview && (
-                <Info>
-                  <Point>Overview:</Point> {overview}
-                </Info>
-              )}
-              {budget.toString() && (
-                <Info>
-                  <Point>Budget:</Point>{' '}
-                  {Number(budget).toLocaleString('en-EN')} USD
-                </Info>
-              )}
-              {runtime.toString() && (
-                <Info>
-                  <Point>Runtime:</Point> {runtime} min
-                </Info>
-              )}
-            </List>
-          </>
-        )}
+        <MovieBox>
+          <PosterBox>
+            <Poster src={poster || placeholder} alt={title} />
+          </PosterBox>
+          {movieData && (
+            <InfoBox>
+              <Title>{title}</Title>
+              <List>
+                {slogan && <Slogan>"{slogan}"</Slogan>}
+                {origTitle && (
+                  <Info>
+                    <Point>Original title:</Point> {origTitle}
+                  </Info>
+                )}
+                {genresString && (
+                  <Info>
+                    <Point>Genres:</Point> {genresString}
+                  </Info>
+                )}
+                {date && (
+                  <Info>
+                    <Point>Release:</Point> {date}
+                  </Info>
+                )}
+                {overview && (
+                  <Info>
+                    <Point>Overview:</Point> {overview}
+                  </Info>
+                )}
+                {budget.toString() && (
+                  <Info>
+                    <Point>Budget:</Point>{' '}
+                    {Number(budget).toLocaleString('en-EN')} USD
+                  </Info>
+                )}
+                {runtime.toString() && (
+                  <Info>
+                    <Point>Runtime:</Point> {runtime} min
+                  </Info>
+                )}
+              </List>
+            </InfoBox>
+          )}
+        </MovieBox>
       </Box>
     </section>
   );

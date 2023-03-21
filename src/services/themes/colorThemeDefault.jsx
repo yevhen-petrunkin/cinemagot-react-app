@@ -1,0 +1,15 @@
+export const colorThemeDefault = {
+  primary: '#6a1b9a',
+  primaryStrong: '#4a148c',
+  primaryWeak: '#7b1fa2',
+  secondary: '#7e7383',
+  secondaryStrong: '#4d4352',
+  secondaryWeak: '#b3a7b8',
+  accent: '#d24717',
+  accentWeak: '#ff8051',
+  success: '#30beb0',
+  alert: '#930100',
+  defaultWeak: '#fff6ff',
+  defaultStrong: '#000000',
+  star: 'yellow',
+};

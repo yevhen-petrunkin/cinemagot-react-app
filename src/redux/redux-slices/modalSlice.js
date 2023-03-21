@@ -5,6 +5,7 @@ const initialState = {
   isModalOpen: false,
   isPicBoardOpen: false,
   isBurgerOpen: false,
+  isPhotopickerOpen: false,
   pictures: null,
   loading: false,
   error: null,
@@ -25,6 +26,12 @@ export const modalSlice = createSlice({
     },
     closePicBoard(state) {
       state.isPicBoardOpen = false;
+    },
+    openPhotopicker(state) {
+      state.isPhotopickerOpen = true;
+    },
+    closePhotopicker(state) {
+      state.isPhotopickerOpen = false;
     },
     clearPictures(state) {
       state.pictures = null;
@@ -56,6 +63,8 @@ export const {
   closeModal,
   openPicBoard,
   closePicBoard,
+  openPhotopicker,
+  closePhotopicker,
   clearPictures,
   toggleBurger,
 } = modalSlice.actions;

@@ -1,4 +1,5 @@
 import { HeaderSection, HeaderBg, HeaderBox } from './Header.styled';
+import { useTheme } from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectBurger } from 'redux/selectors';
@@ -16,6 +17,7 @@ import { SlMenu } from 'react-icons/sl';
 
 function Header() {
   const dispatch = useDispatch();
+  const { colors } = useTheme();
 
   const isUserAuth = useSelector(selectUser);
   const isBurgerOpen = useSelector(selectBurger);
@@ -43,7 +45,7 @@ function Header() {
                   type="button"
                   width={36}
                   height={36}
-                  bgcolor="#4d4352"
+                  bgcolor={colors.secondaryStrong}
                   onClick={() => dispatch(toggleBurger())}
                 >
                   <SlMenu style={{ width: '100%', height: '100%' }} />

@@ -8,13 +8,13 @@ export const MenuBox = styled.div`
   font-size: ${fontSizes[3]}px;
   color: ${colors.accentWeak};
 
- ${mediaQueries.large} {
+  ${mediaQueries.large} {
     gap: ${space[3]}px;
   }
 
-  ${mediaQueries.tiny} {
-    flex-direction: column;
-    gap: ${space[1] * 6}px;
+  ${mediaQueries.lowerSmall} {
+    gap: ${space[1]}px; 
+    
   } `}
 `;
 
@@ -23,5 +23,15 @@ export const UserBox = styled.div`
   display: flex;
   align-items: center;
   gap: ${space[3]}px;
+  `}
+`;
+
+export const Avatar = styled.img`
+  ${({ theme: { sizes, shadows } }) => `
+  width: ${sizes[1] * 9}px;
+  height: ${sizes[1] * 9}px;
+  border-radius: 50%;
+  box-shadow: ${shadows.ordinary};
+  opacity: 0.8;
   `}
 `;

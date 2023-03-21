@@ -13,6 +13,7 @@ import {
   Info,
   UpButton,
 } from './UserList.styled';
+import { useTheme } from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -37,6 +38,8 @@ const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
   messageData;
 
 function UserList() {
+  const { colors } = useTheme();
+
   const location = useLocation();
 
   const { listId } = useParams();
@@ -130,7 +133,6 @@ function UserList() {
                     <InfoBox>
                       <MovieName>{title}</MovieName>
                       <Info>{overview}</Info>
-
                       <div
                         style={{
                           display: 'flex',
@@ -170,7 +172,7 @@ function UserList() {
               type="button"
               width={36}
               height={36}
-              bgcolor="#d24717"
+              bgcolor={colors.accent}
               onClick={scrollToBeginning}
             >
               <TfiAngleUp style={{ width: '100%', height: '100%' }} />

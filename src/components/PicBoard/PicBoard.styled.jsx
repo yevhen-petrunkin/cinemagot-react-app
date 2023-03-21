@@ -12,18 +12,19 @@ export const Backdrop = styled.div`
 `;
 
 export const Content = styled.div`
-  ${({ theme: { space, radii, shadows } }) => `
+  ${({ theme: { space, radii, shadows, mediaQueries } }) => `
   position: absolute;
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: ${space[3]}px;
   max-width: 90vw;
   width: 100%;
   background-color: transparent;
   border-radius: ${radii[2]}px;
   box-shadow: ${shadows.minimum};
   overflow: hidden;
+
+
   `}
 `;
 
@@ -33,7 +34,11 @@ export const ContentBox = styled.div`
 `;
 
 export const CloseBtn = styled.button`
-  ${({ theme: { colors, sizes, borders, zIndices, shadows }, top, right }) => `
+  ${({
+    theme: { colors, sizes, borders, zIndices, shadows, mediaQueries },
+    top,
+    right,
+  }) => `
   position: absolute;
   z-index: ${zIndices[2]};
   top: ${top}px;
@@ -52,6 +57,23 @@ export const CloseBtn = styled.button`
   &:focus {
     color: ${colors.accent};
     border: ${borders.heroBtnSmallHover};
+  }
+
+  ${mediaQueries.large} {
+    top: ${top - 12}px;
+    right: ${right - 24}px;
+  }
+
+  ${mediaQueries.small} {
+    top: ${top - 20}px;
+    right: ${right - 28}px;
+  }
+
+  ${mediaQueries.tiny} {
+    top: ${top - 16}px;
+    right: ${right - 24}px;
+    width: ${sizes[1] * 6}px;
+    height: ${sizes[1] * 6}px;
   }
   `}
 `;

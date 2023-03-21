@@ -53,34 +53,29 @@ function Movie({ movie, location }) {
   }
 
   return (
-    <>
-      {poster && (
-        <MovieBox>
-          <ImgBox img={poster || placeholder} />
-          <InfoBox>
-            <MovieName>{movieName}</MovieName>
-            <Info>{overview}</Info>
-
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <RateBox>
-                <StarWidg number={popularity} />
-                <HeartWidg number={aveRate} />
-              </RateBox>
-              <Date>{release}</Date>
-            </div>
-            <StyledLink to={movieId} state={{ from: location }}>
-              See More
-            </StyledLink>
-          </InfoBox>
-        </MovieBox>
-      )}
-    </>
+    <MovieBox>
+      <ImgBox img={poster || placeholder} />
+      <InfoBox>
+        <MovieName>{movieName}</MovieName>
+        <Info>{overview}</Info>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <RateBox>
+            <StarWidg number={popularity} />
+            <HeartWidg number={aveRate} />
+          </RateBox>
+          <Date>{release}</Date>
+        </div>
+        <StyledLink to={movieId} state={{ from: location }}>
+          See More
+        </StyledLink>
+      </InfoBox>
+    </MovieBox>
   );
 }
 
