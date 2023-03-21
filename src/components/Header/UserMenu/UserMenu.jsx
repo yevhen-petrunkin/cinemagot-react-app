@@ -8,7 +8,6 @@ import { useMedia } from 'services/media/useMedia';
 import Button from 'components/Button';
 import IconButton from 'components/IconButton';
 
-import { FaUserCircle } from 'react-icons/fa';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 const UserMenu = () => {
@@ -19,15 +18,8 @@ const UserMenu = () => {
 
   const dispatch = useDispatch();
 
-  const {
-    isTiny,
-    isSmall,
-    isLowerSmall,
-    isHigher,
-    isHigherMedium,
-    isExtraLarge,
-    isHuge,
-  } = useMedia();
+  const { isTiny, isSmall, isHigher, isHigherMedium, isExtraLarge, isHuge } =
+    useMedia();
 
   const handleLogOut = () => {
     sessionStorage.removeItem('isFirstDashboard');
@@ -43,7 +35,6 @@ const UserMenu = () => {
         <UserBox>
           {!isTiny && isUserAuth && (
             <Avatar src={isUserAuth.userPhoto} alt="avatar" />
-            // <FaUserCircle style={{ width: '100%', height: '100%' }} />
           )}
           {(isHigher || isTiny) && isUserAuth && (
             <span>{isUserAuth.userName}</span>

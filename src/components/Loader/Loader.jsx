@@ -1,5 +1,5 @@
-function LoaderComp() {
+function Loader() {
   return;
 }
 
-export default LoaderComp;
+export default Loader;
