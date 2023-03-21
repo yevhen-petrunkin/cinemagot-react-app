@@ -26,7 +26,7 @@ import { FreeContainer } from 'components/Container';
 import DashMenu from 'components/DashMenu';
 import Button from 'components/Button';
 import IconButton from 'components/IconButton';
-import LoaderComp from 'components/Loader';
+import Loader from 'components/Loader';
 import Photopicker from 'components/Photopicker';
 import placeholder from 'images/logo.jpg';
 
@@ -123,7 +123,7 @@ function Dashboard() {
             </UserBox>
             <DashMenu />
           </DashBox>
-          <Suspense fallback={<LoaderComp />}>
+          <Suspense fallback={<Loader size={100} />}>
             <Outlet />
           </Suspense>
         </DashContainer>

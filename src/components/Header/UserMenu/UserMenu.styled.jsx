@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const MenuBox = styled.div`
   ${({ theme: { space, colors, fontSizes, shadows, mediaQueries } }) => `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${space[5]}px;
   font-size: ${fontSizes[3]}px;
   text-shadow: ${shadows.textOrdinary};
   color: ${colors.accentWeak};
@@ -13,15 +17,25 @@ export const MenuBox = styled.div`
   ${mediaQueries.lowerSmall} {
     gap: ${space[1]}px; 
     
-  } `}
+  }
+  
+  ${mediaQueries.tiny} {
+    display: block; 
+    
+  }`}
 `;
 
 export const UserBox = styled.div`
-  ${({ theme: { space } }) => `
-  margin-bottom: ${space[5]}px;
+  ${({ theme: { space, mediaQueries } }) => `
+  
   display: flex;
   align-items: center;
   gap: ${space[3]}px;
+
+  ${mediaQueries.tiny} {
+    margin-bottom: ${space[5]}px; 
+    
+  }
   
   `}
 `;

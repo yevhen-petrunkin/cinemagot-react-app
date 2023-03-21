@@ -22,6 +22,7 @@ import HomeGallery from 'components/HomeGallery';
 import Container from 'components/Container';
 import Pagination from 'components/Pagination';
 import Loader from 'components/Loader';
+import { ErrorLoader } from 'components/Loader';
 
 import { TfiAngleUp } from 'react-icons/tfi';
 
@@ -76,8 +77,10 @@ function Home() {
           <GalleryBox>
             <GalleryMenuBox />
             {loading && <Loader size={100} />}
-            {error && <span>Oops... Something went wrong!</span>}
-            {gallery && (
+            {error && (
+              <ErrorLoader size={100} text={messageData.errorMessage} />
+            )}
+            {gallery && !loading && (
               <Gallery
                 mousewheelOn={isMousewheel}
                 movies={gallery}

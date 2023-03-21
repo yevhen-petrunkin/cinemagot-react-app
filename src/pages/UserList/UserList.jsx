@@ -31,9 +31,10 @@ import { dashMenuSource } from 'services/sources/dashMenuSource';
 import { messageData } from 'services/sources/messageDataSource';
 import UserGalleryBtnSet from 'components/UserGalleryBtnSet';
 import CloseButton from 'components/CloseButton';
-import Loader from 'components/Loader/Loader';
 import { StarWidg, HeartWidg } from 'components/Widgets';
 import { TfiAngleUp } from 'react-icons/tfi';
+
+import { ErrorLoaderAdjust } from 'components/Loader';
 
 const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
   messageData;
@@ -117,9 +118,7 @@ function UserList() {
 
   return (
     <Section>
-      {isLoading || !userListObj || !list.userList ? (
-        <p>Loading...</p>
-      ) : (
+      {!isLoading && userListObj && list.userList && (
         <>
           <Caption>{list.caption}</Caption>
           <List ref={listRef}>
@@ -179,7 +178,6 @@ function UserList() {
               <TfiAngleUp style={{ width: '100%', height: '100%' }} />
             </UpButton>
           )}
-          <Loader />
         </>
       )}
     </Section>

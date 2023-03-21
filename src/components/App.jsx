@@ -19,7 +19,7 @@ import { auth, db } from '../firebase';
 import { normalizeUserData } from 'services/normalize';
 
 import NotFoundMessage from 'components/NotFoundMessage';
-import Loader from 'components/Loader';
+import { LoaderAdjust } from 'components/Loader';
 
 const MoviesLayout = lazy(() => import('pages/MoviesLayout'));
 const Home = lazy(() => import('pages/Home'));
@@ -84,7 +84,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={isThemeDefault ? mainTheme : alternativeTheme}>
       {isThemeDefault ? <MainGlobalStyles /> : <AlternativeGlobalStyles />}
-      <Suspense fallback={<Loader size={100} />}>
+      <Suspense fallback={<LoaderAdjust size={100} height={100} />}>
         <Routes>
           <Route path="/" element={<MoviesLayout />}>
             <Route index element={<Home />} />

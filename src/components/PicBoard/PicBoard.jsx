@@ -28,18 +28,16 @@ function PicBoard({ children }) {
   return createPortal(
     <Backdrop>
       <Content>
-        <ContentBox>
-          <CloseBtn
-            type="button"
-            title="Close"
-            top={32}
-            right={40}
-            onClick={handleCloseBtnClick}
-          >
-            <TfiClose style={{ width: '100%', height: '100%' }} />
-          </CloseBtn>
-          {children}
-        </ContentBox>
+        <CloseBtn
+          type="button"
+          title="Close"
+          top={32}
+          right={40}
+          onClick={handleCloseBtnClick}
+        >
+          <TfiClose style={{ width: '100%', height: '100%' }} />
+        </CloseBtn>
+        {children}
       </Content>
     </Backdrop>,
     picBoardRoot

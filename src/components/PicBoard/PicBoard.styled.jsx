@@ -5,32 +5,26 @@ export const Backdrop = styled.div`
   position: fixed;
   top: ${space[0]};
   left: ${space[0]};
+  padding: 10vw;
   width: 100vw;
   height: 100vh;
   background-color: rgba(1, 1, 1, 0.3);
+  
   `}
 `;
 
 export const Content = styled.div`
-  ${({ theme: { space, radii, shadows, mediaQueries } }) => `
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  ${({ theme: { radii, shadows, zIndices, mediaQueries } }) => `
+  position: relative;
   max-width: 90vw;
   width: 100%;
   background-color: transparent;
   border-radius: ${radii[2]}px;
   box-shadow: ${shadows.minimum};
+  height: 90vh;
   overflow: hidden;
 
-
   `}
-`;
-
-export const ContentBox = styled.div`
-  height: 90vh;
-  overflow-y: auto;
 `;
 
 export const CloseBtn = styled.button`

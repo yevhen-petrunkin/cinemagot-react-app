@@ -1,19 +1,19 @@
-import { Gallery, Picture, Img } from './PictureGallery.styled';
+import { Box, Gallery, Picture, Img } from './PictureGallery.styled';
 import { useSelector } from 'react-redux';
 import {
   selectPictures,
   selectPicturesLoading,
   selectPicturesError,
 } from 'redux/selectors';
+import { LoaderAdjust } from 'components/Loader';
 
 function PictureGallery() {
   const isLoading = useSelector(selectPicturesLoading);
   const isError = useSelector(selectPicturesError);
   const gallery = useSelector(selectPictures);
-  console.log(gallery);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoaderAdjust size={100} height={90} />;
   }
 
   if (isError) {
@@ -21,7 +21,7 @@ function PictureGallery() {
   }
 
   return (
-    <>
+    <Box>
       {gallery && (
         <Gallery>
           {gallery.map(({ number, url }) => (
@@ -31,7 +31,7 @@ function PictureGallery() {
           ))}
         </Gallery>
       )}
-    </>
+    </Box>
   );
 }
 

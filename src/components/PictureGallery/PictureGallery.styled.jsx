@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Box = styled.div`
+  height: 90vh;
+  overflow-y: auto;
+`;
+
 export const Gallery = styled.ul`
   ${({ theme: { space } }) => `
   margin: ${space[0]};
@@ -13,22 +18,7 @@ export const Gallery = styled.ul`
 `;
 
 export const Picture = styled.li`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
+  ${({ theme: { radii } }) => `
   border-radius: ${radii[2]}px;
   overflow: hidden;
   `}
@@ -36,4 +26,5 @@ export const Picture = styled.li`
 
 export const Img = styled.img`
   width: 100%;
+  height: 100%;
 `;

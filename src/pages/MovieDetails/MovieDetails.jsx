@@ -30,7 +30,8 @@ import Container from 'components/Container';
 import HandleListBtnSet from 'components/HandleListBtnSet';
 import MovieTable from 'components/MovieTable';
 import VideoList from 'components/VideoList/VideoList';
-import LoaderComp from 'components/Loader';
+import { LoaderAdjust } from 'components/Loader';
+import Loader from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function MovieDetails() {
@@ -62,7 +63,7 @@ function MovieDetails() {
   );
 
   if (isLoading || isCreditsLoading) {
-    return <LoaderComp />;
+    return <LoaderAdjust size={100} height={100} />;
   }
 
   const { poster, overview, companies } = movieData;
@@ -154,7 +155,7 @@ function MovieDetails() {
       </section>
 
       <section ref={additInfoRef}>
-        <Suspense fallback={<LoaderComp />}>
+        <Suspense fallback={<Loader size={100} />}>
           <Outlet />
         </Suspense>
         {showUpBtn && (

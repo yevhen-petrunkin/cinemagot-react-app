@@ -17,6 +17,8 @@ import { fetchLatestMovie } from 'services/services';
 import { defaultMovieDataObject } from 'services/sources/defauldValueObjectSource';
 import { normalizeMovieData, stringifyData } from 'services/normalize';
 
+import Loader from 'components/Loader';
+
 import placeholder from 'images/photoholder.jpg';
 
 function NewsBox() {
@@ -24,7 +26,7 @@ function NewsBox() {
 
   const {
     data: movie,
-    // isLoading,
+    isLoading,
     // isError,
   } = useQuery(['movie'], () => fetchLatestMovie().then(normalizeMovieData));
 
@@ -52,7 +54,7 @@ function NewsBox() {
     <section>
       <Box>
         <Caption>Latest Movie</Caption>
-
+        {isLoading && <Loader size={100} />}
         <MovieBox>
           <PosterBox>
             <Poster src={poster || placeholder} alt={title} />

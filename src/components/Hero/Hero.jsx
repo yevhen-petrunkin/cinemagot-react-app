@@ -7,7 +7,7 @@ import {
 } from './Hero.styled';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/selectors';
+import { selectUser, selectLoading } from 'redux/selectors';
 import { openModal } from 'redux/redux-slices/modalSlice';
 import { selectModal } from 'redux/selectors';
 import Modal from 'components/Modal';
@@ -28,6 +28,7 @@ function Hero() {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectModal);
   const isUserAuth = useSelector(selectUser);
+  const isLoading = useSelector(selectLoading);
 
   const [muted, setMuted] = useState(true);
   const [autoplay, setAutoplay] = useState(true);
@@ -63,7 +64,7 @@ function Hero() {
           <HeroButton id="mute" text="Mute" onClick={() => setMuted(!muted)} />
           <HeroButton id="play" text="Play" onClick={playVideo} />
         </VideoBtnSet>
-        {!isUserAuth && (
+        {!isUserAuth && !isLoading && (
           <HeroBtnSet>
             <HeroButton
               id="heroSignup"

@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
 import Container from 'components/Container';
+import { LoaderAdjust } from 'components/Loader';
 import placeholder from 'images/videoholder.jpg';
 
 function News() {
@@ -22,7 +23,7 @@ function News() {
   } = useQuery(['news'], () => fetchNewsData());
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoaderAdjust size={100} height={100} />;
   }
 
   if (isError) {

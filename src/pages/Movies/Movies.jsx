@@ -13,6 +13,7 @@ import Container from 'components/Container';
 import PropTypes from 'prop-types';
 import HomeGallery from 'components/HomeGallery';
 import { PaginationAbr } from 'components/Pagination';
+import { LoaderAdjust } from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function Movies() {
@@ -33,30 +34,32 @@ function Movies() {
 
   return (
     <section>
+      {isLoading && <LoaderAdjust size={100} height={100} />}
+      {isError && <span>Oops... Something went wrong!</span>}
       <Container>
-        <MoviesBox ref={moviesRef}>
-          {isLoading && <span>Loading...</span>}
-          {isError && <span>Oops... Something went wrong!</span>}
-          <Caption>{caption}</Caption>
-          {movies && <PaginationAbr movies={movies} />}
-          <HomeGallery movies={movies} location={location} />
-          {movies && movies.length > 0 ? (
-            <>
-              <PaginationAbr movies={movies} />
-              <UpButton
-                type="button"
-                width={36}
-                height={36}
-                bgcolor={colors.accent}
-                onClick={scrollToBeginning}
-              >
-                <TfiAngleUp style={{ width: '100%', height: '100%' }} />
-              </UpButton>
-            </>
-          ) : (
-            <span>Surprisingly, nothing found here.</span>
-          )}
-        </MoviesBox>
+        {!isLoading & !isError && (
+          <MoviesBox ref={moviesRef}>
+            <Caption>{caption}</Caption>
+            {movies && <PaginationAbr movies={movies} />}
+            <HomeGallery movies={movies} location={location} />
+            {movies && movies.length > 0 ? (
+              <>
+                <PaginationAbr movies={movies} />
+                <UpButton
+                  type="button"
+                  width={36}
+                  height={36}
+                  bgcolor={colors.accent}
+                  onClick={scrollToBeginning}
+                >
+                  <TfiAngleUp style={{ width: '100%', height: '100%' }} />
+                </UpButton>
+              </>
+            ) : (
+              <span>Surprisingly, nothing found here.</span>
+            )}
+          </MoviesBox>
+        )}
       </Container>
     </section>
   );

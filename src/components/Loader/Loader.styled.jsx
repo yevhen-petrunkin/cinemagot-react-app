@@ -1,5 +1,33 @@
 import styled from 'styled-components';
 
+export const BoxAdjust = styled.div`
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+    height,
+  }) => `
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: ${height}vh;
+  
+  `}
+`;
+
 export const Box = styled.div`
   ${({
     theme: {
@@ -21,9 +49,66 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   
+  `}
+`;
+
+export const ErrorBox = styled.div`
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: ${space[5]}px;
+  `}
+`;
+
+export const ErrorBoxAdjust = styled.div`
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+    height,
+  }) => `
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: ${height}vh;
+  gap: ${space[5]}px;
   `}
 `;
 
@@ -177,4 +262,9 @@ export const Circle = styled.div`
       transform: rotate(360deg);
     }
   }
+`;
+
+export const ErrorText = styled.span`
+  font-size: ${p => p.theme.fontSizes[3]}px;
+  color: ${p => p.theme.colors.defaultWeak};
 `;

@@ -6,6 +6,7 @@ export const DashContainer = styled.div`
   padding-top: ${space[1] * 30}px;
   display: grid;
   grid-template-columns: minmax(${space[1] * 58}px, ${space[1] * 58}px) 1fr;
+  min-height: 87vh;
     
   ${mediaQueries.large} {
     padding-top: ${space[1] * 28}px;
