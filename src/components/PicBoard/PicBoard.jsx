@@ -1,4 +1,4 @@
-import { Backdrop, Content, ContentBox, CloseBtn } from './PicBoard.styled';
+import { Backdrop, Content, CloseBtn } from './PicBoard.styled';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';

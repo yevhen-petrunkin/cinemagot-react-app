@@ -34,8 +34,6 @@ import CloseButton from 'components/CloseButton';
 import { StarWidg, HeartWidg } from 'components/Widgets';
 import { TfiAngleUp } from 'react-icons/tfi';
 
-import { ErrorLoaderAdjust } from 'components/Loader';
-
 const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
   messageData;
 
