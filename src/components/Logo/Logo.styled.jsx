@@ -36,11 +36,14 @@ export const Img = styled.img`
 `;
 
 export const LogoText = styled.span`
-  ${({ theme: { fontSizes, fontWeights, letterSpacings, mediaQueries } }) => `
+  ${({
+    theme: { fontSizes, fontWeights, letterSpacings, mediaQueries, shadows },
+  }) => `
   font-size: ${fontSizes[2] * 2}px;
   font-weight: ${fontWeights[1]};
   letter-spacing: ${letterSpacings[4]}px;
   text-transform: uppercase;
+  text-shadow: ${shadows.textOrdinary};
 
   ${mediaQueries.medium} {
     font-size: ${fontSizes[1] * 2}px;

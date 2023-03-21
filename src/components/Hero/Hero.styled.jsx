@@ -3,7 +3,7 @@ import hero from 'images/heroholder.jpg';
 
 export const VideoBox = styled.div`
   position: relative;
-  margin: 0 auto;
+  margin: ${p => p.theme.space[0]} auto;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
@@ -11,10 +11,11 @@ export const VideoBox = styled.div`
 `;
 
 export const Video = styled.video`
+  ${({ theme: { space, zIndices } }) => `
   position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
+  top: ${space[0]};
+  bottom: ${space[0]};
+  z-index: -${zIndices[1]};
   width: 100%;
   height: 100%;
   background-image: url(${hero});
@@ -24,102 +25,87 @@ export const Video = styled.video`
   opacity: 0.8;
   object-fit: cover;
   object-position: center;
+ 
+  `}
 `;
 
 export const HeroCaption = styled.h1`
-  margin: 0 auto;
+  ${({ theme: { space, colors, fontSizes, shadows, mediaQueries } }) => `
+  margin: ${space[0]} auto;
+  margin-top: ${space[2]}px;
+  font-size: ${fontSizes[1] * 10}px;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: ${p => p.theme.shadows.textCaption};
-  color: ${p => p.theme.colors.accent};
+  text-shadow: ${shadows.textCaption};
+  color: ${colors.accent};
+  
 
-  @media only screen and (min-width: 1440px) {
-    font-size: 120px;
+  ${mediaQueries.extraLarge} {
+   font-size: ${fontSizes[1] * 8}px;
   }
 
-  @media only screen and (max-width: 1439px) {
-    font-size: 110px;
+  ${mediaQueries.large} {
+    font-size: ${fontSizes[0] * 9}px;
   }
 
-  @media only screen and (max-width: 1199px) {
-    font-size: 72px;
+  ${mediaQueries.small} {
+   font-size: ${fontSizes[0] * 7}px;
   }
 
-  @media only screen and (max-width: 991px) {
-    font-size: 72px;
+  ${mediaQueries.tiny} {
+    font-size: ${fontSizes[5]}px;
   }
-
-  @media only screen and (max-width: 767px) {
-    font-size: 56px;
-  }
-
-  @media only screen and (max-width: 479px) {
-    font-size: 28px;
-  }
+  `}
 `;
 
 export const HeroBtnSet = styled.div`
+  ${({ theme: { space, mediaQueries } }) => `
   position: absolute;
-  left: 20px;
+  left: ${space[5]}px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 20px;
+  gap: ${space[5]}px;
 
-  @media only screen and (min-width: 1440px) {
+  ${mediaQueries.medium} {
+    gap: ${space[4]}px;
   }
 
-  @media only screen and (max-width: 1439px) {
+  ${mediaQueries.small} {
+    gap: ${space[3]}px;
   }
 
-  @media only screen and (max-width: 1199px) {
+  ${mediaQueries.tiny} {
+    gap: ${space[2]}px;
   }
-
-  @media only screen and (max-width: 991px) {
-    gap: 16px;
-  }
-
-  @media only screen and (max-width: 767px) {
-    gap: 12px;
-  }
-
-  @media only screen and (max-width: 479px) {
-    gap: 8px;
-  }
+  `}
 `;
 
 export const VideoBtnSet = styled.div`
+  ${({ theme: { space, mediaQueries } }) => `
   position: absolute;
-  right: 20px;
+  right: ${space[5]}px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  gap: 20px;
+  gap: ${space[5]}px;
 
-  @media only screen and (min-width: 1440px) {
+  ${mediaQueries.medium} {
+    gap: ${space[4]}px;
   }
 
-  @media only screen and (max-width: 1439px) {
+  ${mediaQueries.small} {
+    gap: ${space[3]}px;
   }
 
-  @media only screen and (max-width: 1199px) {
+  ${mediaQueries.tiny} {
+    gap: ${space[2]}px;
   }
-
-  @media only screen and (max-width: 991px) {
-    gap: 16px;
-  }
-
-  @media only screen and (max-width: 767px) {
-    gap: 12px;
-  }
-
-  @media only screen and (max-width: 479px) {
-    gap: 8px;
-  }
+  `}
 `;

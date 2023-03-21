@@ -1,4 +1,5 @@
 import { BurgerBox, BurgerBackdrop } from './Burger.styled';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBurger } from 'redux/selectors';
 import { toggleBurger } from 'redux/redux-slices/modalSlice';
@@ -9,8 +10,9 @@ import UserMenu from 'components/Header/UserMenu/UserMenu';
 function Burger() {
   const dispatch = useDispatch();
   const isBurgerOpen = useSelector(selectBurger);
+  const burgerRoot = document.querySelector('#burger-root');
 
-  return (
+  return createPortal(
     <BurgerBackdrop
       active={isBurgerOpen}
       onClick={() => dispatch(toggleBurger())}
@@ -20,7 +22,8 @@ function Burger() {
         <Navbar />
         <UserMenu />
       </BurgerBox>
-    </BurgerBackdrop>
+    </BurgerBackdrop>,
+    burgerRoot
   );
 }
 

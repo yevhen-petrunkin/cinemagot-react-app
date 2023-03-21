@@ -62,8 +62,8 @@ function Header() {
             </HeaderBox>
           </FreeContainer>
         </HeaderBg>
+        {isTiny && <Burger active={isBurgerOpen} />}
       </HeaderSection>
-      {isTiny && <Burger active={isBurgerOpen} />}
     </>
   );
 }

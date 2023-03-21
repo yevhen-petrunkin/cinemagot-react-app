@@ -34,8 +34,9 @@ export const NavMenu = styled.ul`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  ${({ theme: { colors } }) => `
+  ${({ theme: { colors, shadows } }) => `
   text-decoration: none;
+  text-shadow: ${shadows.textOrdinary};
   color: inherit;
 
   &.active {

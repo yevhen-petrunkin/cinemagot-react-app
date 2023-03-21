@@ -20,26 +20,26 @@ export const Content = styled.div`
   transform: translate(-50%, -50%);
   padding: ${space[5]}px;
   width: 90vw;
-  height: 660px;
+  height: ${space[1] * 165}px;
   background-color: ${colors.primaryStrong};
   border-radius: ${radii[2]}px;
   box-shadow: ${shadows.minimum};
   overflow-y: auto;
 
  ${mediaQueries.extraLarge} {
-    height: 588px;
+    height: ${space[1] * 147}px;
   }
 
   ${mediaQueries.large} {
-    height: 508px;
+    height: ${space[1] * 127}px;
   }
 
   ${mediaQueries.medium} {
-    height: 428px;
+    height: ${space[1] * 107}px;
   }
 
   ${mediaQueries.small} {
-    height: 468px;
+    height: ${space[1] * 117}px;
   }
 
   `}

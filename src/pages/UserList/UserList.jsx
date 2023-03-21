@@ -31,6 +31,7 @@ import { dashMenuSource } from 'services/sources/dashMenuSource';
 import { messageData } from 'services/sources/messageDataSource';
 import UserGalleryBtnSet from 'components/UserGalleryBtnSet';
 import CloseButton from 'components/CloseButton';
+import Loader from 'components/Loader/Loader';
 import { StarWidg, HeartWidg } from 'components/Widgets';
 import { TfiAngleUp } from 'react-icons/tfi';
 
@@ -178,6 +179,7 @@ function UserList() {
               <TfiAngleUp style={{ width: '100%', height: '100%' }} />
             </UpButton>
           )}
+          <Loader />
         </>
       )}
     </Section>

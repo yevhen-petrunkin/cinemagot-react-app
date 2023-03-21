@@ -33,9 +33,7 @@ const UserMenu = () => {
     <>
       <MenuBox>
         <UserBox>
-          {!isTiny && isUserAuth && (
-            <Avatar src={isUserAuth.userPhoto} alt="avatar" />
-          )}
+          {isUserAuth && <Avatar src={isUserAuth.userPhoto} alt="avatar" />}
           {(isHigher || isTiny) && isUserAuth && (
             <span>{isUserAuth.userName}</span>
           )}

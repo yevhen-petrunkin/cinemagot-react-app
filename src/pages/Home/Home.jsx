@@ -1,22 +1,18 @@
 import { GalleryBox, OpenSection, UpButton } from './Home.styled';
 import { useTheme } from 'styled-components';
+
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectGallery,
-  selectGalleryLoading,
-  selectGalleryError,
-  selectMousewheel,
-  selectOpenGallery,
-  selectOpenGalleryRef,
-  selectGalleryType,
-} from 'redux/selectors';
+import { selectGalleryCollection } from 'redux/selectors';
 import { setIndex } from 'redux/redux-slices/gallerySlice';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { useMedia } from 'services/media/useMedia';
+
+import { messageData } from 'services/sources/messageDataSource';
 
 import { FreeContainer } from 'components/Container';
 import Hero from 'components/Hero';
@@ -25,21 +21,24 @@ import Gallery from 'components/Gallery';
 import HomeGallery from 'components/HomeGallery';
 import Container from 'components/Container';
 import Pagination from 'components/Pagination';
+import Loader from 'components/Loader';
 
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function Home() {
-  const gallery = useSelector(selectGallery);
-  const isLoading = useSelector(selectGalleryLoading);
-  const isError = useSelector(selectGalleryError);
-  const mousewheel = useSelector(selectMousewheel);
-  const openGallery = useSelector(selectOpenGallery);
-  const openGalleryRef = useSelector(selectOpenGalleryRef);
-  const galleryType = useSelector(selectGalleryType);
+  const {
+    gallery,
+    loading,
+    error,
+    galleryType,
+    isMousewheel,
+    isOpenGallery,
+    isOpenGalleryRef,
+  } = useSelector(selectGalleryCollection);
 
   const { colors } = useTheme();
 
-  const openRef = useRef(openGalleryRef);
+  const openRef = useRef(isOpenGalleryRef);
   const scrollUpRef = useRef(null);
 
   const { isTiny, isSmall } = useMedia();
@@ -56,12 +55,12 @@ function Home() {
   }, [dispatch, isSmall, isTiny]);
 
   useEffect(() => {
-    if (openGallery && openRef) {
+    if (isOpenGallery && openRef) {
       setTimeout(() => {
         openRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
-  }, [openGallery, openRef]);
+  }, [isOpenGallery, openRef]);
 
   const scrollUpToGallery = () => {
     scrollUpRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -76,11 +75,11 @@ function Home() {
         <FreeContainer>
           <GalleryBox>
             <GalleryMenuBox />
-            {isLoading && <span>Loading...</span>}
-            {isError && <span>Oops... Something went wrong!</span>}
+            {loading && <Loader size={100} />}
+            {error && <span>Oops... Something went wrong!</span>}
             {gallery && (
               <Gallery
-                mousewheelOn={mousewheel}
+                mousewheelOn={isMousewheel}
                 movies={gallery}
                 location={location}
               />
@@ -88,7 +87,7 @@ function Home() {
           </GalleryBox>
         </FreeContainer>
       </section>
-      {openGallery && (
+      {isOpenGallery && (
         <OpenSection ref={openRef}>
           <Container>
             {galleryType !== 'trending' && <Pagination />}

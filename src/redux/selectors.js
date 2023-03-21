@@ -14,6 +14,7 @@ export const selectPicturesError = state => state.modal.error;
 export const selectPictures = state => state.modal.pictures;
 export const selectPhotopicker = state => state.modal.isPhotopickerOpen;
 
+export const selectGalleryCollection = state => state.gallery;
 export const selectGallery = state => state.gallery.gallery;
 export const selectGalleryCaption = state => state.gallery.caption;
 export const selectGalleryLoading = state => state.gallery.loading;

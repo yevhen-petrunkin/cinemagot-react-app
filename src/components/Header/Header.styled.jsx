@@ -10,7 +10,7 @@ export const HeaderSection = styled.header`
   background-size: cover;
   background-position: 0 50%;
   background-repeat: no-repeat;
-  z-index: ${zIndices[5]};
+  z-index: ${zIndices[4]};
   box-shadow: ${shadows.elevated};
   overflow: hidden;
 
@@ -33,6 +33,7 @@ export const HeaderSection = styled.header`
 
 export const HeaderBg = styled.div`
   ${({ theme: { colors } }) => `
+  position: relative;
   width: 100%;
   background-color: ${colors.primaryStrong};
   opacity: 0.9; `}

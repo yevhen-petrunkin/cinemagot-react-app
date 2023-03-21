@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const MenuBox = styled.div`
-  ${({ theme: { space, colors, fontSizes, mediaQueries } }) => `
-  display: flex;
-  align-items: center;
-  gap: ${space[5]}px;
+  ${({ theme: { space, colors, fontSizes, shadows, mediaQueries } }) => `
   font-size: ${fontSizes[3]}px;
+  text-shadow: ${shadows.textOrdinary};
   color: ${colors.accentWeak};
 
   ${mediaQueries.large} {
@@ -20,9 +18,11 @@ export const MenuBox = styled.div`
 
 export const UserBox = styled.div`
   ${({ theme: { space } }) => `
+  margin-bottom: ${space[5]}px;
   display: flex;
   align-items: center;
   gap: ${space[3]}px;
+  
   `}
 `;
 
