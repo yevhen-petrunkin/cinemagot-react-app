@@ -8,22 +8,40 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
-  
+  overflow: hidden;
   `}
 `;
 
 export const Content = styled.div`
-  ${({ theme: { space, colors, radii, shadows } }) => `
+  ${({ theme: { space, colors, radii, shadows, mediaQueries } }) => `
   position: absolute;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: ${space[5]}px;
   width: 90vw;
+  height: 660px;
   background-color: ${colors.primaryStrong};
   border-radius: ${radii[2]}px;
   box-shadow: ${shadows.minimum};
-  overflow: hidden;
+  overflow-y: auto;
+
+ ${mediaQueries.extraLarge} {
+    height: 588px;
+  }
+
+  ${mediaQueries.large} {
+    height: 508px;
+  }
+
+  ${mediaQueries.medium} {
+    height: 428px;
+  }
+
+  ${mediaQueries.small} {
+    height: 468px;
+  }
+
   `}
 `;
 
@@ -76,7 +94,47 @@ export const Caption = styled.h1`
 `;
 
 export const Form = styled.form`
-  text-align: center;
+  ${({
+    theme: {
+      space,
+      colors,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      sizes,
+      borders,
+      radii,
+      zIndices,
+      shadows,
+      mediaQueries,
+    },
+  }) => `
+    text-align: center;
+  ${mediaQueries.huge} {
+    
+  }
+
+  ${mediaQueries.extraLarge} {
+   
+  }
+
+  ${mediaQueries.large} {
+    
+  }
+
+  ${mediaQueries.medium} {
+    
+  }
+
+  ${mediaQueries.small} {
+   
+  }
+
+  ${mediaQueries.tiny} {
+    
+  }
+  `}
 `;
 
 export const PhotoBox = styled.div`
@@ -86,6 +144,8 @@ export const PhotoBox = styled.div`
   grid-template-columns: repeat(5, 1fr);
   aspect-ratio: 3 / 1.2;
   gap: ${space[3]}px;
+  
+  
 
   ${mediaQueries.medium} {
     grid-template-columns: repeat(4, 1fr);
