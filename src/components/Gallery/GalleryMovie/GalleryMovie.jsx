@@ -1,5 +1,3 @@
-// import PropTypes from 'prop-types';
-
 import {
   StyledLink,
   MovieWrapper,
@@ -10,8 +8,9 @@ import {
   RateBox,
 } from './GalleryMovie.styled';
 
-import { StarWidg, HeartWidg } from 'components/Widgets';
+import PropTypes from 'prop-types';
 
+import { StarWidg, HeartWidg } from 'components/Widgets';
 import placeholder from 'images/photoholder.jpg';
 
 function GalleryMovie({ movie, location }) {
@@ -56,12 +55,27 @@ function GalleryMovie({ movie, location }) {
 
 export default GalleryMovie;
 
-// Movie.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   movieName: PropTypes.string.isRequired,
-//   location: PropTypes.shape({
-//     state: PropTypes.shape({
-//       page: PropTypes.string.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
+GalleryMovie.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    movieName: PropTypes.string.isRequired,
+    release: PropTypes.string.isRequired,
+    aveRate: PropTypes.number.isRequired,
+    countRate: PropTypes.number.isRequired,
+    popularity: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+StarWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};

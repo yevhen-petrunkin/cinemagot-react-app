@@ -1,4 +1,5 @@
 import { Backdrop, Content } from './Modal.styled';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
@@ -37,3 +38,10 @@ function Modal({ children }) {
 }
 
 export default Modal;
+
+CloseButton.propTypes = {
+  title: PropTypes.string,
+  top: PropTypes.number.isRequired,
+  right: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

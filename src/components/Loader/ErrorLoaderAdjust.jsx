@@ -1,4 +1,5 @@
 import { ErrorBoxAdjust, ErrorText, Wrapper, Circle } from './Loader.styled';
+import PropTypes from 'prop-types';
 
 export function ErrorLoaderAdjust({ size, height, text }) {
   return (
@@ -10,3 +11,9 @@ export function ErrorLoaderAdjust({ size, height, text }) {
     </ErrorBoxAdjust>
   );
 }
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

@@ -1,4 +1,5 @@
 import { Box, Wrapper, Circle } from './Loader.styled';
+import PropTypes from 'prop-types';
 
 function Loader({ size }) {
   return (
@@ -11,3 +12,7 @@ function Loader({ size }) {
 }
 
 export default Loader;
+
+Loader.propTypes = {
+  size: PropTypes.number.isRequired,
+};

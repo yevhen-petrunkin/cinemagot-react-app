@@ -1,4 +1,5 @@
 import { Caption, Label, Input, Btn } from './LogInForm.styled';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
@@ -76,3 +77,12 @@ function LogInForm() {
 }
 
 export default LogInForm;
+
+Loader.propTypes = {
+  size: PropTypes.number.isRequired,
+};
+
+ErrorLoader.propTypes = {
+  size: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

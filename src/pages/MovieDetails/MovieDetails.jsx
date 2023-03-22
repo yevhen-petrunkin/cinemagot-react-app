@@ -15,6 +15,7 @@ import {
   UpButton,
 } from './MovieDetails.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { Suspense, useState, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -187,3 +188,82 @@ function MovieDetails() {
 }
 
 export default MovieDetails;
+
+MovieTable.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+  credits: PropTypes.shape({
+    crew: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        profilePhoto: PropTypes.string,
+        memberName: PropTypes.string.isRequired,
+        job: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    cast: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        profilePhoto: PropTypes.string,
+        actorName: PropTypes.string.isRequired,
+        charName: PropTypes.string.isRequired,
+      }).isRequired
+    ),
+  }),
+};
+
+HandleListBtnSet.propTypes = {
+  movieData: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+};
+
+VideoList.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
+
+LoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

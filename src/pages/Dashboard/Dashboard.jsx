@@ -10,6 +10,7 @@ import {
   UserBtnSet,
 } from './Dashboard.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useEffect, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -105,7 +106,7 @@ function Dashboard() {
                       title="Change avatar"
                       type="button"
                       text="Avatar"
-                      fontSize="16"
+                      fontSize={16}
                       onClick={() => dispatch(openPhotopicker())}
                     />
                     <Button
@@ -113,7 +114,7 @@ function Dashboard() {
                       title="Change theme"
                       type="button"
                       text="Theme"
-                      fontSize="16"
+                      fontSize={16}
                       onClick={handleToggleTheme}
                     />
                   </>
@@ -133,3 +134,21 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+Button.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+};
+
+IconButton.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bgcolor: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};

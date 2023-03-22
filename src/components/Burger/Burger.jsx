@@ -1,4 +1,5 @@
 import { BurgerBox, BurgerBackdrop } from './Burger.styled';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBurger } from 'redux/selectors';
@@ -28,3 +29,7 @@ function Burger() {
 }
 
 export default Burger;
+
+BurgerBackdrop.propTypes = {
+  active: PropTypes.bool.isRequired,
+};

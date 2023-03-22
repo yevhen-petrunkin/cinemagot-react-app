@@ -1,4 +1,5 @@
 import { GalleryBox, OpenSection, UpButton } from './Home.styled';
+import PropTypes from 'prop-types';
 import { useTheme } from 'styled-components';
 
 import { useEffect, useRef } from 'react';
@@ -32,7 +33,6 @@ function Home() {
     loading,
     error,
     galleryType,
-    isMousewheel,
     isOpenGallery,
     isOpenGalleryRef,
   } = useSelector(selectGalleryCollection);
@@ -81,11 +81,7 @@ function Home() {
               <ErrorLoader size={100} text={messageData.errorMessage} />
             )}
             {gallery && !loading && (
-              <Gallery
-                mousewheelOn={isMousewheel}
-                movies={gallery}
-                location={location}
-              />
+              <Gallery movies={gallery} location={location} />
             )}
           </GalleryBox>
         </FreeContainer>
@@ -114,16 +110,49 @@ function Home() {
 
 export default Home;
 
-// Gallery.propTypes = {
-//   movies: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       movieName: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   location: PropTypes.shape({
-//     state: PropTypes.shape({
-//       page: PropTypes.string.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
+Gallery.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+      release: PropTypes.string.isRequired,
+      aveRate: PropTypes.number.isRequired,
+      countRate: PropTypes.number.isRequired,
+      popularity: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+HomeGallery.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+      release: PropTypes.string.isRequired,
+      aveRate: PropTypes.number.isRequired,
+      countRate: PropTypes.number.isRequired,
+      popularity: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+Loader.propTypes = {
+  size: PropTypes.number.isRequired,
+};
+
+ErrorLoader.propTypes = {
+  size: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Caption = styled.h2`
-  margin: 0;
-  margin-bottom: 20px;
+  ${({ theme: { space } }) => `
+  margin: ${space[0]};
+  margin-bottom: ${space[5]}px;
+  `}
 `;
 
 export const Label = styled.label`

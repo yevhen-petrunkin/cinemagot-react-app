@@ -1,4 +1,5 @@
 import { Box, Gallery, Picture, Img } from './PictureGallery.styled';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import {
   selectPictures,
@@ -45,3 +46,14 @@ function PictureGallery() {
 }
 
 export default PictureGallery;
+
+LoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

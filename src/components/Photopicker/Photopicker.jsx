@@ -9,6 +9,7 @@ import {
   MagotName,
   Input,
 } from './Photopicker.styled';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
@@ -101,3 +102,12 @@ function Photopicker() {
 }
 
 export default Photopicker;
+
+Button.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+};

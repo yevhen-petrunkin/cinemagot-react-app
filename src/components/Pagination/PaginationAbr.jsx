@@ -1,4 +1,5 @@
 import { PageBox, PageBtn } from './Pagination.styled';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectPage,
@@ -72,3 +73,7 @@ export function PaginationAbr({ movies }) {
     </>
   );
 }
+
+PaginationAbr.propTypes = {
+  movies: PropTypes.array.isRequired,
+};

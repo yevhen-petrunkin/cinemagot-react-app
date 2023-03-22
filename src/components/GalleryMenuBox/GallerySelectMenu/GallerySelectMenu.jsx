@@ -1,4 +1,5 @@
 import { Menu, MenuItem, Label, Input } from './GallerySelectMenu.styled';
+import PropTypes from 'prop-types';
 import { selectNonMultiFields } from 'services/sources/homePageNonMultiSelectFieldSource';
 import { tmdbGenres } from 'services/sources/tmdbGenresSource';
 
@@ -53,3 +54,13 @@ function GallerySelectMenu({ onGenreChange, onOtherChange, object }) {
 }
 
 export default GallerySelectMenu;
+
+GallerySelectMenu.propTypes = {
+  onGenreChange: PropTypes.func.isRequired,
+  onOtherChange: PropTypes.func.isRequired,
+  object: PropTypes.shape({
+    genres: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    language: PropTypes.object.isRequired,
+    year: PropTypes.object.isRequired,
+  }).isRequired,
+};

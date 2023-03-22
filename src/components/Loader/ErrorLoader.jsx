@@ -1,4 +1,5 @@
 import { ErrorBox, ErrorText, Wrapper, Circle } from './Loader.styled';
+import PropTypes from 'prop-types';
 
 export function ErrorLoader({ size, text }) {
   return (
@@ -10,3 +11,8 @@ export function ErrorLoader({ size, text }) {
     </ErrorBox>
   );
 }
+
+ErrorLoader.propTypes = {
+  size: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

@@ -1,5 +1,5 @@
 import { Person, Info } from './CreditDetails.styled';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import placeholder from 'images/photoholder.jpg';
@@ -43,11 +43,14 @@ function CreditDetails({ person, type }) {
 
 export default CreditDetails;
 
-// CreditDetails.propTypes = {
-//   data: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     profilePhoto: PropTypes.string,
-//     actorName: PropTypes.string.isRequired,
-//     charName: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
+CreditDetails.propTypes = {
+  person: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    profilePhoto: PropTypes.string,
+    memberName: PropTypes.string,
+    actorName: PropTypes.string,
+    charName: PropTypes.string,
+    job: PropTypes.string,
+  }).isRequired,
+  type: PropTypes.string.isRequired,
+};

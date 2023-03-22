@@ -1,4 +1,5 @@
 import { BtnSet, Btn, BtnText } from './HandleListBtnSet.styled';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
@@ -104,3 +105,26 @@ function HandleListBtnSet({ movieData }) {
 }
 
 export default HandleListBtnSet;
+
+HandleListBtnSet.propTypes = {
+  movieData: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+};

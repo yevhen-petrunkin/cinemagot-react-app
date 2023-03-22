@@ -14,6 +14,7 @@ import {
   UpButton,
 } from './UserList.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -170,7 +171,7 @@ function UserList() {
                       }
                     />
                   </MovieBox>
-                  <UserGalleryBtnSet movieData={{ list, movie, userId }} />
+                  <UserGalleryBtnSet movieData={movie} />
                 </ListItem>
               );
             })}
@@ -193,3 +194,47 @@ function UserList() {
 }
 
 export default UserList;
+
+UserGalleryBtnSet.propTypes = {
+  movieData: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+};
+
+CloseButton.propTypes = {
+  title: PropTypes.string,
+  top: PropTypes.number.isRequired,
+  right: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+StarWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};

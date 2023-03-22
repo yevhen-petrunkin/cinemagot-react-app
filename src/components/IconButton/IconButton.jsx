@@ -1,4 +1,5 @@
 import { IconBtn } from './IconButton.styled';
+import PropTypes from 'prop-types';
 
 function IconButton({
   title,
@@ -16,7 +17,7 @@ function IconButton({
       width={width}
       height={height}
       bgcolor={bgcolor}
-      onClick={onClick}
+      onClick={onClick || null}
     >
       {children}
     </IconBtn>
@@ -24,3 +25,12 @@ function IconButton({
 }
 
 export default IconButton;
+
+IconButton.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bgcolor: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};

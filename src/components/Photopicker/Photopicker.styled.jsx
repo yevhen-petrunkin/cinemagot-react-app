@@ -94,47 +94,7 @@ export const Caption = styled.h1`
 `;
 
 export const Form = styled.form`
-  ${({
-    theme: {
-      space,
-      colors,
-      fontSizes,
-      fontWeights,
-      lineHeights,
-      letterSpacings,
-      sizes,
-      borders,
-      radii,
-      zIndices,
-      shadows,
-      mediaQueries,
-    },
-  }) => `
-    text-align: center;
-  ${mediaQueries.huge} {
-    
-  }
-
-  ${mediaQueries.extraLarge} {
-   
-  }
-
-  ${mediaQueries.large} {
-    
-  }
-
-  ${mediaQueries.medium} {
-    
-  }
-
-  ${mediaQueries.small} {
-   
-  }
-
-  ${mediaQueries.tiny} {
-    
-  }
-  `}
+  text-align: center;
 `;
 
 export const PhotoBox = styled.div`

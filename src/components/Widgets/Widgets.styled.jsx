@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const Box = styled.div`
   ${({ theme: { space, mediaQueries } }) => `
@@ -150,3 +151,11 @@ export const HeartItem = styled.li`
   }
   `}
 `;
+
+StarItem.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartItem.propTypes = {
+  number: PropTypes.number.isRequired,
+};

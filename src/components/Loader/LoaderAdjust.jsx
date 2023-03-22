@@ -1,4 +1,5 @@
 import { BoxAdjust, Wrapper, Circle } from './Loader.styled';
+import PropTypes from 'prop-types';
 
 export function LoaderAdjust({ size, height }) {
   return (
@@ -9,3 +10,8 @@ export function LoaderAdjust({ size, height }) {
     </BoxAdjust>
   );
 }
+
+LoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+};

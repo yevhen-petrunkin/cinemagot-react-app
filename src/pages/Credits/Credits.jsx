@@ -1,6 +1,6 @@
 import { List, ContentBox, Caption } from './Credits.styled';
 import { useLocation } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import CreditDetails from 'components/CreditDetails';
 import { messageData } from 'services/sources/messageDataSource';
@@ -50,11 +50,20 @@ function Cast() {
 
 export default Cast;
 
-// CreditDetails.propTypes = {
-//   data: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     profilePhoto: PropTypes.string,
-//     actorName: PropTypes.string.isRequired,
-//     charName: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
+CreditDetails.propTypes = {
+  person: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    profilePhoto: PropTypes.string,
+    memberName: PropTypes.string,
+    actorName: PropTypes.string,
+    charName: PropTypes.string,
+    job: PropTypes.string,
+  }).isRequired,
+  type: PropTypes.string.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

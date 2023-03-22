@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const BurgerBackdrop = styled.div`
   ${({ theme: { space, zIndices }, active }) => `
@@ -28,3 +29,7 @@ export const BurgerBox = styled.div`
   background-color: ${colors.primary};
   `}
 `;
+
+BurgerBackdrop.propTypes = {
+  active: PropTypes.bool.isRequired,
+};

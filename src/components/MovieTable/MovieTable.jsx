@@ -8,6 +8,7 @@ import {
   TabCategory,
   TabData,
 } from './MovieTable.styled';
+import PropTypes from 'prop-types';
 import { stringifyData } from 'services';
 import { normalizeCreditList } from 'services/normalize';
 import { StarWidg, HeartWidg } from 'components/Widgets';
@@ -121,3 +122,52 @@ function MovieTable({ movie, credits }) {
 }
 
 export default MovieTable;
+
+MovieTable.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+  credits: PropTypes.shape({
+    crew: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        profilePhoto: PropTypes.string,
+        memberName: PropTypes.string.isRequired,
+        job: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    cast: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        profilePhoto: PropTypes.string,
+        actorName: PropTypes.string.isRequired,
+        charName: PropTypes.string.isRequired,
+      }).isRequired
+    ),
+  }),
+};
+
+StarWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};

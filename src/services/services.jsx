@@ -274,3 +274,14 @@ export function getQueryByParams(params) {
     return string;
   }
 }
+
+export function getMovieIdByPage(id, page) {
+  switch (page) {
+    case 'home':
+      return 'movies/' + id.toString();
+    case 'movies':
+      return id.toString();
+    default:
+      return;
+  }
+}

@@ -5,6 +5,7 @@ import { selectUser } from 'redux/selectors';
 
 function Navbar() {
   const isUserAuth = useSelector(selectUser);
+
   const handleNavLinkClick = () => {
     sessionStorage.removeItem('isFirstDashboard');
   };

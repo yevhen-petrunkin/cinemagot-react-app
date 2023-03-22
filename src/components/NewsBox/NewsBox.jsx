@@ -11,6 +11,7 @@ import {
   Info,
   Point,
 } from './NewsBox.styled';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchLatestMovie } from 'services/services';
@@ -108,3 +109,12 @@ function NewsBox() {
 }
 
 export default NewsBox;
+
+Loader.propTypes = {
+  size: PropTypes.number.isRequired,
+};
+
+ErrorLoader.propTypes = {
+  size: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

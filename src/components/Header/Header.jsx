@@ -6,6 +6,7 @@ import {
   LogoText,
 } from './Header.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectBurger } from 'redux/selectors';
@@ -64,22 +65,31 @@ function Header() {
                   <Navbar />
                 </>
               )}
+              {!isUserAuth && isTiny && <LogoText>Cinemagot</LogoText>}
+              <SearchForm />
               {isUserAuth && isTiny && (
                 <Avatar
                   src={isUserAuth.userPhoto || placeholder}
                   alt="avatar"
                 />
               )}
-              {!isUserAuth && isTiny && <LogoText>Cinemagot</LogoText>}
-              <SearchForm />
               {isUserAuth && !isTiny && <UserMenu />}
             </HeaderBox>
           </FreeContainer>
         </HeaderBg>
-        {isTiny && <Burger active={isBurgerOpen} />}
+        {isTiny && <Burger />}
       </HeaderSection>
     </>
   );
 }
 
 export default Header;
+
+IconButton.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bgcolor: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};

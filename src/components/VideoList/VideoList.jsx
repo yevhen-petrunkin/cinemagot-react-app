@@ -9,6 +9,7 @@ import {
   DateSet,
   Date,
 } from './VideoList.styled';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPicBoard } from 'redux/selectors';
@@ -116,3 +117,7 @@ function VideoList({ movieId }) {
 }
 
 export default VideoList;
+
+VideoList.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};

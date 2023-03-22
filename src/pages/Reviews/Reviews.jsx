@@ -64,3 +64,14 @@ ReviewDetails.propTypes = {
     content: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+LoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

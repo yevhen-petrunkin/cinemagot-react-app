@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { StyledSwiper, RewindIconBtn } from './Gallery.styled';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -99,16 +99,38 @@ function Gallery({ movies, location }) {
 
 export default Gallery;
 
-// Gallery.propTypes = {
-//   movies: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       movieName: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   location: PropTypes.shape({
-//     state: PropTypes.shape({
-//       page: PropTypes.string.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
+Gallery.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      movieName: PropTypes.string.isRequired,
+      release: PropTypes.string.isRequired,
+      aveRate: PropTypes.number.isRequired,
+      countRate: PropTypes.number.isRequired,
+      popularity: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+GalleryMovie.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    movieName: PropTypes.string.isRequired,
+    release: PropTypes.string.isRequired,
+    aveRate: PropTypes.number.isRequired,
+    countRate: PropTypes.number.isRequired,
+    popularity: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};

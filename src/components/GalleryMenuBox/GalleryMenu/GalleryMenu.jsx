@@ -1,4 +1,5 @@
 import { Menu, MenuItem, Label, Input } from './GalleryMenu.styled';
+import PropTypes from 'prop-types';
 import { homePageMenuSource } from 'services/sources/homePageMenuSource';
 import { FaBahai } from 'react-icons/fa';
 
@@ -28,3 +29,7 @@ function GalleryMenu({ onChange }) {
 }
 
 export default GalleryMenu;
+
+GalleryMenu.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

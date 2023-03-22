@@ -1,4 +1,5 @@
 import { Caption, Label, Input, Btn } from './SignUpForm.styled';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
@@ -73,3 +74,12 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
+
+Loader.propTypes = {
+  size: PropTypes.number.isRequired,
+};
+
+ErrorLoader.propTypes = {
+  size: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

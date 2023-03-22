@@ -1,4 +1,5 @@
 import { Menu, MenuItem, Label, Input } from './GalleryDatePickerMenu.styled';
+import PropTypes from 'prop-types';
 
 function GalleryDatePickerMenu({
   onLowerChange,
@@ -25,3 +26,10 @@ function GalleryDatePickerMenu({
 }
 
 export default GalleryDatePickerMenu;
+
+GalleryDatePickerMenu.propTypes = {
+  onLowerChange: PropTypes.func.isRequired,
+  onGreaterChange: PropTypes.func.isRequired,
+  lowerDate: PropTypes.any,
+  greaterDate: PropTypes.any,
+};

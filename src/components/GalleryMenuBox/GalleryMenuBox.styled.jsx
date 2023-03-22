@@ -163,6 +163,7 @@ export const MenuItem = styled.li`
 `;
 
 export const Label = styled.label`
+  width: 100%;
   cursor: pointer;
 `;
 
@@ -212,7 +213,7 @@ export const Input = styled.input`
 
   ${mediaQueries.tiny} {
     margin-top: ${space[2]}px;
-    width: 40.6%;
+    width: 40.5%;
     font-size: ${fontSizes[1]}px;
     
   }

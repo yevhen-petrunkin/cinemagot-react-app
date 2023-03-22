@@ -8,6 +8,7 @@ import {
   Input,
 } from './GalleryMenuBox.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -236,3 +237,33 @@ function GalleryMenuBox() {
 }
 
 export default GalleryMenuBox;
+
+IconButton.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bgcolor: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
+
+GalleryMenu.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
+GallerySelectMenu.propTypes = {
+  onGenreChange: PropTypes.func.isRequired,
+  onOtherChange: PropTypes.func.isRequired,
+  object: PropTypes.shape({
+    genres: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    language: PropTypes.object.isRequired,
+    year: PropTypes.object.isRequired,
+  }).isRequired,
+};
+
+GalleryDatePickerMenu.propTypes = {
+  onLowerChange: PropTypes.func.isRequired,
+  onGreaterChange: PropTypes.func.isRequired,
+  lowerDate: PropTypes.any,
+  greaterDate: PropTypes.any,
+};

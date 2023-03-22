@@ -1,4 +1,5 @@
 import { Btn } from './CloseButton.styled';
+import PropTypes from 'prop-types';
 import { TfiClose } from 'react-icons/tfi';
 
 function CloseButton({ onClick, top, right, title }) {
@@ -16,3 +17,10 @@ function CloseButton({ onClick, top, right, title }) {
 }
 
 export default CloseButton;
+
+CloseButton.propTypes = {
+  title: PropTypes.string,
+  top: PropTypes.number.isRequired,
+  right: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

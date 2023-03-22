@@ -1,4 +1,5 @@
 import { HeroBtn } from './Button.styled';
+import PropTypes from 'prop-types';
 
 export function HeroButton({ id, text, onClick }) {
   return (
@@ -7,3 +8,9 @@ export function HeroButton({ id, text, onClick }) {
     </HeroBtn>
   );
 }
+
+HeroButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

@@ -1,7 +1,7 @@
 export const defaultValueObjectSource = {
   genres: [],
-  language: [],
-  year: [],
+  language: {},
+  year: {},
 };
 
 export const defaultMovieDataObject = {

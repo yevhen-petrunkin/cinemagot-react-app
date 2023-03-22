@@ -1,9 +1,10 @@
 import { RateList, HeartItem } from './Widgets.styled';
+import PropTypes from 'prop-types';
 import { RxHeartFilled } from 'react-icons/rx';
 
-export function HeartWidg({ size, number }) {
+export function HeartWidg({ number }) {
   return (
-    <RateList size={size} number={number}>
+    <RateList>
       <HeartItem number={number}>
         <RxHeartFilled style={{ width: '100%', height: '100%' }} />
       </HeartItem>
@@ -22,3 +23,11 @@ export function HeartWidg({ size, number }) {
     </RateList>
   );
 }
+
+HeartWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartItem.propTypes = {
+  number: PropTypes.number.isRequired,
+};

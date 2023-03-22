@@ -1,5 +1,6 @@
 import { MenuBox, UserBox, Avatar } from './UserMenu.styled';
 import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { logOut } from 'redux/redux-operations/firebaseOperations';
@@ -67,3 +68,21 @@ const UserMenu = () => {
 };
 
 export default UserMenu;
+
+Button.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+};
+
+IconButton.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bgcolor: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};

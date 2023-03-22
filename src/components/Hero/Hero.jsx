@@ -5,6 +5,7 @@ import {
   HeroCaption,
   HeroBtnSet,
 } from './Hero.styled';
+import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectLoading } from 'redux/selectors';
@@ -118,3 +119,9 @@ function Hero() {
 }
 
 export default Hero;
+
+HeroButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

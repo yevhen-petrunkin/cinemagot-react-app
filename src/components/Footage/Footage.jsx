@@ -1,4 +1,5 @@
 import { VideoBox, Video } from './Footage.styled';
+import PropTypes from 'prop-types';
 
 function Footage({ url }) {
   return (
@@ -16,3 +17,7 @@ function Footage({ url }) {
 }
 
 export default Footage;
+
+Footage.propTypes = {
+  url: PropTypes.string.isRequired,
+};

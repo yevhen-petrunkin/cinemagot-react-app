@@ -8,6 +8,7 @@ import {
   NewsBody,
   NewsDate,
 } from './News.styled';
+import PropTypes from 'prop-types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewsData } from 'services/services';
 import { normalizeDateString } from 'services/normalize';
@@ -71,3 +72,14 @@ function News() {
 }
 
 export default News;
+
+LoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+};
+
+ErrorLoaderAdjust.propTypes = {
+  size: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+};

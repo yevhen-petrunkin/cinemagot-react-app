@@ -1,4 +1,5 @@
 import { BtnSet, Btn, BtnText } from './UserGalleryBtnSet.styled';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +18,7 @@ import { TiEqualsOutline } from 'react-icons/ti';
 import { AiOutlinePicture } from 'react-icons/ai';
 
 function UserGalleryBtnSet({ movieData }) {
-  const { movie } = movieData;
-  const movieId = movie.id;
+  const movieId = movieData.id;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -100,3 +100,26 @@ function UserGalleryBtnSet({ movieData }) {
 }
 
 export default UserGalleryBtnSet;
+
+UserGalleryBtnSet.propTypes = {
+  movieData: PropTypes.shape({
+    id: PropTypes.number,
+    specificId: PropTypes.string,
+    title: PropTypes.string,
+    origTitle: PropTypes.string,
+    slogan: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+    adult: PropTypes.bool,
+    poster: PropTypes.string,
+    video: PropTypes.bool,
+    date: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    companies: PropTypes.array,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    voteCount: PropTypes.number,
+  }).isRequired,
+};

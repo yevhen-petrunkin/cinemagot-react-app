@@ -1,5 +1,3 @@
-// import PropTypes from 'prop-types';
-
 import {
   StyledLink,
   MovieBox,
@@ -10,7 +8,9 @@ import {
   RateBox,
   MovieName,
 } from './Movie.styled';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { getMovieIdByPage } from 'services/services';
 
 import { StarWidg, HeartWidg } from 'components/Widgets';
 import placeholder from 'images/photoholder.jpg';
@@ -39,18 +39,7 @@ function Movie({ movie, location }) {
   const { id, movieName, poster, overview, release, popularity, aveRate } =
     movie;
 
-  let movieId = '';
-
-  switch (location.state.page) {
-    case 'home':
-      movieId = 'movies/' + id.toString();
-      break;
-    case 'movies':
-      movieId = id.toString();
-      break;
-    default:
-      return;
-  }
+  const movieId = getMovieIdByPage(id, location.state.page);
 
   return (
     <MovieBox>
@@ -81,12 +70,27 @@ function Movie({ movie, location }) {
 
 export default Movie;
 
-// Movie.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   movieName: PropTypes.string.isRequired,
-//   location: PropTypes.shape({
-//     state: PropTypes.shape({
-//       page: PropTypes.string.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    movieName: PropTypes.string.isRequired,
+    release: PropTypes.string.isRequired,
+    aveRate: PropTypes.number.isRequired,
+    countRate: PropTypes.number.isRequired,
+    popularity: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+StarWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+HeartWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};

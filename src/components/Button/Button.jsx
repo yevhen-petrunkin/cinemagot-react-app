@@ -1,4 +1,5 @@
 import { Btn } from './Button.styled';
+import PropTypes from 'prop-types';
 
 function Button({ id, title, type, text, fontSize, onClick }) {
   return (
@@ -15,3 +16,12 @@ function Button({ id, title, type, text, fontSize, onClick }) {
 }
 
 export default Button;
+
+Button.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+};

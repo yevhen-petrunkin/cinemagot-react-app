@@ -1,9 +1,10 @@
 import { RateList, StarItem } from './Widgets.styled';
+import PropTypes from 'prop-types';
 import { RxStarFilled } from 'react-icons/rx';
 
-export function StarWidg({ size, number }) {
+export function StarWidg({ number }) {
   return (
-    <RateList size={size} number={number}>
+    <RateList>
       <StarItem number={number}>
         <RxStarFilled style={{ width: '100%', height: '100%' }} />
       </StarItem>
@@ -22,3 +23,11 @@ export function StarWidg({ size, number }) {
     </RateList>
   );
 }
+
+StarWidg.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+StarItem.propTypes = {
+  number: PropTypes.number.isRequired,
+};
