@@ -25,6 +25,7 @@ import {
   getPictureAddress,
 } from 'services';
 import { normalizeMovieData } from 'services/normalize';
+import { messageData } from 'services/sources/messageDataSource';
 
 import Container from 'components/Container';
 import HandleListBtnSet from 'components/HandleListBtnSet';
@@ -32,6 +33,7 @@ import MovieTable from 'components/MovieTable';
 import VideoList from 'components/VideoList/VideoList';
 import { LoaderAdjust } from 'components/Loader';
 import Loader from 'components/Loader';
+import { ErrorLoaderAdjust } from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function MovieDetails() {
@@ -49,7 +51,7 @@ function MovieDetails() {
   const {
     data: movieData,
     isLoading,
-    // isError,
+    isError,
   } = useQuery(['movie', movieId], () =>
     fetchMovieById(movieId).then(normalizeMovieData)
   );
@@ -57,13 +59,23 @@ function MovieDetails() {
   const {
     data: credits,
     isCreditsLoading,
-    // isCreditsError,
+    isCreditsError,
   } = useQuery(['credits', movieId], () =>
     fetchCreditsById(movieId).then(data => normalizeCredits(data))
   );
 
   if (isLoading || isCreditsLoading) {
     return <LoaderAdjust size={100} height={100} />;
+  }
+
+  if (isError || isCreditsError) {
+    return (
+      <ErrorLoaderAdjust
+        size={100}
+        height={100}
+        text={messageData.errorMessage}
+      />
+    );
   }
 
   const { poster, overview, companies } = movieData;

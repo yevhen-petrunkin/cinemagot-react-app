@@ -5,7 +5,10 @@ import {
   selectPicturesLoading,
   selectPicturesError,
 } from 'redux/selectors';
+import { messageData } from 'services/sources/messageDataSource';
+
 import { LoaderAdjust } from 'components/Loader';
+import { ErrorLoaderAdjust } from 'components/Loader';
 
 function PictureGallery() {
   const isLoading = useSelector(selectPicturesLoading);
@@ -17,7 +20,13 @@ function PictureGallery() {
   }
 
   if (isError) {
-    return <div>Oops... Something went wrong!</div>;
+    return (
+      <ErrorLoaderAdjust
+        size={100}
+        height={90}
+        text={messageData.errorMessage}
+      />
+    );
   }
 
   return (

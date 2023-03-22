@@ -14,11 +14,18 @@ import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { closePhotopicker } from 'redux/redux-slices/modalSlice';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { messageData } from 'services/sources/messageDataSource';
 import { updateUserPhoto } from 'services/services';
 import { photoSource } from 'services/sources/photoSource';
 
 import Button from 'components/Button';
 import { TfiClose } from 'react-icons/tfi';
+
+const notifyOnAvatarChange = () =>
+  toast.success(messageData.avatarChangedMessage);
+const notifyOnAvatarError = () =>
+  toast.error(messageData.avatarChangeFailedMessage);
 
 function Photopicker() {
   const dispatch = useDispatch();
@@ -36,10 +43,10 @@ function Photopicker() {
 
   const updatePhotoMutation = useMutation(url => updateUserPhoto(url), {
     onSuccess: () => {
-      console.log('Avatar changed successfully.');
+      notifyOnAvatarChange();
       setTimeout(() => window.location.reload(), 1000);
     },
-    onError: () => console.log('Failed to load avatar'),
+    onError: notifyOnAvatarError,
   });
 
   const handleCloseBtnClick = () => {

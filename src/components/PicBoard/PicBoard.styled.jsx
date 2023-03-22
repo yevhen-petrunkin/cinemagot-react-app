@@ -14,7 +14,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Content = styled.div`
-  ${({ theme: { radii, shadows, zIndices, mediaQueries } }) => `
+  ${({ theme: { radii, shadows } }) => `
   position: relative;
   max-width: 90vw;
   width: 100%;
@@ -64,7 +64,7 @@ export const CloseBtn = styled.button`
   }
 
   ${mediaQueries.tiny} {
-    top: ${top - 16}px;
+    top: ${top - 8}px;
     right: ${right - 24}px;
     width: ${sizes[1] * 6}px;
     height: ${sizes[1] * 6}px;

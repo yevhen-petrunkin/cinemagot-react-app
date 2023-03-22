@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
 import HomeGallery from 'components/HomeGallery';
 import { PaginationAbr } from 'components/Pagination';
 import { LoaderAdjust } from 'components/Loader';
+import { messageData } from 'services/sources/messageDataSource';
+import { ErrorLoaderAdjust } from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
 
 function Movies() {
@@ -35,7 +37,13 @@ function Movies() {
   return (
     <section>
       {isLoading && <LoaderAdjust size={100} height={100} />}
-      {isError && <span>Oops... Something went wrong!</span>}
+      {isError && (
+        <ErrorLoaderAdjust
+          size={100}
+          height={100}
+          text={messageData.errorMessage}
+        />
+      )}
       <Container>
         {!isLoading & !isError && (
           <MoviesBox ref={moviesRef}>
@@ -56,7 +64,11 @@ function Movies() {
                 </UpButton>
               </>
             ) : (
-              <span>Surprisingly, nothing found here.</span>
+              <ErrorLoaderAdjust
+                size={100}
+                height={60}
+                text={messageData.notFoundMessage}
+              />
             )}
           </MoviesBox>
         )}

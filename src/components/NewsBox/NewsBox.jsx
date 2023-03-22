@@ -16,8 +16,10 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchLatestMovie } from 'services/services';
 import { defaultMovieDataObject } from 'services/sources/defauldValueObjectSource';
 import { normalizeMovieData, stringifyData } from 'services/normalize';
+import { messageData } from 'services/sources/messageDataSource';
 
 import Loader from 'components/Loader';
+import { ErrorLoader } from 'components/Loader';
 
 import placeholder from 'images/photoholder.jpg';
 
@@ -27,7 +29,7 @@ function NewsBox() {
   const {
     data: movie,
     isLoading,
-    // isError,
+    isError,
   } = useQuery(['movie'], () => fetchLatestMovie().then(normalizeMovieData));
 
   useEffect(() => {
@@ -55,6 +57,7 @@ function NewsBox() {
       <Box>
         <Caption>Latest Movie</Caption>
         {isLoading && <Loader size={100} />}
+        {isError && <ErrorLoader size={100} text={messageData.errorMessage} />}
         <MovieBox>
           <PosterBox>
             <Poster src={poster || placeholder} alt={title} />

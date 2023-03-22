@@ -266,5 +266,6 @@ export const Circle = styled.div`
 
 export const ErrorText = styled.span`
   font-size: ${p => p.theme.fontSizes[3]}px;
+  text-shadow: ${p => p.theme.shadows.textOrdinary};
   color: ${p => p.theme.colors.defaultWeak};
 `;

@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import CreditDetails from 'components/CreditDetails';
-import NotFoundMessage from 'components/NotFoundMessage';
+import { messageData } from 'services/sources/messageDataSource';
+import { ErrorLoaderAdjust } from 'components/Loader';
 
 function Cast() {
   const location = useLocation();
@@ -20,7 +21,11 @@ function Cast() {
               return <CreditDetails key={id} person={person} type="crew" />;
             })
           ) : (
-            <NotFoundMessage />
+            <ErrorLoaderAdjust
+              size={100}
+              height={20}
+              text={messageData.notFoundMessage}
+            />
           )}
         </List>
         <Caption>Cast</Caption>
@@ -31,7 +36,11 @@ function Cast() {
               return <CreditDetails key={id} person={person} type="cast" />;
             })
           ) : (
-            <NotFoundMessage />
+            <ErrorLoaderAdjust
+              size={100}
+              height={20}
+              text={messageData.notFoundMessage}
+            />
           )}
         </List>
       </ContentBox>

@@ -6,8 +6,9 @@ import { normalizeReviews } from 'services';
 import { List } from './Reviews.styled';
 import Container from 'components/Container';
 import ReviewDetails from 'components/ReviewDetails';
-import NotFoundMessage from 'components/NotFoundMessage';
-import LoaderComp from 'components/Loader';
+import { messageData } from 'services/sources/messageDataSource';
+import { ErrorLoaderAdjust } from 'components/Loader';
+import { LoaderAdjust } from 'components/Loader';
 
 function Reviews() {
   const { movieId } = useParams();
@@ -21,11 +22,17 @@ function Reviews() {
   );
 
   if (isLoading) {
-    return <LoaderComp />;
+    return <LoaderAdjust size={100} height={20} />;
   }
 
   if (isError) {
-    return <NotFoundMessage />;
+    return (
+      <ErrorLoaderAdjust
+        size={100}
+        height={20}
+        text={messageData.errorMessage}
+      />
+    );
   }
 
   return (
@@ -37,7 +44,11 @@ function Reviews() {
             return <ReviewDetails key={id} data={review} />;
           })
         ) : (
-          <NotFoundMessage />
+          <ErrorLoaderAdjust
+            size={100}
+            height={20}
+            text={messageData.notFoundMessage}
+          />
         )}
       </List>
     </Container>

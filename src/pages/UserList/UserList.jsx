@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 import {
   selectUserListObj,
   selectUser,
-  // selectListError,
+  selectListError,
   selectListLoading,
 } from 'redux/selectors';
 import { db } from '../../firebase';
@@ -32,10 +32,20 @@ import { messageData } from 'services/sources/messageDataSource';
 import UserGalleryBtnSet from 'components/UserGalleryBtnSet';
 import CloseButton from 'components/CloseButton';
 import { StarWidg, HeartWidg } from 'components/Widgets';
+import { ErrorLoaderAdjust } from 'components/Loader';
 import { TfiAngleUp } from 'react-icons/tfi';
+import { toast } from 'react-toastify';
 
-const { movieRemovedFromListMessage, errorRemovingMovieFromListMessage } =
-  messageData;
+const {
+  movieRemovedFromListMessage,
+  errorRemovingMovieFromListMessage,
+  errorMessage,
+} = messageData;
+
+const notifyOnRemovedFromList = () =>
+  toast.success(movieRemovedFromListMessage);
+const notifyOnErrorRemovingFromList = () =>
+  toast.error(errorRemovingMovieFromListMessage);
 
 function UserList() {
   const { colors } = useTheme();
@@ -48,7 +58,7 @@ function UserList() {
 
   const userListObj = useSelector(selectUserListObj);
   const isLoading = useSelector(selectListLoading);
-  // const isError = useSelector(selectListError);
+  const isError = useSelector(selectListError);
   const user = useSelector(selectUser);
 
   const [userId, setUserId] = useState('');
@@ -97,12 +107,8 @@ function UserList() {
       return deleteFromUserList(userListRef, list, movie);
     },
     {
-      onSuccess: () => {
-        console.log(movieRemovedFromListMessage);
-      },
-      onError: () => {
-        console.log(errorRemovingMovieFromListMessage);
-      },
+      onSuccess: notifyOnRemovedFromList,
+      onError: notifyOnErrorRemovingFromList,
     }
   );
 
@@ -113,6 +119,10 @@ function UserList() {
   const scrollToBeginning = () => {
     listRef.current.scrollIntoView({ behavior: 'smooth' });
   };
+
+  if (isError) {
+    return <ErrorLoaderAdjust size={100} height={40} text={errorMessage} />;
+  }
 
   return (
     <Section>

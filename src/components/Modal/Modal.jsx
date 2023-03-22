@@ -14,7 +14,6 @@ function Modal({ children }) {
   useEffect(() => {
     const handleKeydown = e => {
       if (e.code === 'Escape') {
-        console.log('Close the modal please');
         dispatch(closeModal());
       }
     };

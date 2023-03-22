@@ -28,6 +28,11 @@ export const Btn = styled.button`
     background-color: ${colors.accentWeak};
   }
 
+  &:disabled {
+    background-color: ${colors.secondaryStrong};
+    cursor: not-allowed;
+  }
+
   ${mediaQueries.extraLarge} {
     font-size: ${fontSizes[4]}px;
   }

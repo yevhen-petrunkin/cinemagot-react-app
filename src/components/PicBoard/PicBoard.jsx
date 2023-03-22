@@ -12,7 +12,6 @@ function PicBoard({ children }) {
   useEffect(() => {
     const handleKeydown = e => {
       if (e.code === 'Escape') {
-        console.log('Close the board please');
         dispatch(closePicBoard());
         dispatch(clearPictures());
       }

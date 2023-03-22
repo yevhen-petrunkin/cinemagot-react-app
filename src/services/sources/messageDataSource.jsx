@@ -6,4 +6,9 @@ export const messageData = {
   errorAddingMovieToListMessage: 'Error adding movie to the list.',
   movieRemovedFromListMessage: 'Movie removed from the list successfully.',
   errorRemovingMovieFromListMessage: 'Error removing movie from the list.',
+  notFoundMessage: 'Surprisingly, nothing found here.',
+  avatarChangedMessage: 'Avatar changed successfully.',
+  avatarChangeFailedMessage: 'Failed to load new avatar.',
+  notAllowedToAddMovieToListMessage:
+    'Please, log in or sign up to add movies to private lists.',
 };

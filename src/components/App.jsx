@@ -7,6 +7,8 @@ import { fetchUserLists } from 'redux/redux-slices/userListSlice';
 import { fetchUserData } from 'redux/redux-slices/authSlice';
 import { toggleTheme } from 'redux/redux-slices/themeSlice';
 import { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { mainTheme, MainGlobalStyles } from 'services/themes/mainTheme';
 import {
   alternativeTheme,
@@ -17,9 +19,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { normalizeUserData } from 'services/normalize';
+import { messageData } from 'services/sources/messageDataSource';
 
-import NotFoundMessage from 'components/NotFoundMessage';
 import { LoaderAdjust } from 'components/Loader';
+import { ErrorLoaderAdjust } from 'components/Loader';
 
 const MoviesLayout = lazy(() => import('pages/MoviesLayout'));
 const Home = lazy(() => import('pages/Home'));
@@ -54,7 +57,7 @@ export const App = () => {
         const normalizedUserData = normalizeUserData(user);
         dispatch(fetchUserData(normalizedUserData));
       } else {
-        console.log('No User Logged In:', user);
+        console.log('No User Logged In');
       }
     });
     return () => unsubscribe();
@@ -84,6 +87,14 @@ export const App = () => {
   return (
     <ThemeProvider theme={isThemeDefault ? mainTheme : alternativeTheme}>
       {isThemeDefault ? <MainGlobalStyles /> : <AlternativeGlobalStyles />}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        theme="colored"
+        pauseOnHover
+        closeOnClick
+      />
+
       <Suspense fallback={<LoaderAdjust size={100} height={100} />}>
         <Routes>
           <Route path="/" element={<MoviesLayout />}>
@@ -93,13 +104,31 @@ export const App = () => {
             <Route path="movies/:movieId" element={<MovieDetails />}>
               <Route path="credits" element={<Credits />} />
               <Route path="review" element={<Reviews />} />
-              <Route path="*" element={<NotFoundMessage />} />
+              <Route
+                path="*"
+                element={
+                  <ErrorLoaderAdjust
+                    size={100}
+                    height={100}
+                    text={messageData.notFoundMessage}
+                  />
+                }
+              />
             </Route>
             {isUserAuth && (
               <Route path="dashboard" element={<Dashboard />}>
                 <Route path="info" element={<UserInfo />} />
                 <Route path="info/:listId" element={<UserList />} />
-                <Route path="*" element={<NotFoundMessage />} />
+                <Route
+                  path="info/*"
+                  element={
+                    <ErrorLoaderAdjust
+                      size={100}
+                      height={100}
+                      text={messageData.notFoundMessage}
+                    />
+                  }
+                />
               </Route>
             )}
             <Route path="*" element={<Navigate to="/" />} />

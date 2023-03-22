@@ -9,19 +9,35 @@ import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
 import { updateUserList } from 'services/services';
+
 import { RxBookmark, RxCheckCircled, RxStar } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 
 const {
   alreadyOnTheListMessage,
   movieAddedToListMessage,
   errorAddingMovieToListMessage,
+  notAllowedToAddMovieToListMessage,
 } = messageData;
+
+const notifyOnAdded = () => toast.success(movieAddedToListMessage);
+const notifyOnExist = () => toast.warning(alreadyOnTheListMessage);
+const notifyToSubscribe = () => toast.info(notAllowedToAddMovieToListMessage);
+const notifyOnError = () => toast.error(errorAddingMovieToListMessage);
 
 function HandleListBtnSet({ movieData }) {
   const { isTiny, isSmall } = useMedia();
 
   const user = useSelector(selectUser);
   const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const seenAlready = sessionStorage.getItem('subscribeMsg');
+    if (!user && !seenAlready) {
+      notifyToSubscribe();
+      sessionStorage.setItem('subscribeMsg', 'true');
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user) {
@@ -38,14 +54,12 @@ function HandleListBtnSet({ movieData }) {
       onSuccess: data => {
         const movieAdded = data !== undefined;
         if (!movieAdded) {
-          console.log(alreadyOnTheListMessage);
+          notifyOnExist();
         } else {
-          console.log(movieAddedToListMessage);
+          notifyOnAdded();
         }
       },
-      onError: () => {
-        console.log(errorAddingMovieToListMessage);
-      },
+      onError: notifyOnError,
     }
   );
 
@@ -78,6 +92,7 @@ function HandleListBtnSet({ movieData }) {
             title={text}
             type="button"
             onClick={() => handleAddToUserListBtnClick(listId)}
+            disabled={!user}
           >
             <IconComponent />
             {!isTiny && !isSmall && <BtnText>{text}</BtnText>}
