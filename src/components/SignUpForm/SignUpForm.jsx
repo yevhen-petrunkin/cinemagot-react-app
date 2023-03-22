@@ -1,9 +1,16 @@
+import { Caption, Label, Input, Btn } from './SignUpForm.styled';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
+import { clearError } from 'redux/redux-slices/authSlice';
 import { signUp } from 'redux/redux-operations/firebaseOperations';
 import { signUpInputs } from 'services/sources/signUpFormSource';
 import { closeModal } from 'redux/redux-slices/modalSlice';
+import { signUpSchema } from 'services/sources/formValidationSchemaSource';
+import { messageData } from 'services/sources/messageDataSource';
+
+import Loader from 'components/Loader';
+import { ErrorLoader } from 'components/Loader';
 
 function SignUpForm() {
   const isLoading = useSelector(selectLoading);
@@ -19,40 +26,46 @@ function SignUpForm() {
 
   const handleSignUp = async e => {
     e.preventDefault();
-    dispatch(signUp(data));
-    setData({});
-    sessionStorage.removeItem('mute');
-    if (!isError && !isLoading) {
-      dispatch(closeModal());
+    try {
+      await signUpSchema.validate(data, { abortEarly: false });
+      dispatch(signUp(data));
+      setData({});
+      sessionStorage.removeItem('mute');
+      setTimeout(() => {
+        dispatch(closeModal());
+        if (!isError) {
+          dispatch(clearError());
+        }
+      }, 2000);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
   return (
     <>
-      <h2>Sign Up</h2>
-      {isLoading ? (
-        <span>Loading...</span>
-      ) : (
+      <Caption>Sign Up</Caption>
+      {isLoading && <Loader size={100} />}
+      {isError && <ErrorLoader size={100} text={messageData.errorMessage} />}
+      {!isLoading && !isError && (
         <form onSubmit={handleSignUp}>
           {signUpInputs.map(({ id, label, type, placeholder }) => (
             <div key={id}>
-              <label>
+              <Label>
                 {label}
-                <input
+                <Input
                   id={id}
                   onChange={handleInput}
                   type={type}
                   value={data.id}
                   placeholder={placeholder}
                   required
+                  autoComplete="on"
                 />
-              </label>
+              </Label>
             </div>
           ))}
-          <button type="submit">Sign Up</button>
-          {isError && (
-            <span>Oops... Something went wrong. Please try again!</span>
-          )}
+          <Btn type="submit">Sign Up</Btn>
         </form>
       )}
     </>

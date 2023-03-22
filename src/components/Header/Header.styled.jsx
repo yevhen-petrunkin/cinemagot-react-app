@@ -67,3 +67,25 @@ export const HeaderBox = styled.div`
   }
   `}
 `;
+
+export const Avatar = styled.img`
+  ${({ theme: { sizes, shadows } }) => `
+  width: ${sizes[1] * 9}px;
+  height: ${sizes[1] * 9}px;
+  border-radius: 50%;
+  box-shadow: ${shadows.ordinary};
+  opacity: 0.8;
+  `}
+`;
+
+export const LogoText = styled.span`
+  ${({
+    theme: { fontSizes, fontWeights, letterSpacings, mediaQueries, shadows },
+  }) => `
+  font-size: 2.7vw;
+  font-weight: ${fontWeights[1]};
+  letter-spacing: ${letterSpacings[4]}px;
+  text-transform: uppercase;
+  text-shadow: ${shadows.textOrdinary};
+  `}
+`;

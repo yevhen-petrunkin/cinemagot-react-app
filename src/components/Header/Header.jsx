@@ -1,4 +1,10 @@
-import { HeaderSection, HeaderBg, HeaderBox } from './Header.styled';
+import {
+  HeaderSection,
+  HeaderBg,
+  HeaderBox,
+  Avatar,
+  LogoText,
+} from './Header.styled';
 import { useTheme } from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +20,7 @@ import IconButton from 'components/IconButton';
 import Burger from 'components/Burger';
 
 import { SlMenu } from 'react-icons/sl';
+import placeholder from 'images/logo.jpg';
 
 function Header() {
   const dispatch = useDispatch();
@@ -57,6 +64,13 @@ function Header() {
                   <Navbar />
                 </>
               )}
+              {isUserAuth && isTiny && (
+                <Avatar
+                  src={isUserAuth.userPhoto || placeholder}
+                  alt="avatar"
+                />
+              )}
+              {!isUserAuth && isTiny && <LogoText>Cinemagot</LogoText>}
               <SearchForm />
               {isUserAuth && !isTiny && <UserMenu />}
             </HeaderBox>

@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signUp, logIn, logOut } from '../redux-operations/firebaseOperations';
+import { messageData } from 'services/sources/messageDataSource';
+import { toast } from 'react-toastify';
+
+const notifyOnSuccessfulSignUp = () =>
+  toast.success(messageData.successfulSignUpMessage);
 
 const initialState = {
   user: null,
@@ -14,6 +19,9 @@ export const authSlice = createSlice({
     fetchUserData(state, action) {
       state.user = action.payload;
     },
+    clearError(state) {
+      state.error = null;
+    },
   },
   extraReducers: builder => {
     builder
@@ -24,6 +32,7 @@ export const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        notifyOnSuccessfulSignUp();
         state.error = null;
       })
       .addCase(signUp.rejected, (state, action) => {
@@ -59,6 +68,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { fetchUserData } = authSlice.actions;
+export const { fetchUserData, clearError } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

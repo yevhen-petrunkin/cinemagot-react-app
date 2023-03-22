@@ -40,6 +40,16 @@ function Hero() {
     }
   }, [autoplay, mute]);
 
+  useEffect(() => {
+    const body = document.querySelector('body');
+
+    if (isModalOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'visible';
+    }
+  }, [isModalOpen]);
+
   const handleVideoEnd = () => {
     sessionStorage.setItem('mute', 'true');
     setAutoplay(false);

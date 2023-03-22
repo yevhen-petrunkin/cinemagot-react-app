@@ -1,12 +1,13 @@
 import { MenuBox, UserBox, Avatar } from './UserMenu.styled';
 import { useTheme } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, selectError } from 'redux/selectors';
+import { selectUser } from 'redux/selectors';
 import { logOut } from 'redux/redux-operations/firebaseOperations';
 import { clearUserLists } from 'redux/redux-slices/userListSlice';
 import { useMedia } from 'services/media/useMedia';
 import Button from 'components/Button';
 import IconButton from 'components/IconButton';
+import placeholder from 'images/logo.jpg';
 
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 
@@ -14,7 +15,6 @@ const UserMenu = () => {
   const { colors } = useTheme();
 
   const isUserAuth = useSelector(selectUser);
-  const isError = useSelector(selectError);
 
   const dispatch = useDispatch();
 
@@ -33,13 +33,15 @@ const UserMenu = () => {
     <>
       <MenuBox>
         <UserBox>
-          {isUserAuth && <Avatar src={isUserAuth.userPhoto} alt="avatar" />}
+          {isUserAuth && (
+            <Avatar src={isUserAuth.userPhoto || placeholder} alt="avatar" />
+          )}
           {(isHigher || isTiny) && isUserAuth && (
             <span>{isUserAuth.userName}</span>
           )}
         </UserBox>
 
-        {(isHuge || isExtraLarge || isTiny) && (
+        {(isHuge || isExtraLarge || isTiny) && isUserAuth && (
           <Button
             id="logout"
             type="button"
@@ -48,7 +50,7 @@ const UserMenu = () => {
             onClick={handleLogOut}
           />
         )}
-        {(isHigherMedium || isSmall) && (
+        {(isHigherMedium || isSmall) && isUserAuth && (
           <IconButton
             type="button"
             width={36}
@@ -60,7 +62,6 @@ const UserMenu = () => {
           </IconButton>
         )}
       </MenuBox>
-      {isError && <span>Oops... Something went wrong!</span>}
     </>
   );
 };

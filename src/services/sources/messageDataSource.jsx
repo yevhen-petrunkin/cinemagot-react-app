@@ -11,4 +11,27 @@ export const messageData = {
   avatarChangeFailedMessage: 'Failed to load new avatar.',
   notAllowedToAddMovieToListMessage:
     'Please, log in or sign up to add movies to private lists.',
+  successfulSignUpMessage: 'A new user has been registered sucessfully.',
+  invalidEmailMessage: 'Invalid email.',
+  emailContentMessage: 'Email must contain @ symbol and a domain name.',
+  requireEmailMessage: 'Email is required.',
+  minPasswordMessage: 'Password must be at least 6 characters long.',
+  maxPasswordMessage: 'Password must be no longer than 12 characters.',
+  passwordContentMessage:
+    'Password must only contain Standard English letters and numbers.',
+  requirePasswordMessage: 'Password is required.',
+  minUsernameMessage: 'Username must be at least 4 characters long.',
+  maxUsernameMessage: 'Username must be no longer than 12 characters.',
+  usernameContentMessage:
+    'Username must only contain Standard English letters and numbers.',
+  requireUsernameMessage: 'Username is required.',
+  invalidAgeNumberMessage: 'Make sure your age is a number.',
+  positiveAgeNumberMessage: 'Your age cannot be negative.',
+  minAgeMessage: 'You must be at least 10 years old to use the website.',
+  maxAgeMessage: "Don't you think you are implausibly old?",
+  requireAgeMessage: 'Age is required.',
+  minCountryMessage: 'The shortest name of a country is 4 characters.',
+  maxCountryMessage: 'The longest name of a country is 56 characters.',
+  countryContentMessage: 'Username must only contain Standard English letters.',
+  requireCountryMessage: 'Country is required.',
 };
