@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/cinemagot-react-app/static/css/main.42d27b49.css",
-    "main.js": "/cinemagot-react-app/static/js/main.0d017e7f.js",
-    "static/js/593.833fbbcf.chunk.js": "/cinemagot-react-app/static/js/593.833fbbcf.chunk.js",
-    "static/js/682.b6ecce43.chunk.js": "/cinemagot-react-app/static/js/682.b6ecce43.chunk.js",
+    "main.js": "/cinemagot-react-app/static/js/main.21019b2a.js",
+    "static/js/593.2907aa84.chunk.js": "/cinemagot-react-app/static/js/593.2907aa84.chunk.js",
+    "static/js/382.e4e598c0.chunk.js": "/cinemagot-react-app/static/js/382.e4e598c0.chunk.js",
     "static/js/488.7c027bc7.chunk.js": "/cinemagot-react-app/static/js/488.7c027bc7.chunk.js",
     "static/js/321.0607cbf8.chunk.js": "/cinemagot-react-app/static/js/321.0607cbf8.chunk.js",
     "static/js/300.a0b9b8e0.chunk.js": "/cinemagot-react-app/static/js/300.a0b9b8e0.chunk.js",
@@ -17,8 +17,8 @@
     "static/js/623.e204cb33.chunk.js": "/cinemagot-react-app/static/js/623.e204cb33.chunk.js",
     "static/js/917.6a2379af.chunk.js": "/cinemagot-react-app/static/js/917.6a2379af.chunk.js",
     "static/js/30.d0197431.chunk.js": "/cinemagot-react-app/static/js/30.d0197431.chunk.js",
-    "static/css/667.431c010b.chunk.css": "/cinemagot-react-app/static/css/667.431c010b.chunk.css",
-    "static/js/667.e5e9ecd7.chunk.js": "/cinemagot-react-app/static/js/667.e5e9ecd7.chunk.js",
+    "static/css/375.fa6cf908.chunk.css": "/cinemagot-react-app/static/css/375.fa6cf908.chunk.css",
+    "static/js/375.f067fde4.chunk.js": "/cinemagot-react-app/static/js/375.f067fde4.chunk.js",
     "static/js/820.96f53b30.chunk.js": "/cinemagot-react-app/static/js/820.96f53b30.chunk.js",
     "static/js/460.b443782a.chunk.js": "/cinemagot-react-app/static/js/460.b443782a.chunk.js",
     "static/js/434.9db78750.chunk.js": "/cinemagot-react-app/static/js/434.9db78750.chunk.js",
@@ -46,9 +46,9 @@
     "static/media/photoholder.jpg": "/cinemagot-react-app/static/media/photoholder.bc7debfc682a5ddc60bf.jpg",
     "index.html": "/cinemagot-react-app/index.html",
     "main.42d27b49.css.map": "/cinemagot-react-app/static/css/main.42d27b49.css.map",
-    "main.0d017e7f.js.map": "/cinemagot-react-app/static/js/main.0d017e7f.js.map",
-    "593.833fbbcf.chunk.js.map": "/cinemagot-react-app/static/js/593.833fbbcf.chunk.js.map",
-    "682.b6ecce43.chunk.js.map": "/cinemagot-react-app/static/js/682.b6ecce43.chunk.js.map",
+    "main.21019b2a.js.map": "/cinemagot-react-app/static/js/main.21019b2a.js.map",
+    "593.2907aa84.chunk.js.map": "/cinemagot-react-app/static/js/593.2907aa84.chunk.js.map",
+    "382.e4e598c0.chunk.js.map": "/cinemagot-react-app/static/js/382.e4e598c0.chunk.js.map",
     "488.7c027bc7.chunk.js.map": "/cinemagot-react-app/static/js/488.7c027bc7.chunk.js.map",
     "321.0607cbf8.chunk.js.map": "/cinemagot-react-app/static/js/321.0607cbf8.chunk.js.map",
     "300.a0b9b8e0.chunk.js.map": "/cinemagot-react-app/static/js/300.a0b9b8e0.chunk.js.map",
@@ -62,8 +62,8 @@
     "623.e204cb33.chunk.js.map": "/cinemagot-react-app/static/js/623.e204cb33.chunk.js.map",
     "917.6a2379af.chunk.js.map": "/cinemagot-react-app/static/js/917.6a2379af.chunk.js.map",
     "30.d0197431.chunk.js.map": "/cinemagot-react-app/static/js/30.d0197431.chunk.js.map",
-    "667.431c010b.chunk.css.map": "/cinemagot-react-app/static/css/667.431c010b.chunk.css.map",
-    "667.e5e9ecd7.chunk.js.map": "/cinemagot-react-app/static/js/667.e5e9ecd7.chunk.js.map",
+    "375.fa6cf908.chunk.css.map": "/cinemagot-react-app/static/css/375.fa6cf908.chunk.css.map",
+    "375.f067fde4.chunk.js.map": "/cinemagot-react-app/static/js/375.f067fde4.chunk.js.map",
     "820.96f53b30.chunk.js.map": "/cinemagot-react-app/static/js/820.96f53b30.chunk.js.map",
     "460.b443782a.chunk.js.map": "/cinemagot-react-app/static/js/460.b443782a.chunk.js.map",
     "434.9db78750.chunk.js.map": "/cinemagot-react-app/static/js/434.9db78750.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.42d27b49.css",
-    "static/js/main.0d017e7f.js"
+    "static/js/main.21019b2a.js"
   ]
 }
