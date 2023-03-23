@@ -85,6 +85,8 @@ includes:
 
 - Styled Components and Styled System - for handling styles and theming;
 
+- Yup - for form validation.
+
 ## Complete List of Utilized Technologies:
 
 - React;
@@ -94,6 +96,7 @@ includes:
 - Firebase;
 - Styled Components;
 - Styled System;
+- Yup;
 - Axios;
 - Chart.js;
 - Swiper React;
