@@ -1,113 +1,108 @@
-# React homework template
+# CINEMAGOT - Find Your Movie in a Leap of a Monkey
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+## What is the point?
 
-## Создание репозитория по шаблону
+CineMaGot is an original cyberpunky looking web application for real cinema
+lovers and movie fans. The whole world of film industry is at hand. Want to
+catch up with the latest scoops and jump on a hype train - there you go! Eager
+to know more about a movie, watch a trailer or just take a look at your favorite
+actors - this is all available in no time. Even the most fastidious movie geeks
+can find their way to the rarest film specimens and keep track of their watching
+experience.
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+Our philosophy is that we are all like magots, or rather CineMagots - curious
+and smart monkeys striving to get what we want in a blink of an eye in the world
+of technology. And all we want is cinema!
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## What is there for a newcomer?
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+Although we thoroughly recommend signing up, unregistered users will still find
+lots of ways to entertain themselves. Without registration you can immediately
+do the following:
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+- Look through galleries of films that are currently trending, currently running
+  at cinemas, enjoying the greatest hype or being considered the best movies of
+  all times;
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+- Catch up with the latest news of the film and entertainment industry;
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+- Find the detailed information on any movie that has sparked your interest;
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+- Watch trailers and all the official videos related to it;
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+- Read real people's reviews of the film you are interested in;
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+- Search for a particular movie by keywords;
 
-## Подготовка к работе
+Which is not that little, isn't it?
 
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
+## What do I get if I sign up?
 
-## Деплой
+When you are welcomed as a registered user, in addition to all the previous
+options available to a newcomer, you will get a whole bunch of special perks
+that you can take advantage of.
 
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
+Namely:
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- Besides looking through the aforementioned galleries, now you have a chance to
+  perform quite a sophisticated search - by genres, original language, year,
+  earliest date, latest date and users' rating;
 
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
+- The most useful opportunity, however, is that now you are provided with your
+  personal room called 'CineMansion' enabling you to keep your own three private
+  lists - your favorites, films that you want to watch later and the ones you've
+  already seen;
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- From any list you can easily access recommended films that other people
+  usually watch with the particular movie as well as similar films which are
+  just… similar;
 
-### Статус деплоя
+- You can also checkout various posters that have been created for a certain
+  movie in different countries, which might be appreciated by real movie geeks;
 
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
+- In your personal CineMansion you can keep track of various statistics
+  describing your watching experience - from your favorite genres to your
+  favorite films' average budget. You might find some data quite surprising;
 
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
+And, of course, there are ways to personalize your room. At any time you can
+change the color schema or choose another CineMagot you can associate yourself
+with today.
 
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
+## Let Us Get down to Serious Stuff
 
-![Deployment status](./assets/deploy-status.png)
+The CineMaGot web application is based on React framework therefore using
+JavaScript as a basic language. However, the main bunch of utilized technologies
+includes:
 
-### Живая страница
+- Redux Toolkit - for synchronous and asynchronous operations that require
+  distant data exchange among components;
 
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+- Tanstack/React Query - for local asynchronous operations that do not need to
+  be processed globally;
 
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
+- Firebase - for registration and authentication of users, as well as storage of
+  private user lists;
 
-### Маршрутизация
+- Styled Components and Styled System - for handling styles and theming;
 
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
+## Complete List of Utilized Technologies:
 
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
+- React;
+- JavaScript;
+- Redux Toolkit;
+- Tanstack/React Query;
+- Firebase;
+- Styled Components;
+- Styled System;
+- Axios;
+- Chart.js;
+- Swiper React;
+- React Tostify;
+- CSS;
+- HTML5;
 
-## Как это работает
+## Contact Information
 
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+If you want to report a bug or you have got an interesting suggestion, you can
+find and contact me here on linkedIn:
+[LinkedIn](https://www.linkedin.com/in/yevhen-petrunkin/)
