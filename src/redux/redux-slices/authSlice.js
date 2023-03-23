@@ -12,6 +12,16 @@ const initialState = {
   error: null,
 };
 
+const authLoadingMatcher = action => {
+  return [signUp.pending, logIn.pending, logOut.pending].includes(action.type);
+};
+
+const authRejectedMatcher = action => {
+  return [signUp.rejected, logIn.rejected, logOut.rejected].includes(
+    action.type
+  );
+};
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -25,22 +35,10 @@ export const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(signUp.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(signUp.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
         notifyOnSuccessfulSignUp();
-        state.error = null;
-      })
-      .addCase(signUp.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(logIn.pending, state => {
-        state.loading = true;
         state.error = null;
       })
       .addCase(logIn.fulfilled, (state, action) => {
@@ -48,20 +46,16 @@ export const authSlice = createSlice({
         state.user = action.payload;
         state.error = null;
       })
-      .addCase(logIn.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(logOut.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(logOut.fulfilled, state => {
         state.loading = false;
         state.user = null;
         state.error = null;
       })
-      .addCase(logOut.rejected, (state, action) => {
+      .addMatcher(authLoadingMatcher, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addMatcher(authRejectedMatcher, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

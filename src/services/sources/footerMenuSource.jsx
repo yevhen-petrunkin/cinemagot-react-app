@@ -25,7 +25,7 @@ export const footerMenuLinks = [
   {
     id: 'github',
     icon: <FaGithub style={{ width: '100%', height: '100%' }} />,
-    link: 'https://github.com/yevhen-petrunkin/phonebook-06-react',
+    link: 'https://github.com/yevhen-petrunkin/cinemagot-react-app',
   },
   {
     id: 'facebook',

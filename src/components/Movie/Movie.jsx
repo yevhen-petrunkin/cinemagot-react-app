@@ -1,6 +1,7 @@
 import {
   StyledLink,
   MovieBox,
+  Sign,
   ImgBox,
   InfoBox,
   Info,
@@ -44,6 +45,7 @@ function Movie({ movie, location }) {
   return (
     <MovieBox>
       <ImgBox img={poster || placeholder} />
+      <Sign>Interactive</Sign>
       <InfoBox>
         <MovieName>{movieName}</MovieName>
         <Info>{overview}</Info>

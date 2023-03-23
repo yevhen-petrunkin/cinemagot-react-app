@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
-  ${({ theme: { space } }) => `
+  ${({ theme: { space, mediaQueries } }) => `
   position: fixed;
   top: ${space[0]};
   left: ${space[0]};
@@ -9,6 +9,30 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(1, 1, 1, 0.3);
+
+  ${mediaQueries.extraLarge} {
+    padding-top: 11vw;
+  }
+
+  ${mediaQueries.large} {
+    padding-top: 15vw;
+  }
+
+  ${mediaQueries.medium} {
+    padding-top: 15vw;
+  }
+
+  ${mediaQueries.small} {
+    padding-top: 15vw;
+  }
+
+  ${mediaQueries.lowerSmall} {
+    padding-top: 25vw;
+  }
+
+  ${mediaQueries.tiny} {
+    padding-top: 20vw;
+  }
   
   `}
 `;

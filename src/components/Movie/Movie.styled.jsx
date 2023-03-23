@@ -28,6 +28,15 @@ export const MovieBox = styled.div`
   `}
 `;
 
+export const Sign = styled.p`
+  ${({ theme: { space } }) => `
+    margin: ${space[0]};
+    margin-top: ${space[3]}px;
+    margin-left: ${space[3]}px;
+    color: rgba(200, 200, 200, 0.6);  
+  `}
+`;
+
 export const ImgBox = styled.div`
   ${({ theme: { radii, zIndices }, img }) => `
   position: absolute;

@@ -148,13 +148,25 @@ export const ImgBgBox = styled.div`
 `;
 
 export const RateBox = styled.div`
-  ${({ theme: { space, sizes, radii } }) => `
+  ${({ theme: { space, sizes, radii, mediaQueries } }) => `
   position: absolute;
   right: ${space[0]};
   top: ${space[0]};
   padding: ${space[2]}px;
   width: ${sizes[1] * 35}px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: ${radii[2]}px;
+
+  ${mediaQueries.medium} {
+    width: ${sizes[1] * 28}px;
+  }
+
+  ${mediaQueries.small} {
+   width: ${sizes[1] * 28}px;
+  }
+
+  ${mediaQueries.tiny} {
+    width: ${sizes[1] * 24}px;
+  }
   `}
 `;

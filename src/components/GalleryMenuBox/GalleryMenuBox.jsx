@@ -11,18 +11,7 @@ import { useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectGalleryCaption,
-  selectGalleryType,
-  selectValueObject,
-  selectParams,
-  selectRating,
-  selectIndex,
-  selectUser,
-  selectMousewheel,
-  selectOpenGallery,
-  selectPage,
-} from 'redux/selectors';
+import { selectGalleryCollection, selectUser } from 'redux/selectors';
 import {
   setGalleryType,
   setParams,
@@ -54,15 +43,18 @@ import {
 } from 'react-icons/tfi';
 
 function GalleryMenuBox() {
-  const caption = useSelector(selectGalleryCaption);
-  const galleryType = useSelector(selectGalleryType);
-  const params = useSelector(selectParams);
-  const valueObject = useSelector(selectValueObject);
-  const rating = useSelector(selectRating);
-  const index = useSelector(selectIndex);
-  const mousewheel = useSelector(selectMousewheel);
-  const openGallery = useSelector(selectOpenGallery);
-  const page = useSelector(selectPage);
+  const {
+    caption,
+    params,
+    valueObject,
+    galleryType,
+    rating,
+    index,
+    isMousewheel,
+    isOpenGallery,
+    page,
+  } = useSelector(selectGalleryCollection);
+
   const isUserAuth = useSelector(selectUser);
 
   const { colors } = useTheme();
@@ -129,14 +121,14 @@ function GalleryMenuBox() {
   };
 
   const handleToggleMousewheel = () => {
-    dispatch(setMousewheel(!mousewheel));
-    if (!mousewheel) {
+    dispatch(setMousewheel(!isMousewheel));
+    if (!isMousewheel) {
       dispatch(setIndex(1));
     }
   };
 
   const scrollDownToOpenGallery = () => {
-    dispatch(setOpenGallery(!openGallery));
+    dispatch(setOpenGallery(!isOpenGallery));
     setTimeout(() => {
       dispatch(setOpenGalleryRef(openGalleryRef));
     }, 100);
@@ -145,7 +137,7 @@ function GalleryMenuBox() {
   return (
     <MenuBox isActive={index > 0}>
       <MenuCtrlSet>
-        {mousewheel ? (
+        {isMousewheel ? (
           <IconButton
             title="Disable mouse-scroll"
             type="button"
@@ -169,7 +161,7 @@ function GalleryMenuBox() {
           </IconButton>
         )}
 
-        {openGallery ? (
+        {isOpenGallery ? (
           <IconButton
             title="Fold up gallery"
             type="button"

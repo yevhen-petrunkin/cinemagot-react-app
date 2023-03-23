@@ -169,6 +169,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   ${({ theme: { space, colors, fontSizes, sizes, radii, mediaQueries } }) => `
+  padding-left: ${space[3]}px;
   margin-top: ${space[2]}px;
   margin-left: ${space[3]}px;
   display: inline-block;
@@ -181,9 +182,13 @@ export const Input = styled.input`
   outline: none;
 
   &:hover,
-  &focus {
+  &:focus {
     outline: none;
   } 
+
+  &::placeholder {
+    color: ${colors.secondary};
+  }
   
   ${mediaQueries.huge} {
     margin-top: ${space[1] * 6}px;

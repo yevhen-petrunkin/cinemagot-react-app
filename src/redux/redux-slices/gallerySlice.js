@@ -27,6 +27,26 @@ const initialState = {
   movieId: '',
 };
 
+const galleryLoadingMatcher = action => {
+  return [
+    getHomePageGallery.pending,
+    getMoviesByKeyword.pending,
+    getMoviesByParams.pending,
+    getRecommendedMovies.pending,
+    getSimilarMovies.pending,
+  ].includes(action.type);
+};
+
+const galleryRejectedMatcher = action => {
+  return [
+    getHomePageGallery.rejected,
+    getMoviesByKeyword.rejected,
+    getMoviesByParams.rejected,
+    getRecommendedMovies.rejected,
+    getSimilarMovies.rejected,
+  ].includes(action.type);
+};
+
 export const gallerySlice = createSlice({
   name: 'gallery',
   initialState,
@@ -61,23 +81,11 @@ export const gallerySlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getHomePageGallery.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getHomePageGallery.fulfilled, (state, action) => {
         state.loading = false;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
         state.totalPageNum = action.payload.totalPageNum;
-        state.error = null;
-      })
-      .addCase(getHomePageGallery.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(getMoviesByKeyword.pending, state => {
-        state.loading = true;
         state.error = null;
       })
       .addCase(getMoviesByKeyword.fulfilled, (state, action) => {
@@ -88,27 +96,11 @@ export const gallerySlice = createSlice({
         state.caption = action.payload.galleryCaption;
         state.error = null;
       })
-      .addCase(getMoviesByKeyword.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(getMoviesByParams.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getMoviesByParams.fulfilled, (state, action) => {
         state.loading = false;
         state.gallery = action.payload.normalizedGallery;
         state.caption = action.payload.galleryCaption;
         state.totalPageNum = action.payload.totalPageNum;
-        state.error = null;
-      })
-      .addCase(getMoviesByParams.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(getRecommendedMovies.pending, state => {
-        state.loading = true;
         state.error = null;
       })
       .addCase(getRecommendedMovies.fulfilled, (state, action) => {
@@ -119,14 +111,6 @@ export const gallerySlice = createSlice({
         state.caption = action.payload.galleryCaption;
         state.error = null;
       })
-      .addCase(getRecommendedMovies.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(getSimilarMovies.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getSimilarMovies.fulfilled, (state, action) => {
         state.loading = false;
         state.movieId = action.payload.id;
@@ -135,7 +119,11 @@ export const gallerySlice = createSlice({
         state.caption = action.payload.galleryCaption;
         state.error = null;
       })
-      .addCase(getSimilarMovies.rejected, (state, action) => {
+      .addMatcher(galleryLoadingMatcher, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addMatcher(galleryRejectedMatcher, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

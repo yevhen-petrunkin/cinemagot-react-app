@@ -51,7 +51,7 @@ function News() {
             }
             return (
               <NewsArticle key={url}>
-                <NewsLink href={url}>
+                <NewsLink href={url} target="_blank" rel="noopener">
                   <NewsCaption>{name}</NewsCaption>
                   <img
                     src={urlToImage || placeholder}
