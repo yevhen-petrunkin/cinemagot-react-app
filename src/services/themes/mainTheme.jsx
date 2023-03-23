@@ -19,7 +19,7 @@ export const mainTheme = {
   fontSizes: [8, 12, 16, 20, 24, 28, 32],
   fontWeights: [400, 700, 900],
   lineHeights: [1.2, 1.3, 1.4, 1.5],
-  letterSpacings: [1.2, 1.3, 1.4, 1.5, 2],
+  letterSpacings: [1.1, 1.2, 1.3, 1.4, 1.5, 2],
   sizes: [0, 4, 8, 12, 16, 20],
   borders: {
     input: `2px solid ${colors.secondaryStrong}`,

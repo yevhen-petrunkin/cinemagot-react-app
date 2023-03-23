@@ -7,6 +7,7 @@ export const selectExtraLoading = state => state.userExtraData.extraLoading;
 export const selectExtraError = state => state.userExtraData.extraError;
 
 export const selectModal = state => state.modal.isModalOpen;
+export const selectFooterModal = state => state.modal.isFooterModalOpen;
 export const selectPicBoard = state => state.modal.isPicBoardOpen;
 export const selectBurger = state => state.modal.isBurgerOpen;
 export const selectPicturesLoading = state => state.modal.loading;

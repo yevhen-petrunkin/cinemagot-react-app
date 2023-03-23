@@ -3,6 +3,7 @@ import { getPicturesById } from 'redux/redux-operations/tmdbOperations';
 
 const initialState = {
   isModalOpen: false,
+  isFooterModalOpen: false,
   isPicBoardOpen: false,
   isBurgerOpen: false,
   isPhotopickerOpen: false,
@@ -20,6 +21,12 @@ export const modalSlice = createSlice({
     },
     closeModal(state) {
       state.isModalOpen = false;
+    },
+    openFooterModal(state) {
+      state.isFooterModalOpen = true;
+    },
+    closeFooterModal(state) {
+      state.isFooterModalOpen = false;
     },
     openPicBoard(state) {
       state.isPicBoardOpen = true;
@@ -61,6 +68,8 @@ export const modalSlice = createSlice({
 export const {
   openModal,
   closeModal,
+  openFooterModal,
+  closeFooterModal,
   openPicBoard,
   closePicBoard,
   openPhotopicker,
