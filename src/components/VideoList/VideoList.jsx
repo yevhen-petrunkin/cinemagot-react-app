@@ -15,8 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectPicBoard } from 'redux/selectors';
 import { openPicBoard } from 'redux/redux-slices/modalSlice';
 import { useQuery } from '@tanstack/react-query';
-import { fetchVideosById, getStartingVideo } from 'services';
-import { normalizeVideos } from 'services/normalize';
+import { fetchVideosById, getStartingVideo, normalizeVideos } from 'services';
 import PicBoard from 'components/PicBoard';
 import Footage from 'components/Footage/Footage';
 

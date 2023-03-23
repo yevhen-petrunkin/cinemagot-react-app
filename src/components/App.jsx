@@ -18,7 +18,7 @@ import { fetchUserExtraData } from 'redux/redux-operations/firebaseOperations';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase';
-import { normalizeUserData } from 'services/normalize';
+import { normalizeUserData } from 'services';
 import { messageData } from 'services/sources/messageDataSource';
 
 import { LoaderAdjust } from 'components/Loader';

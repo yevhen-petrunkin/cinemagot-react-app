@@ -10,8 +10,7 @@ import {
 } from './News.styled';
 import PropTypes from 'prop-types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNewsData } from 'services/services';
-import { normalizeDateString } from 'services/normalize';
+import { fetchNewsData, normalizeDateString } from 'services';
 import { messageData } from 'services/sources/messageDataSource';
 import Container from 'components/Container';
 import { LoaderAdjust } from 'components/Loader';

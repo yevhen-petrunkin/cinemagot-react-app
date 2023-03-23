@@ -40,7 +40,7 @@ import {
 } from 'redux/redux-operations/tmdbOperations';
 import 'react-datepicker/dist/react-datepicker.css';
 import { defaultValueObjectSource } from 'services/sources/defauldValueObjectSource';
-import { normalizeDate } from 'services/normalize';
+import { normalizeDate } from 'services';
 
 import GalleryMenu from 'components/GalleryMenuBox/GalleryMenu';
 import GallerySelectMenu from 'components/GalleryMenuBox/GallerySelectMenu';

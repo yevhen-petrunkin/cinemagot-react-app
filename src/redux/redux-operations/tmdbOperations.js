@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { normalizeGallery, normalizePicGallery } from 'services/normalize';
 import {
+  normalizeGallery,
+  normalizePicGallery,
+  getQueryByParams,
   getHomePageGalleryTypeQuery,
   getHomePageGalleryCaption,
-  getQueryByParams,
-} from 'services/services';
+} from 'services';
 
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 const TMDB_KEY = 'ae692f579055feb645577941bd67daeb';

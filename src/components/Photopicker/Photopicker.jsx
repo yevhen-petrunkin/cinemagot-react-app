@@ -17,7 +17,7 @@ import { closePhotopicker } from 'redux/redux-slices/modalSlice';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { messageData } from 'services/sources/messageDataSource';
-import { updateUserPhoto } from 'services/services';
+import { updateUserPhoto } from 'services';
 import { photoSource } from 'services/sources/photoSource';
 
 import Button from 'components/Button';

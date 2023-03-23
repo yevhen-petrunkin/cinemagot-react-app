@@ -27,7 +27,7 @@ import {
 import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
-import { deleteFromUserList } from 'services/services';
+import { deleteFromUserList } from 'services';
 import { dashMenuSource } from 'services/sources/dashMenuSource';
 import { messageData } from 'services/sources/messageDataSource';
 import UserGalleryBtnSet from 'components/UserGalleryBtnSet';

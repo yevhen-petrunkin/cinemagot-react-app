@@ -5,18 +5,20 @@ import Container from 'components/Container';
 import CreditDetails from 'components/CreditDetails';
 import { messageData } from 'services/sources/messageDataSource';
 import { ErrorLoaderAdjust } from 'components/Loader';
+import { filterPeopleWithPhotos } from 'services';
 
 function Cast() {
   const location = useLocation();
   const data = location.state?.credits ?? { crew: [], cast: [] };
+  const { crew, cast } = filterPeopleWithPhotos(data);
 
   return (
     <Container>
       <ContentBox>
         <Caption>Crew</Caption>
         <List>
-          {data.crew.length > 0 ? (
-            data.crew.map(person => {
+          {crew.length > 0 ? (
+            crew.map(person => {
               const { id } = person;
               return <CreditDetails key={id} person={person} type="crew" />;
             })
@@ -30,8 +32,8 @@ function Cast() {
         </List>
         <Caption>Cast</Caption>
         <List>
-          {data.cast.length > 0 ? (
-            data.cast.map(person => {
+          {cast.length > 0 ? (
+            cast.map(person => {
               const { id } = person;
               return <CreditDetails key={id} person={person} type="cast" />;
             })

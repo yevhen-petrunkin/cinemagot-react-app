@@ -9,8 +9,7 @@ import {
   TabData,
 } from './MovieTable.styled';
 import PropTypes from 'prop-types';
-import { stringifyData } from 'services';
-import { normalizeCreditList } from 'services/normalize';
+import { stringifyData, normalizeCreditList } from 'services';
 import { StarWidg, HeartWidg } from 'components/Widgets';
 
 function MovieTable({ movie, credits }) {

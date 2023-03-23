@@ -14,9 +14,8 @@ import {
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchLatestMovie } from 'services/services';
+import { fetchLatestMovie, stringifyData, normalizeMovieData } from 'services';
 import { defaultMovieDataObject } from 'services/sources/defauldValueObjectSource';
-import { normalizeMovieData, stringifyData } from 'services/normalize';
 import { messageData } from 'services/sources/messageDataSource';
 
 import Loader from 'components/Loader';

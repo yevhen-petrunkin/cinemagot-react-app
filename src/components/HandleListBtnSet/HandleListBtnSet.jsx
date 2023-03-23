@@ -9,7 +9,7 @@ import { useMedia } from 'services/media/useMedia';
 import { db } from '../../firebase';
 import { doc } from '@firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
-import { updateUserList } from 'services/services';
+import { updateUserList } from 'services';
 
 import { RxBookmark, RxCheckCircled, RxStar } from 'react-icons/rx';
 import { toast } from 'react-toastify';

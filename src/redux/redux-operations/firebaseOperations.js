@@ -7,8 +7,8 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
-import { normalizeUserData, normalizeUserExtraData } from 'services/normalize';
-import { createUserLists } from 'services/services';
+import { normalizeUserData, normalizeUserExtraData } from 'services';
+import { createUserLists } from 'services';
 import { userListBtnSetSource } from 'services/sources/btnSetSource';
 
 export const signUp = createAsyncThunk(

@@ -10,7 +10,7 @@ import {
 } from './Movie.styled';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { getMovieIdByPage } from 'services/services';
+import { getMovieIdByPage } from 'services';
 
 import { StarWidg, HeartWidg } from 'components/Widgets';
 import placeholder from 'images/photoholder.jpg';

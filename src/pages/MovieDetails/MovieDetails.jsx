@@ -25,7 +25,7 @@ import {
   normalizeCredits,
   getPictureAddress,
 } from 'services';
-import { normalizeMovieData } from 'services/normalize';
+import { normalizeMovieData } from 'services';
 import { messageData } from 'services/sources/messageDataSource';
 
 import Container from 'components/Container';

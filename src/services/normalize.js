@@ -1,5 +1,11 @@
 import { userExtraDataSource } from './sources/userExtraDataSource';
-import { getPictureAddress, getVideoAddress } from './services';
+import {
+  getPictureAddress,
+  getVideoAddress,
+  filterMoviesByAdultContent,
+  stringifyCrewList,
+  stringifyActorList,
+} from 'services';
 import { defaultMovieDataObject } from './sources/defauldValueObjectSource';
 import { crewSource } from './sources/crewSource';
 
@@ -23,9 +29,10 @@ export function normalizeUserExtraData(data) {
 }
 
 export function normalizeGallery(gallery) {
-  return gallery.map(
+  const normalizedGallery = gallery.map(
     ({
       id,
+      adult,
       original_title,
       poster_path,
       release_date,
@@ -37,6 +44,7 @@ export function normalizeGallery(gallery) {
       const poster = getPictureAddress(poster_path);
       return {
         id,
+        adult,
         movieName: original_title,
         poster,
         release: release_date,
@@ -47,6 +55,17 @@ export function normalizeGallery(gallery) {
       };
     }
   );
+
+  return filterMoviesByAdultContent(normalizedGallery);
+}
+
+export function normalizePicGallery(obj) {
+  let number = 0;
+  return obj.posters.map(({ file_path }) => {
+    const url = getPictureAddress(file_path);
+    number += 1;
+    return { url, number };
+  });
 }
 
 export function normalizeCredits(creditArr) {
@@ -96,41 +115,12 @@ export function normalizeCreditList(credits) {
   return [...normalizedCrew, { job: 'Actors', memberString: actorString }];
 }
 
-export function stringifyCrewList(list, jobTag) {
-  return list
-    .filter(({ job }) => job.toLowerCase() === jobTag)
-    .reduce((aggr, member, _, arr) => {
-      if (arr.indexOf(member) < 4) {
-        aggr = [...aggr, member.memberName];
-      }
-      return aggr;
-    }, [])
-    .join(', ');
-}
-
-export function stringifyActorList(list) {
-  return (
-    list
-      .reduce((aggr, actor, _, arr) => {
-        if (arr.indexOf(actor) < 5) {
-          aggr = [...aggr, actor.actorName];
-        }
-        return aggr;
-      }, [])
-      .join(', ') + ' et al.'
-  );
-}
-
 export function normalizeReviews(reviews) {
   return reviews.map(review => ({
     id: review.id,
     author: review.author,
     content: review.content,
   }));
-}
-
-export function stringifyData(array) {
-  return array.map(item => item.name).join(', ');
 }
 
 export function normalizeDate(date) {
@@ -197,15 +187,6 @@ export function normalizeMovieData(movieObj) {
     score: vote_average,
     voteCount: vote_count,
   };
-}
-
-export function normalizePicGallery(obj) {
-  let number = 0;
-  return obj.posters.map(({ file_path }) => {
-    const url = getPictureAddress(file_path);
-    number += 1;
-    return { url, number };
-  });
 }
 
 export function normalizeVideos(obj, number) {
