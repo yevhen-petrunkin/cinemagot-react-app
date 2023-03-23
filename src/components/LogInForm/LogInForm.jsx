@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading, selectError } from 'redux/selectors';
 import { clearError } from 'redux/redux-slices/authSlice';
 import { logIn } from 'redux/redux-operations/firebaseOperations';
-import { closeModal } from 'redux/redux-slices/modalSlice';
+import { closeModal, closeFooterModal } from 'redux/redux-slices/modalSlice';
 import { loginSchema } from 'services/sources/formValidationSchemaSource';
 import { messageData } from 'services/sources/messageDataSource';
 
@@ -29,6 +29,7 @@ function LogInForm() {
       sessionStorage.removeItem('mute');
       setTimeout(() => {
         dispatch(closeModal());
+        dispatch(closeFooterModal());
         if (!isError) {
           dispatch(clearError());
         }

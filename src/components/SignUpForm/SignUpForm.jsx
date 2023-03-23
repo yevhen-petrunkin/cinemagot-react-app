@@ -6,7 +6,7 @@ import { selectLoading, selectError } from 'redux/selectors';
 import { clearError } from 'redux/redux-slices/authSlice';
 import { signUp } from 'redux/redux-operations/firebaseOperations';
 import { signUpInputs } from 'services/sources/signUpFormSource';
-import { closeModal } from 'redux/redux-slices/modalSlice';
+import { closeModal, closeFooterModal } from 'redux/redux-slices/modalSlice';
 import { signUpSchema } from 'services/sources/formValidationSchemaSource';
 import { messageData } from 'services/sources/messageDataSource';
 
@@ -34,6 +34,7 @@ function SignUpForm() {
       sessionStorage.removeItem('mute');
       setTimeout(() => {
         dispatch(closeModal());
+        dispatch(closeFooterModal());
         if (!isError) {
           dispatch(clearError());
         }

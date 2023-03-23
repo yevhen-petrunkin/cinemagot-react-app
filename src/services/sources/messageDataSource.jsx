@@ -32,6 +32,7 @@ export const messageData = {
   requireAgeMessage: 'Age is required.',
   minCountryMessage: 'The shortest name of a country is 4 characters.',
   maxCountryMessage: 'The longest name of a country is 56 characters.',
-  countryContentMessage: 'Username must only contain Standard English letters.',
+  countryContentMessage:
+    'Country name must only contain Standard English letters.',
   requireCountryMessage: 'Country is required.',
 };
