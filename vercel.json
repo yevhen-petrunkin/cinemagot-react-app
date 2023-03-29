@@ -1,0 +1,21 @@
+{
+  "routes": [{ "src": "/(.*)", "dest": "/index.html" }],
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/:any*",
+      "destination": "http://localhost:8000/api/:any*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
